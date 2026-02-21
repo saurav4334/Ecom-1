@@ -19,7 +19,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <form action="{{route('contact.store')}}" method="POST" class=row data-parsley-validate=""  enctype="multipart/form-data">
+                <form action="{{route('admin.contact.store')}}" method="POST" class=row data-parsley-validate=""  enctype="multipart/form-data">
                     @csrf
                     <div class="col-sm-6">
                         <div class="form-group mb-3">

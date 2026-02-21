@@ -16,8 +16,8 @@
 <div class="row">
   <div class="col-12">
     <div class="page-title-box d-flex align-items-center">
-      <img src="{{ asset('public/frontEnd/images/bulksms.png') }}" alt="Bkash Logo" style="height: 35px; margin-right: 10px;">
-      <h4 class="page-title">Bulksmsbd.net</h4>
+      <img src="{{ asset('public/frontEnd/images/bulksms.png') }}" alt="SMS Gateway" style="height: 35px; margin-right: 10px;">
+      <h4 class="page-title">SMS Gateway</h4>
     </div>
   </div>
 </div>
@@ -31,10 +31,24 @@
           @csrf
           <input type="hidden" name="id" value="{{$sms->id}}">
           
-          <div class="col-sm-4">
+          <div class="col-sm-3">
+            <div class="form-group mb-3">
+              <label for="gateway_name" class="form-label">Gateway</label>
+              @php
+                $gatewayName = old('gateway_name', $sms->gateway_name ?? 'bulksmsbd');
+              @endphp
+              <select class="form-control" id="gateway_name" name="gateway_name">
+                <option value="bulksmsbd" @if($gatewayName==='bulksmsbd') selected @endif>Bulksmsbd</option>
+                <option value="mram" @if($gatewayName==='mram') selected @endif>MRAM SMS</option>
+              </select>
+            </div>
+          </div>
+          <!-- col-end -->
+
+          <div class="col-sm-3">
             <div class="form-group mb-3">
               <label for="api_key" class="form-label">API Key *</label>
-              <input type="text" class="form-control @error('api_key') is-invalid @enderror" name="api_key" value="{{ $sms->api_key }}" id="api_key" required="" />
+              <input type="text" class="form-control @error('api_key') is-invalid @enderror" name="api_key" value="{{ $sms->api_key ?? '' }}" id="api_key" required="" />
               @error('api_key')
               <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -44,11 +58,24 @@
           </div>
           <!-- col-end -->
           
-          <div class="col-sm-4">
+          <div class="col-sm-3">
             <div class="form-group mb-3">
               <label for="serderid" class="form-label">Senderid *</label>
-              <input type="text" class="form-control @error('serderid') is-invalid @enderror" name="serderid" value="{{ $sms->serderid }}" id="serderid" required="" />
+              <input type="text" class="form-control @error('serderid') is-invalid @enderror" name="serderid" value="{{ $sms->serderid ?? '' }}" id="serderid" required="" />
               @error('serderid')
+              <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+              </span>
+              @enderror
+            </div>
+          </div>
+
+          <div class="col-sm-3">
+            <div class="form-group mb-3">
+              <label for="url" class="form-label">API URL *</label>
+              <input type="text" class="form-control @error('url') is-invalid @enderror" name="url" value="{{ $sms->url ?? '' }}" id="url" required="" placeholder="https://sms.mram.com.bd/smsapi" />
+              <small class="form-text text-muted">For MRAM: https://sms.mram.com.bd/smsapi</small>
+              @error('url')
               <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
               </span>
@@ -57,17 +84,44 @@
           </div>
           
           <!-- put this after Senderid input -->
-<div class="col-sm-4">
-  <div class="form-group mb-3">
-    <label for="admin_phone_list" class="form-label">Admin Phone List (comma separated)</label>
-    <input type="text" class="form-control @error('admin_phone_list') is-invalid @enderror" name="admin_phone_list" id="admin_phone_list"
-           value="{{ old('admin_phone_list', env('ADMIN_PHONE_LIST', $sms->admin_phone ?? '')) }}" placeholder="01711111111,01722222222" />
-    <small class="form-text text-muted">Multiple numbers comma separated. e.g. 01711111111,01722222222</small>
-    @error('admin_phone_list')
-    <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-    @enderror
-  </div>
-</div>
+          <div class="col-sm-3">
+            <div class="form-group mb-3">
+              <label for="message_type" class="form-label">Message Type</label>
+              @php
+                $messageType = old('message_type', $sms->message_type ?? 'text');
+              @endphp
+              <select class="form-control" id="message_type" name="message_type">
+                <option value="text" @if($messageType==='text') selected @endif>Text</option>
+                <option value="unicode" @if($messageType==='unicode') selected @endif>Unicode</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-sm-3">
+            <div class="form-group mb-3">
+              <label for="label" class="form-label">Label</label>
+              @php
+                $label = old('label', $sms->label ?? 'transactional');
+              @endphp
+              <select class="form-control" id="label" name="label">
+                <option value="transactional" @if($label==='transactional') selected @endif>Transactional</option>
+                <option value="promotional" @if($label==='promotional') selected @endif>Promotional</option>
+              </select>
+              <small class="form-text text-muted">Used by MRAM SMS</small>
+            </div>
+          </div>
+
+          <div class="col-sm-6">
+            <div class="form-group mb-3">
+              <label for="admin_phone_list" class="form-label">Admin Phone List (comma separated)</label>
+              <input type="text" class="form-control @error('admin_phone_list') is-invalid @enderror" name="admin_phone_list" id="admin_phone_list"
+                     value="{{ old('admin_phone_list', env('ADMIN_PHONE_LIST', $sms->admin_phone ?? '')) }}" placeholder="01711111111,01722222222" />
+              <small class="form-text text-muted">Multiple numbers comma separated. e.g. 01711111111,01722222222</small>
+              @error('admin_phone_list')
+              <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+              @enderror
+            </div>
+          </div>
 
           <!-- col-end -->
           

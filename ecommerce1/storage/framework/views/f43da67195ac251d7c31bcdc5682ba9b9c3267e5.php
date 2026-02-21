@@ -39,4 +39,4 @@
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 
 </html>
-<?php /**PATH C:\Users\getup\Downloads\ecom2\drive-download-20260125T155433Z-1-001\ecommerce1\resources\views/errors/404.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\Users\getup\Downloads\ecom2\drive-download-20260125T155433Z-1-001\ecommerce1\resources\views\errors\404.blade.php ENDPATH**/ ?>

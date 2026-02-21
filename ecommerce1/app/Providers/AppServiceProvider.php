@@ -21,6 +21,7 @@ use Throwable;
 use Illuminate\Support\Collection;
 use App\Models\User;
 use App\Models\Review;
+use App\Observers\OrderObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -37,15 +38,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Order::observe(OrderObserver::class);
+
         /**
-         * 🟢 Super Admin Override (যাতে Admin সব পারমিশন পায়)
+         * ðŸŸ¢ Super Admin Override (à¦¯à¦¾à¦¤à§‡ Admin à¦¸à¦¬ à¦ªà¦¾à¦°à¦®à¦¿à¦¶à¦¨ à¦ªà¦¾à§Ÿ)
          */
         Gate::before(function (User $user, $ability) {
             return $user->hasRole('Admin') ? true : null;
         });
 
         /**
-         * 🧩 Shurjopay Dynamic Config
+         * ðŸ§© Shurjopay Dynamic Config
          */
         try {
             $shurjopay = PaymentGateway::where(['status' => 1, 'type' => 'shurjopay'])->first();
@@ -61,7 +64,7 @@ class AppServiceProvider extends ServiceProvider
             }
 
         /**
-         * 🧠 Global View Share (header, footer, sidebar)
+         * ðŸ§  Global View Share (header, footer, sidebar)
          */
             $pending_reviews = Review::where('status', 'pending')->count();
             view()->share('pending_reviews', $pending_reviews);
@@ -151,3 +154,6 @@ class AppServiceProvider extends ServiceProvider
 		
     }
 }
+
+
+

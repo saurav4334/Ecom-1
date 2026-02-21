@@ -1077,4 +1077,4 @@ document.getElementById("chatToggle").addEventListener("click", function() {
         <!-- End Google Tag Manager (noscript) -->
     </body>
 </html>
-<?php /**PATH C:\Users\getup\Downloads\ecom2\drive-download-20260125T155433Z-1-001\ecommerce1\resources\views/frontEnd/layouts/master.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\Users\getup\Downloads\ecom2\drive-download-20260125T155433Z-1-001\ecommerce1\resources\views\frontEnd\layouts\master.blade.php ENDPATH**/ ?>

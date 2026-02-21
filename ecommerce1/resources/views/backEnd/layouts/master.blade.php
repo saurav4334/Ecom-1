@@ -519,6 +519,23 @@
 </li>
 @endcanany
 
+{{-- 🤝 Affiliate Program --}}
+<li>
+  <a href="#sidebar-affiliate" data-bs-toggle="collapse">
+    <i data-feather="users"></i>
+    <span> Affiliate Program </span>
+    <span class="menu-arrow"></span>
+  </a>
+  <div class="collapse" id="sidebar-affiliate">
+    <ul class="nav-second-level">
+      <li><a href="{{ route('admin.affiliate.dashboard') }}"><i data-feather="file-plus"></i> Dashboard</a></li>
+      <li><a href="{{ route('admin.affiliate.index') }}"><i data-feather="file-plus"></i> Manage Affiliates</a></li>
+      <li><a href="{{ route('admin.affiliate.applications') }}"><i data-feather="file-plus"></i> Applications</a></li>
+      <li><a href="{{ route('admin.affiliate.form_settings') }}"><i data-feather="file-plus"></i> Form Settings</a></li>
+    </ul>
+  </div>
+</li>
+
 {{-- 🧩 G. Pixel & GTM --}}
 @canany(['pixel-manage'])
 <li>

@@ -1,0 +1,26 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('affiliate_payout_requests', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('affiliate_id');
+            $table->decimal('amount', 10, 2)->default(0);
+            $table->string('status')->default('pending');
+            $table->timestamps();
+
+            $table->index('affiliate_id');
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('affiliate_payout_requests');
+    }
+};

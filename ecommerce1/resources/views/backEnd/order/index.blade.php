@@ -1,6 +1,141 @@
 @extends('backEnd.layouts.master')
 @section('title',$order_status->name.' Order')
 @section('content')
+<style>
+    .order-page-shell {
+        background: #f5f7fb;
+        border-radius: 12px;
+        padding: 14px;
+    }
+    .order-topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 14px;
+    }
+    .order-crumb {
+        font-size: 12px;
+        color: #6e7a8a;
+        text-transform: uppercase;
+        letter-spacing: .3px;
+    }
+    .order-title-main {
+        margin: 0;
+        font-size: 24px;
+        font-weight: 700;
+        color: #1f2d3d;
+    }
+    .top-search {
+        width: 360px;
+        max-width: 100%;
+    }
+    .top-search .input-group-text {
+        background: #2f86eb;
+        color: #fff;
+        border: 1px solid #2f86eb;
+    }
+    .status-chip-wrap {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 12px;
+        background: #fff;
+        border: 1px solid #e3e8ef;
+        border-radius: 10px;
+        padding: 10px;
+    }
+    .status-chip {
+        border: 1px solid #dce3ec;
+        border-radius: 6px;
+        padding: 6px 11px;
+        text-decoration: none;
+        color: #243447;
+        font-weight: 600;
+        font-size: 13px;
+        background: #f9fbff;
+    }
+    .status-chip.active {
+        background: #eaf5ea;
+        border-color: #89c689;
+        color: #2f7a2f;
+    }
+    .status-chip .count {
+        margin-left: 6px;
+        opacity: 0.85;
+    }
+    .advanced-filter-toggle {
+        width: 100%;
+        border: 1px solid #e3e8ef;
+        background: #fff;
+        border-radius: 10px;
+        padding: 12px 14px;
+        color: #334155;
+        font-weight: 600;
+        text-align: left;
+    }
+    .advanced-filter-toggle i:last-child {
+        float: right;
+        margin-top: 2px;
+    }
+    .order-filter-card {
+        border: 1px solid #e8edf3;
+        border-radius: 12px;
+        padding: 12px;
+        background: #f8fafc;
+    }
+    .order-table td, .order-table th {
+        vertical-align: middle;
+    }
+    .order-table thead th {
+        background: #edf2f9;
+        color: #2d3a4b;
+        font-weight: 700;
+    }
+    .order-meta {
+        line-height: 1.4;
+        font-size: 13px;
+    }
+    .order-action a, .order-action button {
+        border: none;
+        background: #f1f5f9;
+        border-radius: 6px;
+        width: 28px;
+        height: 28px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 4px;
+    }
+    .order-action button.delete-confirm {
+        color: #dc3545;
+    }
+    .order-block {
+        border: 1px solid #e3e8ef;
+        border-radius: 12px;
+        background: #fff;
+        padding: 14px;
+        margin-top: 10px;
+    }
+    .order-block-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+    }
+    .order-block-title {
+        font-size: 26px;
+        font-weight: 700;
+        color: #1f2d3d;
+        margin: 0;
+    }
+    .order-toolbar .btn {
+        margin-bottom: 6px;
+    }
+</style>
 <div class="container-fluid">
     
     <!-- start page title -->
@@ -15,41 +150,95 @@
         </div>
     </div>       
     <!-- end page title --> 
-   <div class="row order_page">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-sm-8">
-                        <ul class="action2-btn">
-                            <li><a data-bs-toggle="modal" data-bs-target="#asignUser" class="btn rounded-pill btn-success"><i class="fe-plus"></i> Assign User</a></li>
-                            <li><a data-bs-toggle="modal" data-bs-target="#changeStatus" class="btn rounded-pill btn-primary"><i class="fe-plus"></i> Change Status</a></li>
-                            <li><a href="{{route('admin.order.bulk_destroy')}}" class="btn rounded-pill btn-danger order_delete"><i class="fe-plus"></i> Delete All</a></li>
-                            <li><a href="{{route('admin.order.order_print')}}" class="btn rounded-pill btn-info multi_order_print"><i class="fe-printer"></i> Print</a></li>
-                            @if($steadfast)
-                            <li><a href="{{route('admin.bulk_courier', 'steadfast')}}?status=5" class="btn rounded-pill btn-info multi_order_courier"><i class="fe-truck"></i> Steadfast</a></li>
-                            @endif
-                            
+    <div class="order-page-shell">
+        <div class="order-topbar">
+            <div>
+                <div class="order-crumb">Pages > Orders</div>
+                <h4 class="order-title-main">{{ $order_status->name }} Orders</h4>
+            </div>
+            <form class="top-search" method="GET" action="{{ url()->current() }}">
+                <div class="input-group">
+                    <input class="form-control" type="text" name="keyword" placeholder="Search by order number..." value="{{ request('keyword') }}">
+                    <button class="input-group-text"><i class="fe-search"></i></button>
+                </div>
+            </form>
+        </div>
 
+        <div class="status-chip-wrap">
+            <a href="{{ route('admin.orders', 'all') }}" class="status-chip {{ request()->segment(count(request()->segments())) === 'all' ? 'active' : '' }}">
+                All <span class="count">{{ $totalOrders }}</span>
+            </a>
+            @foreach($statusFilters as $status)
+                <a href="{{ route('admin.orders', $status->slug) }}" class="status-chip {{ $order_status->name === $status->name ? 'active' : '' }}">
+                    {{ $status->name }} <span class="count">{{ $status->orders_count }}</span>
+                </a>
+            @endforeach
+        </div>
 
-                        </ul>
+        <button class="advanced-filter-toggle mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#advancedFilters">
+            <i class="fe-filter"></i> Advanced Filters for Orders <i class="fe-chevron-down"></i>
+        </button>
+
+        <div id="advancedFilters" class="collapse show">
+            <form class="order-filter-card mb-2" method="GET" action="{{ url()->current() }}">
+                <div class="row g-2">
+                    <div class="col-md-3">
+                        <select name="user_id" class="form-control">
+                            <option value="">All Assignees</option>
+                            @foreach($users as $user)
+                                <option value="{{ $user->id }}" {{ request('user_id') == $user->id ? 'selected' : '' }}>
+                                    {{ $user->name }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
-                    <div class="col-sm-4">
-                        <form class="custom_form">
-                            <div class="form-group">
-                                <input type="text" name="keyword" placeholder="Search">
-                                <button class="btn  rounded-pill btn-info">Search</button>
-                            </div>
-                        </form>
+                    <div class="col-md-3">
+                        <select name="payment_status" class="form-control">
+                            <option value="">All Payment Status</option>
+                            <option value="pending" {{ request('payment_status') === 'pending' ? 'selected' : '' }}>Pending</option>
+                            <option value="paid" {{ request('payment_status') === 'paid' ? 'selected' : '' }}>Paid</option>
+                            <option value="partial" {{ request('payment_status') === 'partial' ? 'selected' : '' }}>Partial</option>
+                            <option value="failed" {{ request('payment_status') === 'failed' ? 'selected' : '' }}>Failed</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <input class="form-control" type="date" name="date_from" value="{{ request('date_from') }}">
+                    </div>
+                    <div class="col-md-2">
+                        <input class="form-control" type="date" name="date_to" value="{{ request('date_to') }}">
+                    </div>
+                    <div class="col-md-2 d-flex gap-2">
+                        <button class="btn btn-info w-100">Apply</button>
+                        <a href="{{ url()->current() }}" class="btn btn-outline-secondary w-100">Reset</a>
                     </div>
                 </div>
+            </form>
+        </div>
+
+        <div class="order-block">
+            <div class="order-block-head">
+                <h5 class="order-block-title">{{ $order_status->name }} Orders</h5>
+                <a href="{{route('admin.order.create')}}" class="btn btn-warning rounded-pill"><i class="fe-plus"></i> Create Order</a>
+            </div>
+            <div class="order-toolbar d-flex flex-wrap gap-2 mb-2">
+                <a data-bs-toggle="modal" data-bs-target="#changeStatus" class="btn btn-info"><i class="fe-refresh-cw"></i> Change Status</a>
+                <a href="{{route('admin.order.order_print')}}" class="btn btn-primary multi_order_print"><i class="fe-printer"></i> Print Orders</a>
+                <a data-bs-toggle="modal" data-bs-target="#asignUser" class="btn btn-warning"><i class="fe-user-check"></i> Assign Delivery Channel</a>
+                @if($steadfast)
+                    <a href="{{route('admin.bulk_courier', 'steadfast')}}?status=5" class="btn btn-secondary multi_order_courier"><i class="fe-truck"></i> Courier Status</a>
+                @endif
+                <a href="{{route('admin.order.bulk_destroy')}}" class="btn btn-danger order_delete"><i class="fe-trash-2"></i> Bulk Delete</a>
+            </div>
                 <div class="table-responsive ">
-                <table id="datatable-buttons" class="table table-striped   w-100">
+                <table id="datatable-buttons" class="table table-striped table-hover w-100 order-table">
                     <thead>
                         <tr>
-                            <th style="width:2%"><div class="form-check"><label class="form-check-label"><input type="checkbox" class="form-check-input checkall" value=""></label>
+                            <th style="width:2%">
+                                <div class="form-check">
+                                    <label class="form-check-label"><input type="checkbox" class="form-check-input checkall" value=""></label>
+                                </div>
+                            </th>
                             <th style="width:2%">SL</th>
-                                    </div></th>
                             <th style="width:8%">Action</th>
                             <th style="width:8%">Invoice</th>
                             <th style="width:10%">Date</th>
@@ -71,9 +260,9 @@
                         @foreach($show_data as $key=>$value)
                         <tr>
                             <td><input type="checkbox" class="checkbox" value="{{$value->id}}"></td>
-                            <td>{{$loop->iteration}}</td>
+                            <td>{{ $show_data->firstItem() + $key }}</td>
                             <td>
-                                <div class="button-list custom-btn-list">   
+                                <div class="button-list custom-btn-list order-action">   
                                     <a href="{{route('admin.order.invoice',['invoice_id'=>$value->invoice_id])}}" title="Invoice"><i class="fe-eye"></i></a>
                                     <a href="{{route('admin.order.process',['invoice_id'=>$value->invoice_id])}}" title="Process"><i class="fe-settings"></i></a>
                                     <a href="{{route('admin.order.edit',['invoice_id'=>$value->invoice_id])}}" title="Edit"><i class="fe-edit"></i></a>
@@ -87,8 +276,8 @@
                                 </div>
                             </td>
                             <td>{{$value->invoice_id}}</td>
-                            <td>{{date('d-m-Y', strtotime($value->updated_at))}}<br> {{date('h:i:s a', strtotime($value->updated_at))}}</td>
-                            <td><strong>{{$value->shipping?$value->shipping->name:''}}</strong><p>{{$value->shipping?$value->shipping->address:''}}</p>{{$value->shipping?$value->shipping->phone:''}}</td>
+                            <td class="order-meta">{{date('d-m-Y', strtotime($value->updated_at))}}<br> {{date('h:i:s a', strtotime($value->updated_at))}}</td>
+                            <td class="order-meta"><strong>{{$value->shipping?$value->shipping->name:''}}</strong><p>{{$value->shipping?$value->shipping->address:''}}</p>{{$value->shipping?$value->shipping->phone:''}}</td>
                             <td>  @php
         // অর্ডারে থাকা সব প্রোডাক্ট সংগ্রহ করছি
         $items = $value->orderDetails;
@@ -168,7 +357,7 @@
     ৳{{ number_format($showAmount, 2) }}
 </td>
 
-                            <td>{{$value->status?$value->status->name:''}}</td>
+                            <td><span class="badge bg-primary">{{$value->status?$value->status->name:''}}</span></td>
                             
                             
                             
@@ -207,15 +396,17 @@
                     </tbody>
                 </table>
                 </div>
+                @if($show_data->count() === 0)
+                    <div class="text-center py-4 text-muted">
+                        No orders found for current filter.
+                    </div>
+                @endif
                 <div class="custom-paginate">
-                    {{$show_data->links('pagination::bootstrap-4')}}
+                    {{$show_data->appends(request()->query())->links('pagination::bootstrap-4')}}
                 </div>
-            </div> <!-- end card body-->
-           
-        </div> <!-- end card -->
-    </div><!-- end col-->
-   </div>
-   
+            </div>
+        </div>
+    </div>
 </div>
 <!-- Assign User End -->
 <div class="modal fade" id="asignUser" tabindex="-1">

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\PaymentGateway;
 use App\Models\SmsGateway;
 use App\Models\Courierapi;
+use App\Helpers\SmsHelper;
 use Toastr;
 use File;
 use Str;
@@ -32,7 +33,7 @@ return view('backEnd.apiintegration.pay_manage', compact('bkash', 'shurjopay', '
     $input['status'] = $request->status ? 1 : 0;
     $update_data->update($input);
 
-    // ✅ যদি গেটওয়ে টাইপ হয় UddoktaPay
+    // âœ… à¦¯à¦¦à¦¿ à¦—à§‡à¦Ÿà¦“à§Ÿà§‡ à¦Ÿà¦¾à¦‡à¦ª à¦¹à§Ÿ UddoktaPay
     if ($update_data->type === 'uddoktapay') {
         $this->updateEnvFile('UDDOKTAPAY_API_KEY', $request->app_key);
         $this->updateEnvFile('UDDOKTAPAY_API_URL', $request->base_url);
@@ -43,7 +44,7 @@ return view('backEnd.apiintegration.pay_manage', compact('bkash', 'shurjopay', '
 }
 
 /**
- * 🔧 Helper function: Update or add key in .env file
+ * ðŸ”§ Helper function: Update or add key in .env file
  */
 private function updateEnvFile($key, $value)
 {
@@ -77,6 +78,9 @@ public function sms_update(Request $request)
 {
     $update_data = SmsGateway::find($request->id);
     $input = $request->all();
+    $input['gateway_name'] = $request->gateway_name ?: ($update_data->gateway_name ?? 'bulksmsbd');
+    $input['message_type'] = $request->message_type ?: ($update_data->message_type ?? 'text');
+    $input['label'] = $request->label ?: ($update_data->label ?? 'transactional');
     $input['status'] = $request->status?1:0;
     $input['order'] = $request->order?1:0;
     $input['forget_pass'] = $request->forget_pass?1:0;
@@ -86,7 +90,7 @@ public function sms_update(Request $request)
     $update_data->update($input);
 
     // ============================
-    //  🔥 HERE: Save to .env file
+    //  ðŸ”¥ HERE: Save to .env file
     // ============================
     if ($request->filled('admin_phone_list')) {
         $this->updateEnvFile('ADMIN_PHONE_LIST', $request->admin_phone_list);
@@ -128,57 +132,24 @@ public function sms_custom_send(Request $request)
     ]);
 
     try {
-        // ✅ তোমার গেটওয়ে ইনফো নিচ্ছি
         $sms_gateway = \App\Models\SmsGateway::where('status', 1)->first();
         if (!$sms_gateway) {
             Toastr::error('Failed', 'SMS Gateway not configured.');
             return back();
         }
 
-        // ✅ ফোন নাম্বার পরিষ্কার
         $number = preg_replace('/[^0-9]/', '', $request->phone);
         $message = $request->message;
 
-        // ✅ API Data প্রস্তুত করা
-        $api_key = $sms_gateway->api_key;
-        $senderid = $sms_gateway->senderid ?? $sms_gateway->serderid ?? '';
-        $url = $sms_gateway->url;
+        $result = SmsHelper::send($sms_gateway, $number, $message);
+        \Log::info("SMS Manual Response: " . ($result['message'] ?? ''));
 
-        // ✅ Curl দিয়ে Send করা (official working method)
-        $postData = [
-            'api_key' => $api_key,
-            'type' => 'text',
-            'number' => $number,
-            'senderid' => $senderid,
-            'message' => $message,
-        ];
-
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        $response = curl_exec($ch);
-        $err = curl_error($ch);
-        curl_close($ch);
-
-        // ✅ লগে রেসপন্স দেখা
-        \Log::info("BulkSMSBD Manual Response: " . $response);
-
-        // ✅ যদি কোনো Error থাকে
-        if ($err) {
-            Toastr::error('Error', 'cURL Error: ' . $err);
+        if (!$result['ok']) {
+            Toastr::error('Error', 'SMS send failed: ' . ($result['message'] ?? 'Unknown error'));
             return back();
         }
 
-        // ✅ Response ডিকোড করে চেক করা
-        if (stripos($response, 'SMS sent successfully') !== false || stripos($response, '202') !== false) {
-            Toastr::success('Success', 'SMS sent successfully!');
-        } else {
-            Toastr::warning('Failed', 'API Response: ' . $response);
-        }
-
+        Toastr::success('Success', 'SMS sent successfully!');
         return back();
 
     } catch (\Exception $e) {
@@ -190,3 +161,4 @@ public function sms_custom_send(Request $request)
 
 
 }
+

@@ -167,6 +167,71 @@
     </div>
   </div>
 
+  <div class="row g-3 mt-2">
+    <div class="col-lg-12">
+      <div class="chart-box">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="fw-bold mb-0">Quick Actions</h5>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <a href="{{ route('settings.invoice_design') }}" class="btn btn-primary">
+            <i class="fe-printer me-1"></i> Invoice Design
+          </a>
+          <a href="{{ route('admin.orders', 'all') }}" class="btn btn-outline-secondary">
+            <i class="fe-list me-1"></i> Manage Orders
+          </a>
+          <a href="{{ route('products.index') }}" class="btn btn-outline-secondary">
+            <i class="fe-package me-1"></i> Manage Products
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-3 mt-2">
+    <div class="col-lg-12">
+      <div class="chart-box">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="fw-bold mb-0">Low Stock Alerts</h5>
+          <div>
+            <span class="badge bg-danger">Items: {{ $low_stock_count }}</span>
+            <span class="badge bg-secondary ms-1">Threshold: {{ $low_stock_threshold }}</span>
+            <a href="{{ route('products.index') }}" class="btn btn-sm btn-outline-primary ms-2">Manage Products</a>
+          </div>
+        </div>
+
+        @if($low_stock_products->count())
+          <div class="table-responsive">
+            <table class="table table-sm table-hover mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th>Product</th>
+                  <th>Code</th>
+                  <th class="text-end">Stock</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach($low_stock_products as $item)
+                  <tr>
+                    <td>{{ $item->name }}</td>
+                    <td>{{ $item->product_code }}</td>
+                    <td class="text-end">
+                      <span class="badge {{ $item->stock <= 0 ? 'bg-danger' : 'bg-warning text-dark' }}">
+                        {{ $item->stock }}
+                      </span>
+                    </td>
+                  </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+        @else
+          <p class="text-muted mb-0">No low-stock items right now.</p>
+        @endif
+      </div>
+    </div>
+  </div>
+
   <!-- Charts -->
   <div class="row g-3 mt-2">
     <div class="col-lg-4">

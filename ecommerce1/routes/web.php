@@ -48,7 +48,11 @@ use App\Http\Controllers\Admin\ExpenseController;
 use App\Http\Controllers\Admin\PurchaseController;
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Admin\ReportController;
+use App\Http\Controllers\Admin\InvoiceSettingController;
 use App\Http\Controllers\DigitalDownloadController;
+use App\Http\Controllers\Admin\AffiliateController;
+use App\Http\Controllers\Admin\AffiliateApplicationController;
+use App\Http\Controllers\Admin\AffiliateFormSettingController;
 
 Route::get('admin/clear-cache', function () {
     Artisan::call('optimize:clear');
@@ -236,6 +240,14 @@ Route::post('/cart/store', [FrontendController::class, 'cartStore'])->name('cart
 
 });
 
+Route::group(['namespace'=>'Frontend', 'middleware' => ['ipcheck','check_refer']], function() {
+    Route::get('/affiliate/register', [\App\Http\Controllers\Frontend\AffiliateRegistrationController::class, 'create'])->name('affiliate.register');
+    Route::post('/affiliate/register', [\App\Http\Controllers\Frontend\AffiliateRegistrationController::class, 'store'])->name('affiliate.register.store');
+    Route::get('/affiliate/auto-login', [\App\Http\Controllers\Frontend\AffiliateRegistrationController::class, 'autoLogin'])
+        ->name('affiliate.auto_login')
+        ->middleware('signed');
+});
+
 Route::group(['prefix'=>'customer','namespace'=>'Frontend', 'middleware' => ['ipcheck','check_refer']], function() {
     Route::get('/login', [CustomerController::class, 'login'])->name('customer.login');
     Route::post('/signin', [CustomerController::class, 'signin'])->name('customer.signin');
@@ -298,6 +310,25 @@ Route::get('/ajax-product-childcategory', [ProductController::class, 'getChildca
 // auth route
 // admin route group
 Route::group(['middleware' => ['auth','lock','check_refer'], 'prefix' => 'admin'], function () {
+    Route::get('affiliate/dashboard', [AffiliateController::class, 'dashboard'])->name('admin.affiliate.dashboard');
+    Route::get('affiliate/manage', [AffiliateController::class, 'index'])->name('admin.affiliate.index');
+    Route::get('affiliate/create', [AffiliateController::class, 'create'])->name('admin.affiliate.create');
+    Route::post('affiliate/store', [AffiliateController::class, 'store'])->name('admin.affiliate.store');
+    Route::get('affiliate/{id}/edit', [AffiliateController::class, 'edit'])->name('admin.affiliate.edit');
+    Route::post('affiliate/{id}/update', [AffiliateController::class, 'update'])->name('admin.affiliate.update');
+    Route::post('affiliate/{id}/ban', [AffiliateController::class, 'ban'])->name('admin.affiliate.ban');
+    Route::post('affiliate/{id}/unban', [AffiliateController::class, 'unban'])->name('admin.affiliate.unban');
+    Route::post('affiliate/{id}/delete', [AffiliateController::class, 'destroy'])->name('admin.affiliate.destroy');
+    Route::get('affiliate/{id}/report', [AffiliateController::class, 'report'])->name('admin.affiliate.report');
+    Route::post('affiliate/{id}/payout-request', [AffiliateController::class, 'requestPayout'])->name('admin.affiliate.payout.request');
+    Route::post('affiliate/payout/{id}/approve', [AffiliateController::class, 'approvePayout'])->name('admin.affiliate.payout.approve');
+    Route::post('affiliate/payout/{id}/paid', [AffiliateController::class, 'markPaidPayout'])->name('admin.affiliate.payout.paid');
+    Route::get('affiliate/applications', [AffiliateApplicationController::class, 'index'])->name('admin.affiliate.applications');
+    Route::post('affiliate/applications/{id}/approve', [AffiliateApplicationController::class, 'approve'])->name('admin.affiliate.applications.approve');
+    Route::post('affiliate/applications/{id}/reject', [AffiliateApplicationController::class, 'reject'])->name('admin.affiliate.applications.reject');
+    Route::post('affiliate/applications/{id}/delete', [AffiliateApplicationController::class, 'destroy'])->name('admin.affiliate.applications.delete');
+    Route::get('affiliate/form-settings', [AffiliateFormSettingController::class, 'edit'])->name('admin.affiliate.form_settings');
+    Route::post('affiliate/form-settings', [AffiliateFormSettingController::class, 'update'])->name('admin.affiliate.form_settings.update');
 	// 🟢 Coupon Management
 Route::get('coupon/manage', [CouponController::class, 'index'])->name('admin.coupons.index');
 Route::get('coupon/create', [CouponController::class, 'create'])->name('admin.coupons.create');
@@ -525,6 +556,8 @@ Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('admin.
     Route::post('settings/inactive', [GeneralSettingController::class,'inactive'])->name('settings.inactive');
     Route::post('settings/active', [GeneralSettingController::class,'active'])->name('settings.active');
     Route::post('settings/destroy', [GeneralSettingController::class,'destroy'])->name('settings.destroy');
+    Route::get('settings/invoice-design', [InvoiceSettingController::class, 'edit'])->name('settings.invoice_design');
+    Route::post('settings/invoice-design', [InvoiceSettingController::class, 'update'])->name('settings.invoice_design.update');
 
      // settings route 
     Route::get('social-media/manage', [SocialMediaController::class,'index'])->name('socialmedias.index');
@@ -539,7 +572,7 @@ Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('admin.
      // contact route 
     Route::get('contact/manage', [ContactController::class,'index'])->name('contact.index');
     Route::get('contact/create', [ContactController::class,'create'])->name('contact.create');
-    Route::post('contact/save', [ContactController::class,'store'])->name('contact.store');
+    Route::post('contact/save', [ContactController::class,'store'])->name('admin.contact.store');
     Route::get('contact/{id}/edit', [ContactController::class,'edit'])->name('contact.edit');
     Route::post('contact/update', [ContactController::class,'update'])->name('contact.update');
     Route::post('contact/inactive', [ContactController::class,'inactive'])->name('contact.inactive');
@@ -632,7 +665,7 @@ Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('admin.
     
     // backend customer route 
     Route::get('customer', [CustomerManageController::class,'index'])->name('customers.index');
-    Route::get('customer/manage', [CustomerManageController::class,'index'])->name('customers.index');
+    Route::get('customer/manage', [CustomerManageController::class,'index'])->name('customers.manage');
     Route::get('customer/{id}/edit', [CustomerManageController::class,'edit'])->name('customers.edit');
     Route::post('customer/update', [CustomerManageController::class,'update'])->name('customers.update');
     Route::post('customer/inactive', [CustomerManageController::class,'inactive'])->name('customers.inactive');

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 namespace App\Http\Controllers\Frontend;
 
@@ -21,8 +21,8 @@ use App\Models\SmsGateway;
 use App\Models\Contact;
 use App\Models\GeneralSetting;
 use App\Models\IncompleteOrder;
-use App\Models\Product;          // স্টক কমানোর জন্য
-use App\Models\DigitalDownload;  // ⭐ ডিজিটাল ডাউনলোড মডেল
+use App\Models\Product;          // à¦¸à§à¦Ÿà¦• à¦•à¦®à¦¾à¦¨à§‹à¦° à¦œà¦¨à§à¦¯
+use App\Models\DigitalDownload;  // â­ à¦¡à¦¿à¦œà¦¿à¦Ÿà¦¾à¦² à¦¡à¦¾à¦‰à¦¨à¦²à§‹à¦¡ à¦®à¦¡à§‡à¦²
 
 use Session;
 use Hash;
@@ -33,6 +33,7 @@ use Str;
 use DB;
 use Illuminate\Support\Facades\Log;
 use App\Helpers\OrderHelper;
+use App\Helpers\SmsHelper;
 
 class CustomerController extends Controller
 {
@@ -135,22 +136,8 @@ class CustomerController extends Controller
         $sms_gateway = SmsGateway::where('status', 1)->first();
 
         if($sms_gateway) {
-            $url = "$sms_gateway->url";
-            $data = [
-                "api_key" => "$sms_gateway->api_key",
-                "number" => $customer_info->phone,
-                "type" => 'text',
-                "senderid" => "$sms_gateway->serderid",
-                "message" => "Dear $customer_info->name!\r\nYour account verify OTP is $customer_info->verify \r\nThank you for using $site_setting->name"
-            ];
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $url);
-            curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-            curl_exec($ch);
-            curl_close($ch);
+            $message = "Dear $customer_info->name!\r\nYour account verify OTP is $customer_info->verify \r\nThank you for using $site_setting->name";
+            SmsHelper::send($sms_gateway, $customer_info->phone, $message);
         }
 
         Toastr::success('Success','Resend code send successfully');
@@ -192,21 +179,8 @@ class CustomerController extends Controller
         $site_setting = GeneralSetting::where('status', 1)->first();
         $sms_gateway = SmsGateway::where(['status'=> 1, 'forget_pass'=>1])->first();
         if($sms_gateway) {
-            $url = "$sms_gateway->url";
-            $data = [
-                "api_key" => "$sms_gateway->api_key",
-                "number" => $customer_info->phone,
-                "type" => 'text',
-                "senderid" => "$sms_gateway->serderid",
-                "message" => "Dear $customer_info->name!\r\nYour forgot password verify OTP is $customer_info->forgot \r\nThank you for using $site_setting->name"
-            ];
-            $ch = curl_init($url);
-            curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-            curl_exec($ch);
-            curl_close($ch);
+            $message = "Dear $customer_info->name!\r\nYour forgot password verify OTP is $customer_info->forgot \r\nThank you for using $site_setting->name";
+            SmsHelper::send($sms_gateway, $customer_info->phone, $message);
         }
 
         session::put('verify_phone',$request->phone);
@@ -223,21 +197,8 @@ class CustomerController extends Controller
         $sms_gateway = SmsGateway::where(['status'=> 1])->first();
 
         if($sms_gateway) {
-            $url = "$sms_gateway->url";
-            $data = [
-                "api_key" => "$sms_gateway->api_key",
-                "number" => $customer_info->phone,
-                "type" => 'text',
-                "senderid" => "$sms_gateway->serderid",
-                "message" => "Dear $customer_info->name!\r\nYour forgot password verify OTP is $customer_info->forgot \r\nThank you for using $site_setting->name"
-            ];
-            $ch = curl_init($url);
-            curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-            curl_exec($ch);
-            curl_close($ch);
+            $message = "Dear $customer_info->name!\r\nYour forgot password verify OTP is $customer_info->forgot \r\nThank you for using $site_setting->name";
+            SmsHelper::send($sms_gateway, $customer_info->phone, $message);
         }
 
         Toastr::success('Success','Resend code send successfully');
@@ -297,7 +258,7 @@ class CustomerController extends Controller
         $advanceTotal = \App\Http\Controllers\Frontend\ShoppingController::getCartAdvanceAmount();
         $hasAdvance   = $advanceTotal > 0;
 
-        // ⭐ কার্টে ডিজিটাল প্রোডাক্ট আছে কি না
+        // â­ à¦•à¦¾à¦°à§à¦Ÿà§‡ à¦¡à¦¿à¦œà¦¿à¦Ÿà¦¾à¦² à¦ªà§à¦°à§‹à¦¡à¦¾à¦•à§à¦Ÿ à¦†à¦›à§‡ à¦•à¦¿ à¦¨à¦¾
         $hasDigital = \App\Http\Controllers\Frontend\ShoppingController::hasDigitalProductInCart();
 
         return view('frontEnd.layouts.customer.checkout',compact(
@@ -312,7 +273,7 @@ class CustomerController extends Controller
     }
 
     // ===========================
-    // ⭐ ORDER SAVE
+    // â­ ORDER SAVE
     // ===========================
     public function order_save(Request $request)
     {
@@ -328,29 +289,29 @@ class CustomerController extends Controller
             return redirect()->back();
         }
 
-        // ⭐ কার্টে ডিজিটাল প্রোডাক্ট আছে কি না চেক
+        // â­ à¦•à¦¾à¦°à§à¦Ÿà§‡ à¦¡à¦¿à¦œà¦¿à¦Ÿà¦¾à¦² à¦ªà§à¦°à§‹à¦¡à¦¾à¦•à§à¦Ÿ à¦†à¦›à§‡ à¦•à¦¿ à¦¨à¦¾ à¦šà§‡à¦•
         $hasDigital = \App\Http\Controllers\Frontend\ShoppingController::hasDigitalProductInCart();
 
-        // ⭐ যদি ডিজিটাল প্রোডাক্ট থাকে, COD allow করা যাবে না
-        // ধরে নিচ্ছি checkout form এ COD এর value = 'cod'
+        // â­ à¦¯à¦¦à¦¿ à¦¡à¦¿à¦œà¦¿à¦Ÿà¦¾à¦² à¦ªà§à¦°à§‹à¦¡à¦¾à¦•à§à¦Ÿ à¦¥à¦¾à¦•à§‡, COD allow à¦•à¦°à¦¾ à¦¯à¦¾à¦¬à§‡ à¦¨à¦¾
+        // à¦§à¦°à§‡ à¦¨à¦¿à¦šà§à¦›à¦¿ checkout form à¦ COD à¦à¦° value = 'cod'
         if ($hasDigital && $request->payment_method === 'cod') {
-            Toastr::error('ডিজিটাল প্রোডাক্টের জন্য Cash On Delivery পাওয়া যায় না, অনুগ্রহ করে অনলাইন পেমেন্ট সিলেক্ট করুন।', 'Failed!');
+            Toastr::error('à¦¡à¦¿à¦œà¦¿à¦Ÿà¦¾à¦² à¦ªà§à¦°à§‹à¦¡à¦¾à¦•à§à¦Ÿà§‡à¦° à¦œà¦¨à§à¦¯ Cash On Delivery à¦ªà¦¾à¦“à§Ÿà¦¾ à¦¯à¦¾à§Ÿ à¦¨à¦¾, à¦…à¦¨à§à¦—à§à¦°à¦¹ à¦•à¦°à§‡ à¦…à¦¨à¦²à¦¾à¦‡à¦¨ à¦ªà§‡à¦®à§‡à¦¨à§à¦Ÿ à¦¸à¦¿à¦²à§‡à¦•à§à¦Ÿ à¦•à¦°à§à¦¨à¥¤', 'Failed!');
             return redirect()->back();
         }
 
-        // Amount ক্যালকুলেশন
+        // Amount à¦•à§à¦¯à¦¾à¦²à¦•à§à¦²à§‡à¦¶à¦¨
         $subtotal = (float) str_replace([',','.00'],'',Cart::instance('shopping')->subtotal());
         $discount = Session::get('discount', 0);
         $shippingfee  = Session::get('shipping', 0);
         $shipping_area  = ShippingCharge::where('id', $request->area)->first();
 
-        // কার্টের advance item গুলোর মোট
+        // à¦•à¦¾à¦°à§à¦Ÿà§‡à¦° advance item à¦—à§à¦²à§‹à¦° à¦®à§‹à¦Ÿ
         $advanceTotal = \App\Http\Controllers\Frontend\ShoppingController::getCartAdvanceAmount();
 
-        // ইনভয়েসে দেখানোর মোট
+        // à¦‡à¦¨à¦­à¦¯à¦¼à§‡à¦¸à§‡ à¦¦à§‡à¦–à¦¾à¦¨à§‹à¦° à¦®à§‹à¦Ÿ
         $grandTotal = ($subtotal + $shippingfee) - $discount;
 
-        // Customer ঠিক করা
+        // Customer à¦ à¦¿à¦• à¦•à¦°à¦¾
         if(Auth::guard('customer')->user()){
             $customer_id = Auth::guard('customer')->user()->id;
         }else{
@@ -413,10 +374,10 @@ class CustomerController extends Controller
         $payment->payment_status = 'pending';
         $payment->save();
 
-        // Order details সেভ
+        // Order details à¦¸à§‡à¦­
         OrderHelper::saveOrderDetails($order);
 
-        // ✅ নতুন অর্ডার অনুযায়ী প্রোডাক্টের স্টক কমানো
+        // âœ… à¦¨à¦¤à§à¦¨ à¦…à¦°à§à¦¡à¦¾à¦° à¦…à¦¨à§à¦¯à¦¾à¦¯à¦¼à§€ à¦ªà§à¦°à§‹à¦¡à¦¾à¦•à§à¦Ÿà§‡à¦° à¦¸à§à¦Ÿà¦• à¦•à¦®à¦¾à¦¨à§‹
         $details = OrderDetails::where('order_id', $order->id)->get();
         foreach ($details as $row) {
             $product = Product::find($row->product_id);
@@ -434,34 +395,16 @@ class CustomerController extends Controller
             }
 
             if($sms_gateway) {
-                $url = $sms_gateway->url;
-
                 $customerPhone = isset($shipping) && $shipping->phone ? $shipping->phone : ($request->phone ?? ($order->customer->phone ?? null));
                 $customerName  = isset($shipping) && $shipping->name ? $shipping->name : ($request->name ?? ($order->customer->name ?? 'Customer'));
                 $site_setting = GeneralSetting::where('status', 1)->first();
 
                 if($customerPhone) {
-                    $customerMessage = "প্রিয় {$customerName}! আপনার অর্ডার #{$order->invoice_id} সফলভাবে গ্রহণ করা হয়েছে। মোট: {$order->amount} Tk. {$site_setting->name}";
+                    $customerMessage = "à¦ªà§à¦°à¦¿à§Ÿ {$customerName}! à¦†à¦ªà¦¨à¦¾à¦° à¦…à¦°à§à¦¡à¦¾à¦° #{$order->invoice_id} à¦¸à¦«à¦²à¦­à¦¾à¦¬à§‡ à¦—à§à¦°à¦¹à¦£ à¦•à¦°à¦¾ à¦¹à§Ÿà§‡à¦›à§‡à¥¤ à¦®à§‹à¦Ÿ: {$order->amount} Tk. {$site_setting->name}";
 
-                    $postData = [
-                        'api_key' => $sms_gateway->api_key,
-                        'number'  => preg_replace('/[^0-9+]/','', $customerPhone),
-                        'type'    => 'text',
-                        'senderid'=> $sms_gateway->serderid ?? $sms_gateway->senderid ?? '',
-                        'message' => $customerMessage,
-                    ];
-
-                    $ch = curl_init();
-                    curl_setopt($ch, CURLOPT_URL, $url);
-                    curl_setopt($ch, CURLOPT_POST, 1);
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-                    $resp = curl_exec($ch);
-                    $err  = curl_error($ch);
-                    curl_close($ch);
-
-                    \Log::info("Customer SMS to {$customerPhone}: resp=" . substr($resp ?? '',0,200) . " err=" . $err);
+                    $number = preg_replace('/[^0-9+]/','', $customerPhone);
+                    $result = SmsHelper::send($sms_gateway, $number, $customerMessage);
+                    \Log::info("Customer SMS to {$customerPhone}: resp=" . substr($result['message'] ?? '',0,200));
                 } else {
                     \Log::warning("Customer SMS skipped: no phone for order {$order->id}");
                 }
@@ -474,8 +417,6 @@ class CustomerController extends Controller
         try {
             $sms_gateway = SmsGateway::where('status', 1)->first();
             if($sms_gateway) {
-                $url = $sms_gateway->url;
-
                 $adminPhones = env('ADMIN_PHONE_LIST', null);
                 if(!$adminPhones && isset($sms_gateway->admin_phone)){
                     $adminPhones = $sms_gateway->admin_phone;
@@ -488,31 +429,14 @@ class CustomerController extends Controller
                 $site_setting = GeneralSetting::where('status', 1)->first();
                 $customerName = isset($request->name) ? $request->name : ($order->customer->name ?? 'Customer');
                 $customerPhone = isset($request->phone) ? $request->phone : ($order->customer->phone ?? '');
-                $adminMessage = "নতুন অর্ডার এসেছে!\nOrder#: {$order->invoice_id}\nকাস্টমার: {$customerName}\nমোবাইল: {$customerPhone}\nমোট: {$order->amount} Tk {$site_setting->name}";
+                $adminMessage = "à¦¨à¦¤à§à¦¨ à¦…à¦°à§à¦¡à¦¾à¦° à¦à¦¸à§‡à¦›à§‡!\nOrder#: {$order->invoice_id}\nà¦•à¦¾à¦¸à§à¦Ÿà¦®à¦¾à¦°: {$customerName}\nà¦®à§‹à¦¬à¦¾à¦‡à¦²: {$customerPhone}\nà¦®à§‹à¦Ÿ: {$order->amount} Tk {$site_setting->name}";
 
                 if($adminPhones){
                     $numbers = array_filter(array_map('trim', explode(',', $adminPhones)));
                     foreach($numbers as $adminPhone){
                         $adminPhone = preg_replace('/[^0-9+]/', '', $adminPhone);
-                        $postData = [
-                            'api_key' => $sms_gateway->api_key,
-                            'number'  => $adminPhone,
-                            'type'    => 'text',
-                            'senderid'=> $sms_gateway->serderid ?? $sms_gateway->senderid ?? '',
-                            'message' => $adminMessage,
-                        ];
-
-                        $ch = curl_init();
-                        curl_setopt($ch, CURLOPT_URL, $url);
-                        curl_setopt($ch, CURLOPT_POST, 1);
-                        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));
-                        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-                        $resp = curl_exec($ch);
-                        $err  = curl_error($ch);
-                        curl_close($ch);
-
-                        \Log::info("Admin SMS to {$adminPhone}: resp=" . substr($resp ?? '',0,200) . " err=" . $err);
+                        $result = SmsHelper::send($sms_gateway, $adminPhone, $adminMessage);
+                        \Log::info("Admin SMS to {$adminPhone}: resp=" . substr($result['message'] ?? '',0,200));
                     }
                 }
             }
@@ -520,7 +444,7 @@ class CustomerController extends Controller
             \Log::error('Admin SMS send failed: '.$e->getMessage());
         }
 
-        // Incomplete order ডিলিট
+        // Incomplete order à¦¡à¦¿à¦²à¦¿à¦Ÿ
         IncompleteOrder::where('phone', $request->phone)->delete();
 
         // Payment redirect
@@ -559,9 +483,9 @@ class CustomerController extends Controller
             return redirect()->route('uddoktapay.checkout',['order_id'=>$order->id]);
 
         }else{
-            // ⭐ Cash On Delivery (শুধু physical product-এর জন্য, কারণ উপরে digital + cod ব্লক করেছি)
-            // এখানে createDigitalDownloads() কল করলেও কোনো ডিজিটাল ফাইল তৈরি হবে না,
-            // কারণ digital product থাকলে আমরা আগেই COD ব্লক করেছি।
+            // â­ Cash On Delivery (à¦¶à§à¦§à§ physical product-à¦à¦° à¦œà¦¨à§à¦¯, à¦•à¦¾à¦°à¦£ à¦‰à¦ªà¦°à§‡ digital + cod à¦¬à§à¦²à¦• à¦•à¦°à§‡à¦›à¦¿)
+            // à¦à¦–à¦¾à¦¨à§‡ createDigitalDownloads() à¦•à¦² à¦•à¦°à¦²à§‡à¦“ à¦•à§‹à¦¨à§‹ à¦¡à¦¿à¦œà¦¿à¦Ÿà¦¾à¦² à¦«à¦¾à¦‡à¦² à¦¤à§ˆà¦°à¦¿ à¦¹à¦¬à§‡ à¦¨à¦¾,
+            // à¦•à¦¾à¦°à¦£ digital product à¦¥à¦¾à¦•à¦²à§‡ à¦†à¦®à¦°à¦¾ à¦†à¦—à§‡à¦‡ COD à¦¬à§à¦²à¦• à¦•à¦°à§‡à¦›à¦¿à¥¤
             $this->createDigitalDownloads($order);
 
             Session::forget('coupon_code');
@@ -708,11 +632,11 @@ class CustomerController extends Controller
     }
 
     // =====================================
-    // ⭐ DIGITAL DOWNLOAD CREATOR (HELPER)
+    // â­ DIGITAL DOWNLOAD CREATOR (HELPER)
     // =====================================
     private function createDigitalDownloads(Order $order)
     {
-        // orderdetails থেকে product_id নিয়ে Product লোড করব
+        // orderdetails à¦¥à§‡à¦•à§‡ product_id à¦¨à¦¿à§Ÿà§‡ Product à¦²à§‹à¦¡ à¦•à¦°à¦¬
         $items = OrderDetails::where('order_id', $order->id)->get();
 
         foreach ($items as $item) {
@@ -720,7 +644,7 @@ class CustomerController extends Controller
 
             if ($product && $product->is_digital == 1 && $product->digital_file) {
 
-                // একই order+product+customer এর জন্য ডুপ্লিকেট না হয়
+                // à¦à¦•à¦‡ order+product+customer à¦à¦° à¦œà¦¨à§à¦¯ à¦¡à§à¦ªà§à¦²à¦¿à¦•à§‡à¦Ÿ à¦¨à¦¾ à¦¹à§Ÿ
                 DigitalDownload::firstOrCreate(
                     [
                         'order_id'    => $order->id,
@@ -740,3 +664,5 @@ class CustomerController extends Controller
         }
     }
 }
+
+

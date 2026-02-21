@@ -16,7 +16,6 @@
         <div class="col-12">
             <div class="page-title-box">
                 <div class="page-title-right">
-                   
                 </div>
                 <h4 class="page-title">General Setting Manage</h4>
             </div>

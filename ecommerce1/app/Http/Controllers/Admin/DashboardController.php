@@ -42,6 +42,16 @@ class DashboardController extends Controller
             ->get();
 
         $latest_customer = Customer::latest()->limit(5)->get();
+        $low_stock_threshold = 5;
+        $low_stock_products = Product::select('id', 'name', 'product_code', 'stock')
+            ->where('status', 1)
+            ->where('stock', '<=', $low_stock_threshold)
+            ->orderBy('stock', 'asc')
+            ->limit(10)
+            ->get();
+        $low_stock_count = Product::where('status', 1)
+            ->where('stock', '<=', $low_stock_threshold)
+            ->count();
 
         // =========================
         // DELIVERY / LAST WEEK / LAST MONTH
@@ -141,6 +151,9 @@ class DashboardController extends Controller
             'total_customer',
             'latest_order',
             'latest_customer',
+            'low_stock_products',
+            'low_stock_count',
+            'low_stock_threshold',
             'today_delivery',
             'total_delivery',
             'last_week',

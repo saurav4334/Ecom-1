@@ -8,14 +8,16 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('seo_settings', function (Blueprint $table) {
-            $table->id();
-            $table->string('meta_title')->nullable();
-            $table->string('meta_tags')->nullable();
-            $table->text('meta_description')->nullable();
-            $table->string('search_console_verification')->nullable();
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('seo_settings')) {
+            Schema::create('seo_settings', function (Blueprint $table) {
+                $table->id();
+                $table->string('meta_title')->nullable();
+                $table->string('meta_tags')->nullable();
+                $table->text('meta_description')->nullable();
+                $table->string('search_console_verification')->nullable();
+                $table->timestamps();
+            });
+        }
     }
 
     public function down(): void

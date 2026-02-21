@@ -19,12 +19,14 @@ use App\Models\Category;
 use App\Models\User;
 use App\Models\Courierapi;
 use App\Models\SmsGateway;
+use App\Helpers\SmsHelper;
 use App\Models\GeneralSetting;
 use App\Models\Color;
 use App\Models\Size;
 use App\Models\FundTransaction;
 use App\Helpers\FundHelper;
 use App\Models\Expense;
+use App\Models\InvoiceSetting;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
@@ -211,6 +213,12 @@ class OrderController extends Controller
 
     public function index($slug, Request $request)
     {
+        $keyword       = trim((string) $request->get('keyword'));
+        $userId        = $request->get('user_id');
+        $paymentStatus = $request->get('payment_status');
+        $dateFrom      = $request->get('date_from');
+        $dateTo        = $request->get('date_to');
+
         if ($slug == 'all') {
             $order_status = (object) [
                 'name'         => 'All',
@@ -218,25 +226,50 @@ class OrderController extends Controller
             ];
 
             $show_data = Order::latest()->with('shipping', 'status');
-
-            if ($request->keyword) {
-                $show_data = $show_data->where(function ($query) use ($request) {
-                    $query->orWhere('invoice_id', 'LIKE', '%' . $request->keyword . '%')
-                        ->orWhereHas('shipping', function ($subQuery) use ($request) {
-                            $subQuery->where('phone', $request->keyword);
-                        });
-                });
-            }
-            $show_data = $show_data->paginate(10);
         } else {
             $order_status = OrderStatus::where('slug', $slug)->withCount('orders')->first();
             $show_data = Order::where(['order_status' => $order_status->id])
                 ->latest()
-                ->with('shipping', 'status')
-                ->paginate(10);
+                ->with('shipping', 'status');
         }
 
+        if ($keyword !== '') {
+            $show_data->where(function ($query) use ($keyword) {
+                $query->where('invoice_id', 'LIKE', '%' . $keyword . '%')
+                    ->orWhereHas('shipping', function ($subQuery) use ($keyword) {
+                        $subQuery->where('phone', 'LIKE', '%' . $keyword . '%')
+                            ->orWhere('name', 'LIKE', '%' . $keyword . '%');
+                    });
+            });
+        }
+
+        if (!empty($userId)) {
+            $show_data->where('user_id', $userId);
+        }
+
+        if ($paymentStatus !== null && $paymentStatus !== '') {
+            if (Schema::hasColumn('orders', 'payment_status')) {
+                $show_data->where('payment_status', $paymentStatus);
+            } else {
+                $show_data->whereHas('payment', function ($query) use ($paymentStatus) {
+                    $query->where('payment_status', $paymentStatus);
+                });
+            }
+        }
+
+        if (!empty($dateFrom)) {
+            $show_data->whereDate('created_at', '>=', $dateFrom);
+        }
+
+        if (!empty($dateTo)) {
+            $show_data->whereDate('created_at', '<=', $dateTo);
+        }
+
+        $show_data = $show_data->paginate(10)->appends($request->query());
+
         $users       = User::get();
+        $statusFilters = OrderStatus::withCount('orders')->orderBy('id')->get();
+        $totalOrders = Order::count();
         $steadfast   = Courierapi::where(['status' => 1, 'type' => 'steadfast'])->first();
         $pathao_info = Courierapi::where(['status' => 1, 'type' => 'pathao'])
             ->select('id', 'type', 'url', 'token', 'status')
@@ -256,7 +289,7 @@ class OrderController extends Controller
             $pathaostore  = [];
         }
 
-        return view('backEnd.order.index', compact('show_data', 'order_status', 'users', 'steadfast', 'pathaostore', 'pathaocities'));
+        return view('backEnd.order.index', compact('show_data', 'order_status', 'users', 'statusFilters', 'totalOrders', 'steadfast', 'pathaostore', 'pathaocities'));
     }
 
     public function pathaocity(Request $request)
@@ -353,7 +386,26 @@ class OrderController extends Controller
             ->with('orderdetails', 'payment', 'shipping', 'customer')
             ->firstOrFail();
 
-        return view('backEnd.order.invoice', compact('order'));
+        $invoiceSetting = InvoiceSetting::firstOrCreate([], [
+            'layout' => 'classic',
+            'header_bg_color' => '#4DBC60',
+            'accent_color' => '#4DBC60',
+            'text_color' => '#222222',
+            'show_logo' => true,
+            'show_company_info' => true,
+            'show_customer_info' => true,
+            'show_payment_info' => true,
+            'show_order_note' => true,
+            'show_terms' => true,
+            'terms_text' => 'This is a computer generated invoice, does not require any signature.',
+            'show_barcode' => false,
+            'show_qr' => false,
+            'barcode_value_source' => 'invoice_id',
+            'qr_value_source' => 'invoice_url',
+            'custom_footer_text' => null,
+        ]);
+
+        return view('backEnd.order.invoice', compact('order', 'invoiceSetting'));
     }
 
     public function process($invoice_id)
@@ -523,26 +575,12 @@ class OrderController extends Controller
             if ($sms_gateway) {
                 $customer_info = Customer::find($order->customer_id);
                 if ($customer_info) {
-                    $url  = $sms_gateway->url;
-                    $data = [
-                        "api_key"  => $sms_gateway->api_key,
-                        "number"   => $customer_info->phone,
-                        "type"     => 'text',
-                        "senderid" => $sms_gateway->serderid,
-                        "message"  => "Dear {$customer_info->name},\r\n"
-                            . "Your order (Order ID: {$order->invoice_id}) status has been updated to: "
-                            . "{$orderStatus->name}.\r\n"
-                            . "Thank you for using {$site_setting->name}!",
-                    ];
-
-                    $ch = curl_init();
-                    curl_setopt($ch, CURLOPT_URL, $url);
-                    curl_setopt($ch, CURLOPT_POST, 1);
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-                    curl_exec($ch);
-                    curl_close($ch);
+                    $message = "Dear {$customer_info->name},\r\n"
+                        . "Your order (Order ID: {$order->invoice_id}) status has been updated to: "
+                        . "{$orderStatus->name}.\r\n"
+                        . "Thank you for using {$site_setting->name}!";
+                    $number = preg_replace('/[^0-9+]/', '', $customer_info->phone);
+                    SmsHelper::send($sms_gateway, $number, $message);
                 }
             }
         }
