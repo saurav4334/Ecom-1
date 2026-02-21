@@ -1,0 +1,10 @@
+/.env
+.env*
+.phpunit.result.cache
+.vscode
+.idea
+.git
+.DS_Store
+.github
+.env.backup
+.env.production
