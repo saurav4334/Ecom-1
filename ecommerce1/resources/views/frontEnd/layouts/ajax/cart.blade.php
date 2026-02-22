@@ -51,14 +51,14 @@
           </td>
          </tr>
          <tr>
-          <th colspan="3" class="text-end px-4">ডেলিভারি চার্জ</th>
+          <th colspan="3" class="text-end px-4"> চার্জ</th>
           <td>
            <span id="cart_shipping_cost"><span class="alinur">৳ </span><strong>{{$shipping}}</strong></span>
           </td>
          </tr>
          @if(Session::get('discount', 0) > 0)
          <tr>
-            <th colspan="3" class="text-end px-4">কুপন ছাড়</th>
+            <th colspan="3" class="text-end px-4">কুপন ছাড়</th>
             <td>
                 <span id="discount"><span class="alinur">৳ </span><strong>{{ Session::get('discount', 0) }}</strong></span>
             </td>
@@ -73,7 +73,7 @@
         </tfoot>
        </table>
 
-<script src="{{asset('public/frontEnd/js/jquery-3.6.3.min.js')}}"></script>
+<script src="{{asset('frontEnd/js/jquery-3.6.3.min.js')}}"></script>
 <!-- cart js start -->
 <script>
     $('.cart_store').on('click',function(){
@@ -161,3 +161,4 @@
    
 </script>
 <!-- cart js end -->
+

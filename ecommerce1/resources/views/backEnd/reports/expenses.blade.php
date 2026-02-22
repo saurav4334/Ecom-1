@@ -1,4 +1,4 @@
-@extends('backEnd.layouts.master')
+﻿@extends('backEnd.layouts.master')
 @section('title','Expense Report')
 
 @section('content')
@@ -55,7 +55,7 @@
                     </button>
 
                     <button class="btn btn-outline-success" type="submit" name="export" value="csv">
-                        ⬇ Export CSV
+                        â¬‡ Export CSV
                     </button>
                 </div>
             </form>
@@ -118,7 +118,7 @@
                 @empty
                     <tr>
                         <td colspan="6" class="text-center text-muted">
-                            কোনো এক্সপেন্স পাওয়া যায়নি।
+                            কোনো �ক�সপেন�স পাওয়া যায়নি।
                         </td>
                     </tr>
                 @endforelse
@@ -153,3 +153,4 @@
     toggleReportFields();
 </script>
 @endsection
+

@@ -1,4 +1,4 @@
-@extends('backEnd.layouts.master')
+﻿@extends('backEnd.layouts.master')
 @section('title','Order Details')
 
 @section('css')
@@ -152,7 +152,7 @@
         }
     }
 </style>
-<link href="{{asset('public/backEnd')}}/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+<link href="{{asset('backEnd')}}/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
@@ -375,3 +375,5 @@ function updatePaymentStatus(orderId) {
 }
 </script>
 @endsection
+
+

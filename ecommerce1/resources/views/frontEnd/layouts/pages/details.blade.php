@@ -33,7 +33,7 @@
 
 
 @push('css')
-<link rel="stylesheet" href="{{ asset('public/frontEnd/css/zoomsl.css') }}">
+<link rel="stylesheet" href="{{ asset('frontEnd/css/zoomsl.css') }}">
 <style>
 /* ✅ Scoped Review Section */
 .gomobd-review-section {
@@ -135,7 +135,7 @@
                                             <div class="sale-badge-box">
                                                 <span class="sale-badge-text">
                                                     <p> @php $discount=(((($details->old_price)-($details->new_price))*100) / ($details->old_price)) @endphp {{ number_format($discount, 0) }}%</p>
-                                                    ছাড়
+                                                    ছাড়
                                                 </span>
                                             </div>
                                         </div>
@@ -222,7 +222,7 @@
                                                 <p><span>প্রোডাক্ট কোড : </span>{{ $details->product_code }}</p>
                                             </div>
 
-                                            {{-- ⭐⭐ এখানে Product Type দেখানো হচ্ছে ⭐⭐ --}}
+                                            {{-- �� �খানে Product Type দেখানো হচ�ছে �� --}}
                                             @php
                                                 $productTypeText = $details->is_digital
                                                     ? 'Digital'
@@ -233,7 +233,7 @@
                                                   Product Type: {{ $productTypeText }}
                                                 </p>
                                             </div>
-                                            {{-- ⭐⭐ Product Type End ⭐⭐ --}}
+                                            {{-- â­â­ Product Type End â­â­ --}}
 
                                             <form action="{{ route('cart.store') }}" method="POST" name="formName">
                                                 @csrf
@@ -256,7 +256,7 @@
                     <div class="selector">
                         @foreach ($productcolors as $procolor)
                             <div class="selector-item">
-                                {{-- ✅ এখন color_id পাঠানো হচ্ছে (নাম নয়) --}}
+                                {{-- ✅ �খন color_id পাঠানো হচ�ছে (নাম নয়) --}}
                                 <input type="radio"
                                     id="fc-option{{ $procolor->id }}"
                                     value="{{ $procolor->id }}"
@@ -267,7 +267,7 @@
                                     style="background-color: {{ $procolor->color ?? '#ccc' }}"
                                     class="selector-item_label">
                                     <span>
-                                        <img src="{{ asset('public/frontEnd/images/check-icon.svg') }}" alt="Checked Icon" />
+                                        <img src="{{ asset('frontEnd/images/check-icon.svg') }}" alt="Checked Icon" />
                                     </span>
                                 </label>
                             </div>
@@ -278,7 +278,7 @@
         </div>
     @endif
 
-    {{-- 📏 Size Section --}}
+    {{-- � Size Section --}}
     @if ($productsizes->count() > 0)
         <div class="pro-size" style="width: 100%;">
             <div class="size_inner">
@@ -287,7 +287,7 @@
                     <div class="selector">
                         @foreach ($productsizes as $prosize)
                             <div class="selector-item">
-                                {{-- ✅ এখন size_id পাঠানো হচ্ছে --}}
+                                {{-- ✅ �খন size_id পাঠানো হচ�ছে --}}
                                 <input type="radio"
                                     id="f-option{{ $prosize->id }}"
                                     value="{{ $prosize->id }}"
@@ -334,7 +334,7 @@
                                                             </div>
                                                             <div class="d-flex single_product col-sm-12">
                                                   <input type="submit" class="btn px-4 add_cart_btn" onclick="return sendSuccess();" name="add_cart" value="কার্টে যোগ করুন" />
-<input type="submit" class="btn px-4 order_now_btn order_now_btn_m" onclick="return sendSuccess();" name="order_now" value="অর্ডার করুন" />
+<input type="submit" class="btn px-4 order_now_btn order_now_btn_m" onclick="return sendSuccess();" name="order_now" value="অর্ডার" />
                                                             </div>
                                                         </div>
                                                         <div class="mt-md-2 mt-2">
@@ -508,27 +508,27 @@
                                                             <div class="fz-12 mb-2">
                                                                 <div class="rating">
                                                                     <label title="Excelent">
-                                                                        ☆
+                                                                        â˜†
                                                                         <input required type="radio" name="ratting"
                                                                             value="5" />
                                                                     </label>
                                                                     <label title="Best">
-                                                                        ☆
+                                                                        â˜†
                                                                         <input required type="radio" name="ratting"
                                                                             value="4" />
                                                                     </label>
                                                                     <label title="Better">
-                                                                        ☆
+                                                                        â˜†
                                                                         <input required type="radio" name="ratting"
                                                                             value="3" />
                                                                     </label>
                                                                     <label title="Very Good">
-                                                                        ☆
+                                                                        â˜†
                                                                         <input required type="radio" name="ratting"
                                                                             value="2" />
                                                                     </label>
                                                                     <label title="Good">
-                                                                        ☆
+                                                                        â˜†
                                                                         <input required type="radio" name="ratting"
                                                                             value="1" />
                                                                     </label>
@@ -599,7 +599,7 @@
                                         <span class="sale-badge-text">
                                             <p>@php $discount=(((($value->old_price)-($value->new_price))*100) / ($value->old_price)) @endphp 
                                                {{ number_format($discount, 0) }}%</p>
-                                            ছাড়
+                                            ছাড়
                                         </span>
                                     </div>
                                 </div>
@@ -645,14 +645,14 @@
                             </p>
                         </div>
 
-                        {{-- ⭐⭐⭐ BUTTON AREA (Added) ⭐⭐⭐ --}}
+                        {{-- â­â­â­ BUTTON AREA (Added) â­â­â­ --}}
                         @if (!$value->prosizes->isEmpty() || !$value->procolors->isEmpty())
-                        {{-- ভ্যারিয়েন্ট আছে = দুই বাটনই product details page এ যাবে --}}
+                        {{-- ভ�যারিয়েন�ট আছে = দ�ই বাটনই product details page � যাবে --}}
                         <div class="pro_btn">
 
                             <a href="{{ route('product', $value->slug) }}" 
                                 class="order-btn-link order-btn">
-                                অর্ডার করুন
+                                অর্ডার
                             </a>
 
                             <a href="{{ route('product', $value->slug) }}" 
@@ -663,7 +663,7 @@
                         </div>
 
                         @else
-                        {{-- ভ্যারিয়েন্ট নেই = Order Now + Add to Cart --}}
+                        {{-- ভ�যারিয়েন�ট নেই = Order Now + Add to Cart --}}
                         <div class="pro_btn">
 
                             {{-- Order Now --}}
@@ -674,7 +674,7 @@
                                 <input type="hidden" name="order_now" value="1">
 
                                 <button type="submit" class="order-btn">
-                                    অর্ডার করুন
+                                    অর্ডার
                                 </button>
                             </form>
 
@@ -702,9 +702,9 @@
 
 
 @endsection @push('script')
-<script src="{{ asset('public/frontEnd/js/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('frontEnd/js/owl.carousel.min.js') }}"></script>
 
-<script src="{{ asset('public/frontEnd/js/zoomsl.min.js') }}"></script>
+<script src="{{ asset('frontEnd/js/zoomsl.min.js') }}"></script>
 <script>
     const variants = @json($details->variantPrices);
 
@@ -827,7 +827,7 @@
 
 <!-- Data Layer End-->
 
-{{-- 🔹 নতুন dataLayer + Facebook Pixel ইভেন্ট (আগের কিছু না কেটে শুধু যোগ করা) --}}
+{{-- 🔹 নত�ন dataLayer + Facebook Pixel ইভেন�ট (আগের কিছ� না কেটে শ�ধ� যোগ করা) --}}
 <script type="text/javascript">
     window.dataLayer = window.dataLayer || [];
 
@@ -928,7 +928,7 @@
             }
         });
 
-        // "অর্ডার করুন" -> add_to_cart + begin_checkout + FB InitiateCheckout
+        // "অর্ডার" -> add_to_cart + begin_checkout + FB InitiateCheckout
         $(document).on("click", ".order_now_btn", function () {
             var item  = buildCurrentItem();
             var value = item.price * item.quantity;
@@ -1074,3 +1074,6 @@
     });
 </script>
 @endpush
+
+
+

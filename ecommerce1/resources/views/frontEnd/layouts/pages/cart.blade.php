@@ -1,4 +1,4 @@
-@extends('frontEnd.layouts.master')
+﻿@extends('frontEnd.layouts.master')
 @section('title','Shopping Cart')
 @section('content')
 
@@ -125,7 +125,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    {{-- Checkout button – ট্র্যাকিংয়ের জন্য ID দিলাম --}}
+                    {{-- Checkout button – ট�র�যাকিংয়ের জন�য ID দিলাম --}}
                     <a href="{{route('customer.checkout')}}" class="go_cart" id="checkoutButton">
                         PROCESS TO CHECKOUT
                     </a>
@@ -147,7 +147,7 @@ window.dataLayer = window.dataLayer || [];
 
 (function() {
 
-    // ---- Cart items array (GA4 / GTM এর জন্য) ----
+    // ---- Cart items array (GA4 / GTM �র জন�য) ----
     var cartItems = [
         @foreach($data as $item)
         {
@@ -155,7 +155,7 @@ window.dataLayer = window.dataLayer || [];
             item_name: @json($item->name),
             price: {{ (float) $item->price }},
             quantity: {{ (int) $item->qty }}
-            // চাইলে এখানে brand, category ইত্যাদি অ্যাড করা যাবে
+            // চাইলে �খানে brand, category ইত�যাদি অ�যাড করা যাবে
         }@if(!$loop->last),@endif
         @endforeach
     ];
@@ -287,11 +287,11 @@ window.dataLayer = window.dataLayer || [];
         var currentQty = parseInt($row.find('input').val()) || 1;
         var newQty = currentQty + 1;
 
-        // এখানে আমরা ধরছি increment মানে add_to_cart type event
+        // �খানে আমরা ধরছি increment মানে add_to_cart type event
         pushCartEvent('add_to_cart', item, newQty - currentQty);
     });
 
-    // ৫) Qty Decrement -> update_cart (বা remove এর আগে quantity কমছে)
+    // ৫) Qty Decrement -> update_cart (বা remove �র আগে quantity কমছে)
     $(document).on('click', '.cart_decrement', function() {
         var $row = $(this).closest('tr');
         var item = getItemData($row);
@@ -331,9 +331,10 @@ window.dataLayer = window.dataLayer || [];
                 coupon: code
             });
         }
-        // preventDefault করা হয়নি, যাতে তোমার existing কুপন লজিক স্বাভাবিক মতোই কাজ করে
+        // preventDefault à¦•à¦°à¦¾ à¦¹à§Ÿà¦¨à¦¿, à¦¯à¦¾à¦¤à§‡ à¦¤à§‹à¦®à¦¾à¦° existing কুপন à¦²à¦œà¦¿à¦• à¦¸à§à¦¬à¦¾à¦­à¦¾à¦¬à¦¿à¦• à¦®à¦¤à§‹à¦‡ à¦•à¦¾à¦œ à¦•à¦°à§‡
     });
 
 })();
 </script>
 @endpush
+

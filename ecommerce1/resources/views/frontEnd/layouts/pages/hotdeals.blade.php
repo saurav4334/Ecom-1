@@ -2,7 +2,7 @@
 @section('title','Hot Deals')
 
 @push('css')
-<link rel="stylesheet" href="{{asset('public/frontEnd/css/jquery-ui.css')}}" />
+<link rel="stylesheet" href="{{asset('frontEnd/css/jquery-ui.css')}}" />
 @endpush 
 
 
@@ -69,7 +69,7 @@
                                                 $discount=(((($value->old_price)-($value->new_price))*100) / ($value->old_price));
                                             @endphp 
                                             <p>{{ number_format($discount, 0) }}%</p>
-                                            ছাড়
+                                            ছাড়
                                         </span>
                                     </div>
                                 </div>
@@ -124,10 +124,10 @@
 
                         {{-- === বাটন সেকশন === --}}
                         @if (!$value->prosizes->isEmpty() || !$value->procolors->isEmpty())
-                            {{-- ভ্যারিয়েন্ট আছে: দুই বাটনই ডিটেইলস পেজে নেবে --}}
+                            {{-- ভ�যারিয়েন�ট আছে: দ�ই বাটনই ডিটেইলস পেজে নেবে --}}
                             <div class="pro_btn">
                                 <a href="{{ route('product', $value->slug) }}" class="order-btn-link">
-                                    অর্ডার করুন
+                                    অর্ডার
                                 </a>
 
                                 <a href="{{ route('product', $value->slug) }}" class="cart-icon-link">
@@ -135,20 +135,20 @@
                                 </a>
                             </div>
                         @else
-                            {{-- ভ্যারিয়েন্ট নেই: একটিতে অর্ডার Now, আরেকটিতে শুধু কার্টে যোগ --}}
+                            {{-- ভ�যারিয়েন�ট নেই: �কটিতে অর্ডার Now, আরেকটিতে শ�ধ� কার�টে যোগ --}}
                             <div class="pro_btn">
-                                {{-- অর্ডার করুন বাটন --}}
+                                {{-- অর্ডার à¦¬à¦¾à¦Ÿà¦¨ --}}
                                 <form action="{{ route('cart.store') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $value->id }}" />
                                     <input type="hidden" name="qty" value="1" />
                                     <input type="hidden" name="order_now" value="1">
                                     <button type="submit" class="order-btn">
-                                        অর্ডার করুন
+                                        অর্ডার
                                     </button>
                                 </form>
 
-                                {{-- কার্ট আইকন বাটন --}}
+                                {{-- কার�ট আইকন বাটন --}}
                                 <form action="{{ route('cart.store') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $value->id }}" />
@@ -198,3 +198,6 @@
     });
 </script>
 @endpush
+
+
+

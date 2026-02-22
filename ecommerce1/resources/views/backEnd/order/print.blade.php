@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Print</title>
-    <link rel="stylesheet" href="{{asset('public/frontEnd/css/bootstrap.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('public/frontEnd/css/all.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('frontEnd/css/bootstrap.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('frontEnd/css/all.min.css')}}" />
     <style>
         body {
             background: #f1f2f5;
@@ -223,3 +223,5 @@ function printFunction() {
 </script>
 </body>
 </html>
+
+

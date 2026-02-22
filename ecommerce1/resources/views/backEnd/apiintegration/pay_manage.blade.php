@@ -1,4 +1,4 @@
-@extends('backEnd.layouts.master') 
+﻿@extends('backEnd.layouts.master') 
 @section('title','Payment Gateway')
 @section('css')
 <style>
@@ -8,8 +8,8 @@
     margin-bottom: 10px;
   }
 </style>
-<link href="{{asset('public/backEnd')}}/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
-<link href="{{asset('public/backEnd')}}/assets/libs/summernote/summernote-lite.min.css" rel="stylesheet" type="text/css" />
+<link href="{{asset('backEnd')}}/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+<link href="{{asset('backEnd')}}/assets/libs/summernote/summernote-lite.min.css" rel="stylesheet" type="text/css" />
 @endsection @section('content')
 <div class="container-fluid">
 <!-- start page title -->
@@ -17,7 +17,7 @@
   <div class="col-12">
     <div class="page-title-box d-flex align-items-center">
       <h4 class="page-title d-flex align-items-center gap-2">
-        <img src="{{ asset('public/frontEnd/images/bkash.svg') }}"
+        <img src="{{ asset('frontEnd/images/bkash.svg') }}"
              alt="Bkash Logo"
              style="height:28px; width:auto; margin-right:8px;">
         Bkash
@@ -118,7 +118,7 @@
     <div class="col-12">
       <div class="page-title-box">
         <h4 class="page-title">
-          <img src="{{ asset('public/frontEnd/images/uddokta.png') }}" alt="UddoktaPay Logo" style="height:28px;margin-right:6px;">
+          <img src="{{ asset('frontEnd/images/uddokta.png') }}" alt="UddoktaPay Logo" style="height:28px;margin-right:6px;">
           UddoktaPay
         </h4>
       </div>
@@ -190,7 +190,7 @@
   <div class="col-12">
     <div class="page-title-box d-flex align-items-center">
       <h4 class="page-title d-flex align-items-center gap-2">
-        <img src="{{ asset('public/frontEnd/images/shurjoPay.png') }}"
+        <img src="{{ asset('frontEnd/images/shurjoPay.png') }}"
              alt="Shurjopay Logo"
              style="height:28px; width:auto; margin-right:8px;">
         Shurjopay
@@ -304,12 +304,12 @@
   
 </div>
 @endsection @section('script')
-<script src="{{asset('public/backEnd/')}}/assets/libs/parsleyjs/parsley.min.js"></script>
-<script src="{{asset('public/backEnd/')}}/assets/js/pages/form-validation.init.js"></script>
-<script src="{{asset('public/backEnd/')}}/assets/libs/select2/js/select2.min.js"></script>
-<script src="{{asset('public/backEnd/')}}/assets/js/pages/form-advanced.init.js"></script>
+<script src="{{asset('backEnd/')}}/assets/libs/parsleyjs/parsley.min.js"></script>
+<script src="{{asset('backEnd/')}}/assets/js/pages/form-validation.init.js"></script>
+<script src="{{asset('backEnd/')}}/assets/libs/select2/js/select2.min.js"></script>
+<script src="{{asset('backEnd/')}}/assets/js/pages/form-advanced.init.js"></script>
 <!-- Plugins js -->
-<script src="{{asset('public/backEnd/')}}/assets/libs//summernote/summernote-lite.min.js"></script>
+<script src="{{asset('backEnd/')}}/assets/libs//summernote/summernote-lite.min.js"></script>
 <script>
   $(".summernote").summernote({
     placeholder: "Enter Your Text Here",

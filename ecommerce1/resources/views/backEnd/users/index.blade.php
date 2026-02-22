@@ -1,11 +1,11 @@
-@extends('backEnd.layouts.master')
+﻿@extends('backEnd.layouts.master')
 @section('title','Users Manage')
 
 @section('css')
-<link href="{{asset('/public/backEnd/')}}/assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
-<link href="{{asset('/public/backEnd/')}}/assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet" type="text/css" />
-<link href="{{asset('/public/backEnd/')}}/assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet" type="text/css" />
-<link href="{{asset('/public/backEnd/')}}/assets/libs/datatables.net-select-bs5/css/select.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+<link href="{{asset('/backEnd/')}}/assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+<link href="{{asset('/backEnd/')}}/assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+<link href="{{asset('/backEnd/')}}/assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+<link href="{{asset('/backEnd/')}}/assets/libs/datatables.net-select-bs5/css/select.bootstrap5.min.css" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
@@ -45,7 +45,7 @@
                         @foreach($data as $key=>$value)
 
                             @php
-                                // এই ইউজারের রোল (Admin কিনা)
+                                // �ই ইউজারের রোল (Admin কিনা)
                                 $isAdminUser  = method_exists($value, 'hasRole') ? $value->hasRole('Admin') : false;
 
                                 // লগইন করা ইউজারের রোল (Admin কিনা)
@@ -54,7 +54,7 @@
                                                 : false;
                             @endphp
 
-                            {{-- 🔥 যদি এই রো-এর ইউজার Admin হয় এবং লগইন করা ইউজার Admin না হয় = দেখাবে না --}}
+                            {{-- 🔥 যদি �ই রো-�র ইউজার Admin হয় �বং লগইন করা ইউজার Admin না হয় = দেখাবে না --}}
                             @if($isAdminUser && !$isLoginAdmin)
                                 @continue
                             @endif
@@ -121,18 +121,19 @@
 @endsection
 
 @section('script')
-<script src="{{asset('/public/backEnd/')}}/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="{{asset('/public/backEnd/')}}/assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
-<script src="{{asset('/public/backEnd/')}}/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-<script src="{{asset('/public/backEnd/')}}/assets/libs/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
-<script src="{{asset('/public/backEnd/')}}/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-<script src="{{asset('/public/backEnd/')}}/assets/libs/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js"></script>
-<script src="{{asset('/public/backEnd/')}}/assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
-<script src="{{asset('/public/backEnd/')}}/assets/libs/datatables.net-buttons/js/buttons.flash.min.js"></script>
-<script src="{{asset('/public/backEnd/')}}/assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
-<script src="{{asset('/public/backEnd/')}}/assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-<script src="{{asset('/public/backEnd/')}}/assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
-<script src="{{asset('/public/backEnd/')}}/assets/libs/pdfmake/build/pdfmake.min.js"></script>
-<script src="{{asset('/public/backEnd/')}}/assets/libs/pdfmake/build/vfs_fonts.js"></script>
-<script src="{{asset('/public/backEnd/')}}/assets/js/pages/datatables.init.js"></script>
+<script src="{{asset('/backEnd/')}}/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="{{asset('/backEnd/')}}/assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+<script src="{{asset('/backEnd/')}}/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="{{asset('/backEnd/')}}/assets/libs/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
+<script src="{{asset('/backEnd/')}}/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="{{asset('/backEnd/')}}/assets/libs/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js"></script>
+<script src="{{asset('/backEnd/')}}/assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="{{asset('/backEnd/')}}/assets/libs/datatables.net-buttons/js/buttons.flash.min.js"></script>
+<script src="{{asset('/backEnd/')}}/assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="{{asset('/backEnd/')}}/assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+<script src="{{asset('/backEnd/')}}/assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
+<script src="{{asset('/backEnd/')}}/assets/libs/pdfmake/build/pdfmake.min.js"></script>
+<script src="{{asset('/backEnd/')}}/assets/libs/pdfmake/build/vfs_fonts.js"></script>
+<script src="{{asset('/backEnd/')}}/assets/js/pages/datatables.init.js"></script>
 @endsection
+

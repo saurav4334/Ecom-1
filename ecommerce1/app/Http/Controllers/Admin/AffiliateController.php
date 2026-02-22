@@ -78,6 +78,12 @@ class AffiliateController extends Controller
             'name' => 'nullable|string|max:255',
             'email' => 'nullable|email|max:255',
             'password' => 'nullable|string|min:6',
+            'phone' => 'nullable|string|max:50',
+            'nid_number' => 'nullable|string|max:50',
+            'address' => 'nullable|string|max:255',
+            'bank_account_number' => 'nullable|string|max:100',
+            'payout_method' => 'nullable|string|max:50',
+            'payout_account_name' => 'nullable|string|max:100',
             'commission_type' => 'required|in:percent,flat',
             'commission_value' => 'required|numeric|min:0',
             'status' => 'required|in:active,inactive',
@@ -98,6 +104,7 @@ class AffiliateController extends Controller
                     'email' => $data['email'],
                     'password' => Hash::make($data['password']),
                     'status' => 1,
+                    'image' => 'public/uploads/default/user.png',
                 ]);
 
                 $userId = $user->id;
@@ -105,6 +112,13 @@ class AffiliateController extends Controller
 
             $affiliate = Affiliate::create([
                 'user_id' => $userId,
+                'phone' => $data['phone'] ?? null,
+                'nid_number' => $data['nid_number'] ?? null,
+                'email' => $data['email'] ?? null,
+                'address' => $data['address'] ?? null,
+                'bank_account_number' => $data['bank_account_number'] ?? null,
+                'payout_method' => $data['payout_method'] ?? null,
+                'payout_account_name' => $data['payout_account_name'] ?? null,
                 'referral_code' => $this->generateCode(),
                 'commission_rate' => $data['commission_type'] === 'percent' ? $data['commission_value'] : 0,
                 'commission_type' => $data['commission_type'],
@@ -124,6 +138,13 @@ class AffiliateController extends Controller
         $affiliate = Affiliate::findOrFail($id);
 
         $data = $request->validate([
+            'phone' => 'nullable|string|max:50',
+            'nid_number' => 'nullable|string|max:50',
+            'email' => 'nullable|email|max:255',
+            'address' => 'nullable|string|max:255',
+            'bank_account_number' => 'nullable|string|max:100',
+            'payout_method' => 'nullable|string|max:50',
+            'payout_account_name' => 'nullable|string|max:100',
             'commission_type' => 'required|in:percent,flat',
             'commission_value' => 'required|numeric|min:0',
             'balance' => 'required|numeric|min:0',
@@ -179,6 +200,7 @@ class AffiliateController extends Controller
         $totalEarnings = $referrals->whereIn('status', ['confirmed', 'paid'])->sum('commission_amount');
         $pendingEarnings = $referrals->where('status', 'pending')->sum('commission_amount');
         $paidOut = $payouts->where('status', 'paid')->sum('amount');
+        $totalCommission = $totalEarnings + $pendingEarnings;
 
         return view('backEnd.affiliate.report', compact(
             'affiliate',
@@ -186,7 +208,8 @@ class AffiliateController extends Controller
             'payouts',
             'totalEarnings',
             'pendingEarnings',
-            'paidOut'
+            'paidOut',
+            'totalCommission'
         ));
     }
 

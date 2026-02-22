@@ -1,4 +1,4 @@
-@extends('backEnd.layouts.master')
+﻿@extends('backEnd.layouts.master')
 @section('title',$order_status->name.' Order')
 @section('content')
 <style>
@@ -279,7 +279,7 @@
                             <td class="order-meta">{{date('d-m-Y', strtotime($value->updated_at))}}<br> {{date('h:i:s a', strtotime($value->updated_at))}}</td>
                             <td class="order-meta"><strong>{{$value->shipping?$value->shipping->name:''}}</strong><p>{{$value->shipping?$value->shipping->address:''}}</p>{{$value->shipping?$value->shipping->phone:''}}</td>
                             <td>  @php
-        // অর্ডারে থাকা সব প্রোডাক্ট সংগ্রহ করছি
+        // অর�ডারে থাকা সব প�রোডাক�ট সংগ�রহ করছি
         $items = $value->orderDetails;
 
         $types = [];
@@ -295,12 +295,12 @@
         $types = array_unique($types);
 
         if (count($types) === 1) {
-            echo $types[0]; // শুধু Digital বা শুধু Physical
+            echo $types[0]; // শ�ধ� Digital বা শ�ধ� Physical
         } else {
-            echo "Mixed"; // দুইটাই থাকলে
+            echo "Mixed"; // দ�ইটাই থাকলে
         }
     @endphp</td>
-							{{-- ⭐ Order Note (Client Note) --}}
+							{{-- â­ Order Note (Client Note) --}}
 <td>
     @php
         $orderNote = $value->order_note ?? $value->note ?? null;
@@ -339,18 +339,18 @@
 							
 							<td>
     @php
-        // এই অর্ডারের পেমেন্ট বের করছি
+        // �ই অর�ডারের পেমেন�ট বের করছি
         $payment = \App\Models\Payment::where('order_id', $value->id)->first();
 
         $paid = $payment ? floatval($payment->amount) : 0;
         $total = floatval($value->amount);
 
-        // ডিফল্ট ধরি: কোনো advance নাই / ফুল পেমেন্ট
+        // ডিফল�ট ধরি: কোনো advance নাই / ফ�ল পেমেন�ট
         $showAmount = $total;
 
-        // যদি payment amount > 0 এবং total থেকে কম হয় → মানে advance দিয়েছে
+        // যদি payment amount > 0 �বং total থেকে কম হয় → মানে advance দিয়েছে
         if ($paid > 0 && $paid < $total) {
-            $showAmount = $total - $paid;   // 👉 শুধু বাকি টাকা দেখাব
+            $showAmount = $total - $paid;   // 👉 শ�ধ� বাকি টাকা দেখাব
         }
     @endphp
 
@@ -369,11 +369,11 @@
    target="_blank"
    rel="noopener noreferrer"
    class="btn btn-sm btn-primary">
-  ট্র্যাকিং
+  ট�র�যাকিং
 </a>
 
     @else
-        <span class="text-muted">কোন রেকর্ড নেই</span>
+        <span class="text-muted">কোন রেকর�ড নেই</span>
     @endif
 </td>
                             
@@ -553,7 +553,7 @@
       </div>
 
       <div class="modal-body">
-        {{-- hidden ফিল্ড --}}
+        {{-- hidden ফিল�ড --}}
         <input type="hidden" id="note_order_id">
         <input type="hidden" id="note_type">
 
@@ -575,7 +575,7 @@
 <!-- pathao courier  End-->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    // ⭐ Order Note / Admin Note popup open
+    // â­ Order Note / Admin Note popup open
     $(document).on('click', '.note-modal-btn', function (e) {
         e.preventDefault();
 
@@ -599,7 +599,7 @@
         $('#noteModal').modal('show');
     });
 
-    // ⭐ Save Note (AJAX)
+    // â­ Save Note (AJAX)
     $('#saveNoteBtn').on('click', function () {
         let orderId = $('#note_order_id').val();
         let type    = $('#note_type').val();
@@ -618,7 +618,7 @@
                 if (res.status === 'success') {
                     toastr.success('Note updated successfully');
 
-                    // টেবিলের বাটনের টেক্সট ও data-note আপডেট
+                    // টেবিলের বাটনের টেক�সট ও data-note আপডেট
                     let selector = '.note-modal-btn[data-id="' + orderId + '"][data-type="' + type + '"]';
                     let $btn = $(selector);
                     $btn.data('note', note);
@@ -835,3 +835,4 @@ $(document).ready(function(){
 })
 </script>
 @endsection
+

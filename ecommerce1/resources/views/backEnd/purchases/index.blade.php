@@ -1,4 +1,4 @@
-@extends('backEnd.layouts.master')
+﻿@extends('backEnd.layouts.master')
 @section('title','Purchases')
 
 @section('content')
@@ -12,7 +12,7 @@
     <div class="row mb-4">
 
        <style>
-    /* সব রঙিন কার্ডের ভিতরের টেক্সট সাদা */
+    /* সব রঙিন কার�ডের ভিতরের টেক�সট সাদা */
     .card.bg-success *, 
     .card.bg-info *, 
     .card.bg-primary *, 
@@ -26,7 +26,7 @@
         <div class="card-body">
             <h6 class="mb-1">This Year ({{ $currentYear }})</h6>
             <h3 class="mb-0">{{ number_format($yearlyTotal,2) }} ৳</h3>
-            <small class="d-block mt-1">এই বছরে মোট পারচেস</small>
+            <small class="d-block mt-1">�ই বছরে মোট পারচেস</small>
         </div>
     </div>
 </div>
@@ -38,7 +38,7 @@
                 This Month ({{ \Carbon\Carbon::createFromDate(now()->year, $currentMonth, 1)->format('F') }})
             </h6>
             <h3 class="mb-0">{{ number_format($monthlyTotal,2) }} ৳</h3>
-            <small class="d-block mt-1">এই মাসে মোট পারচেস</small>
+            <small class="d-block mt-1">�ই মাসে মোট পারচেস</small>
         </div>
     </div>
 </div>
@@ -194,13 +194,13 @@
                         </div>
 
                         <button type="submit" class="btn btn-outline-primary w-100 mt-2">
-                            ⬇ Download CSV
+                            â¬‡ Download CSV
                         </button>
                     </form>
                 </div>
             </div>
 
-            {{-- ছোট Filter form (লিস্টের জন্য) চাইলে এখানে আরেকটা বানাতে পারো --}}
+            {{-- ছোট Filter form (লিস�টের জন�য) চাইলে �খানে আরেকটা বানাতে পারো --}}
         </div>
     </div>
 
@@ -269,3 +269,4 @@
 
 </div>
 @endsection
+

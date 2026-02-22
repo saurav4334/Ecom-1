@@ -206,7 +206,7 @@
                                                     @endphp
                                                     {{ number_format($discount, 0) }}%
                                                 </p>
-                                                ছাড়
+                                                ছাড়
                                             </span>
                                         </div>
                                     </div>
@@ -261,26 +261,26 @@
                                 </p>
                             </div>
 
-                            {{-- দুইটা বাটন: অর্ডার + কার্ট --}}
+                            {{-- দ�ইটা বাটন: অর্ডার + কার�ট --}}
                             @if (!$value->prosizes->isEmpty() || !$value->procolors->isEmpty())
-                                {{-- ভ্যারিয়েন্ট প্রোডাক্ট – দুটোই ডিটেইল পেজে --}}
+                                {{-- à¦­à§à¦¯à¦¾à¦°à¦¿à¦¯à¦¼à§‡à¦¨à§à¦Ÿ প্রোডাক্ট â€“ à¦¦à§à¦Ÿà§‹à¦‡ à¦¡à¦¿à¦Ÿà§‡à¦‡à¦² à¦ªà§‡à¦œà§‡ --}}
                                 <div class="pro_btn">
                                     <a href="{{ route('product', $value->slug) }}" class="order-btn-link">
-                                        অর্ডার করুন
+                                        অর্ডার
                                     </a>
                                     <a href="{{ route('product', $value->slug) }}" class="cart-icon-link">
                                         <i class="fa-solid fa-cart-shopping"></i>
                                     </a>
                                 </div>
                             @else
-                                {{-- সিম্পল প্রোডাক্ট --}}
+                                {{-- à¦¸à¦¿à¦®à§à¦ªà¦² প্রোডাক্ট --}}
                                 <div class="pro_btn">
                                     <form action="{{ route('cart.store') }}" method="POST">
                                         @csrf
                                         <input type="hidden" name="id" value="{{ $value->id }}" />
                                         <input type="hidden" name="qty" value="1" />
                                         <input type="hidden" name="order_now" value="1">
-                                        <button type="submit" class="order-btn">অর্ডার করুন</button>
+                                        <button type="submit" class="order-btn">অর্ডার</button>
                                     </form>
 
                                     <form action="{{ route('cart.store') }}" method="POST">
@@ -355,7 +355,7 @@
                                                             @endphp
                                                             {{ number_format($discount, 0) }}%
                                                         </p>
-                                                        ছাড়
+                                                        ছাড়
                                                     </span>
                                                 </div>
                                             </div>
@@ -410,11 +410,11 @@
                                         </p>
                                     </div>
 
-                                    {{-- দুইটা বাটন: অর্ডার + কার্ট --}}
+                                    {{-- দ�ইটা বাটন: অর্ডার + কার�ট --}}
                                     @if (!$value->prosizes->isEmpty() || !$value->procolors->isEmpty())
                                         <div class="pro_btn">
                                             <a href="{{ route('product', $value->slug) }}" class="order-btn-link">
-                                                অর্ডার করুন
+                                                অর্ডার
                                             </a>
                                             <a href="{{ route('product', $value->slug) }}" class="cart-icon-link">
                                                 <i class="fa-solid fa-cart-shopping"></i>
@@ -427,7 +427,7 @@
                                                 <input type="hidden" name="id" value="{{ $value->id }}" />
                                                 <input type="hidden" name="qty" value="1" />
                                                 <input type="hidden" name="order_now" value="1">
-                                                <button type="submit" class="order-btn">অর্ডার করুন</button>
+                                                <button type="submit" class="order-btn">অর্ডার</button>
                                             </form>
 
                                             <form action="{{ route('cart.store') }}" method="POST">
@@ -524,7 +524,7 @@
 @endsection
 
 @push('script')
-<script src="{{ asset('public/frontEnd/js/jquery.syotimer.min.js') }}"></script>
+<script src="{{ asset('frontEnd/js/jquery.syotimer.min.js') }}"></script>
 <script>
     $("#simple_timer").syotimer({
         date: new Date(2015, 0, 1),
@@ -537,3 +537,6 @@
     });
 </script>
 @endpush
+
+
+

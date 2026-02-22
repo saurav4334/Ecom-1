@@ -1,4 +1,4 @@
-@php
+﻿@php
     $subtotal = Cart::instance('shopping')->subtotal();
     $subtotal=str_replace(',','',$subtotal);
     $subtotal=str_replace('.00', '',$subtotal);

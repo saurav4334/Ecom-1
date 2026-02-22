@@ -1,4 +1,4 @@
-@extends('backEnd.layouts.master')
+﻿@extends('backEnd.layouts.master')
 @section('title','Point of Sale')
 
 @section('css')
@@ -184,8 +184,8 @@
         font-size:13px;
     }
 </style>
-<link href="{{asset('public/backEnd')}}/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
-<link href="{{asset('public/backEnd')}}/assets/libs/summernote/summernote-lite.min.css" rel="stylesheet" type="text/css" />
+<link href="{{asset('backEnd')}}/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+<link href="{{asset('backEnd')}}/assets/libs/summernote/summernote-lite.min.css" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
@@ -320,7 +320,7 @@
                                 <option value="">Delivery Area...</option>
                                 <option value="1">ঢাকা সিটির ভিতরে হোম ডেলিভারি</option>
                                 <option value="2">ঢাকা সিটির বাহিরে হোম ডেলিভারি</option>
-                                <option value="3">কুরিয়ার অফিস থেকে ডেলিভারি</option>
+                                <option value="3">ক�রিয়ার অফিস থেকে ডেলিভারি</option>
                             </select>
                             @error('area')<span class="invalid-feedback"><strong>{{ $message }}</strong></span>@enderror
                         </div>
@@ -411,11 +411,11 @@
 @endsection
 
 @section('script')
-<script src="{{asset('public/backEnd/')}}/assets/libs/parsleyjs/parsley.min.js"></script>
-<script src="{{asset('public/backEnd/')}}/assets/js/pages/form-validation.init.js"></script>
-<script src="{{asset('public/backEnd/')}}/assets/libs/select2/js/select2.min.js"></script>
-<script src="{{asset('public/backEnd/')}}/assets/js/pages/form-advanced.init.js"></script>
-<script src="{{asset('public/backEnd/')}}/assets/libs//summernote/summernote-lite.min.js"></script>
+<script src="{{asset('backEnd/')}}/assets/libs/parsleyjs/parsley.min.js"></script>
+<script src="{{asset('backEnd/')}}/assets/js/pages/form-validation.init.js"></script>
+<script src="{{asset('backEnd/')}}/assets/libs/select2/js/select2.min.js"></script>
+<script src="{{asset('backEnd/')}}/assets/js/pages/form-advanced.init.js"></script>
+<script src="{{asset('backEnd/')}}/assets/libs//summernote/summernote-lite.min.js"></script>
 
 <script>
     $(".summernote").summernote({
@@ -574,3 +574,5 @@
 
 </script>
 @endsection
+
+

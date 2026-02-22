@@ -1,4 +1,4 @@
-@extends('backEnd.layouts.master')
+﻿@extends('backEnd.layouts.master')
 @section('title','Edit Expense')
 
 @section('content')
@@ -9,10 +9,10 @@
         <div>
             <h4 class="mb-1">
                 <i data-feather="edit-3" class="me-1"></i>
-                Edit Expense / খরচ এডিট
+                Edit Expense / খরচ �ডিট
             </h4>
             <small class="text-muted">
-                এখানে তুমি খরচের তথ্য আপডেট করতে পারো।
+                �খানে ত�মি খরচের তথ�য আপডেট করতে পারো।
             </small>
         </div>
 
@@ -38,7 +38,7 @@
                         {{ number_format($balance, 2) }} ৳
                     </h2>
                     <small class="d-block mt-1" style="color:white;opacity: .9;">
-                        বর্তমানে তহবিলে অবশিষ্ট ব্যালেন্স
+                        বর�তমানে তহবিলে অবশিষ�ট ব�যালেন�স
                     </small>
                 </div>
             </div>
@@ -56,7 +56,7 @@
                         {{ number_format($yearlyExpense, 2) }} ৳
                     </h3>
                     <small class="d-block mt-1" style="color:white;opacity: .9;">
-                        এই বছরে মোট খরচ হয়েছে
+                        �ই বছরে মোট খরচ হয়েছে
                     </small>
                 </div>
             </div>
@@ -78,7 +78,7 @@
                         {{ number_format($monthlyExpense, 2) }} ৳
                     </h3>
                     <small class="d-block mt-1" style="color:white;opacity: .9;">
-                        এই মাসে মোট খরচ হয়েছে
+                        �ই মাসে মোট খরচ হয়েছে
                     </small>
                 </div>
             </div>
@@ -126,7 +126,7 @@
                                    name="title"
                                    class="form-control @error('title') is-invalid @enderror"
                                    value="{{ old('title', $expense->title) }}"
-                                   placeholder="expense title লিখুন"
+                                   placeholder="expense title লিখ�ন"
                                    required>
                             @error('title')
                             <span class="invalid-feedback">{{ $message }}</span>
@@ -180,7 +180,7 @@
                             <textarea name="note"
                                       class="form-control"
                                       rows="3"
-                                      placeholder="এই খরচ সম্পর্কে বাড়তি নোট...">{{ old('note', $expense->note) }}</textarea>
+                                      placeholder="�ই খরচ সম�পর�কে বাড়তি নোট...">{{ old('note', $expense->note) }}</textarea>
                         </div>
 
                         <div class="d-flex justify-content-between">
@@ -211,7 +211,7 @@
                             Last Expenses
                         </strong>
                         <small class="text-muted">
-                            সাম্প্রতিক কিছু খরচের লিস্ট
+                            সাম�প�রতিক কিছ� খরচের লিস�ট
                         </small>
                     </div>
                 </div>
@@ -243,7 +243,7 @@
                             @empty
                                 <tr>
                                     <td colspan="4" class="text-center text-muted py-3">
-                                        কোনো খরচের রেকর্ড পাওয়া যায়নি।
+                                        কোনো খরচের রেকর�ড পাওয়া যায়নি।
                                     </td>
                                 </tr>
                             @endforelse
@@ -262,3 +262,4 @@
 
 </div>
 @endsection
+

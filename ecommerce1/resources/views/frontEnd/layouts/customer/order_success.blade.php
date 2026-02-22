@@ -11,7 +11,7 @@
     // অর্ডারের গ্র্যান্ড টোটাল (ইনভয়েসে যে দেখাও)
     $grand_total = $order->amount;
 
-    // বাকি টাকা (ডেলিভারির সময় দিতে হবে)
+    // à¦¬à¦¾à¦•à¦¿ à¦Ÿà¦¾à¦•à¦¾ (ডেলিভারিà¦° à¦¸à¦®à§Ÿ à¦¦à¦¿à¦¤à§‡ à¦¹à¦¬à§‡)
     $due_amount = max(0, $grand_total - $advance_amount);
 
     // পেমেন্ট মেথড COD কি না চেক করার জন্য
@@ -20,7 +20,7 @@
         ? in_array(strtolower($payment_method), ['cash on delivery', 'cod'])
         : false;
 
-    // ⭐ এই অর্ডারের জন্য ডিজিটাল ডাউনলোডগুলো নিই
+    // এই অর্ডারের জন্য ডিজিটাল ডাউনলোডগুলো নিই
     $downloads = \App\Models\DigitalDownload::where('order_id', $order->id)->get();
 @endphp
 
@@ -30,10 +30,10 @@
         <div class="row justify-content-center">
             <div class="col-sm-8">
                 <div class="success-img">
-                    <img src="{{asset('public/frontEnd/images/order-success.png')}}" alt="">
+                    <img src="{{asset('frontEnd/images/order-success.png')}}" alt="">
                 </div>
                 <div class="success-title">
-                    <h2>আপনার অর্ডারটি আমাদের কাছে সফলভাবে পৌঁছেছে, কিছুক্ষনের মধ্যে আমাদের একজন প্রতিনিধি আপনার নাম্বারে কল করবেন </h2>
+                    <h2>আপনার অর্ডারটি আমাদের কাছে সফলভাবে পৌঁছেছে, কিছুক্ষণের মধ্যে আমাদের একজন প্রতিনিধি আপনার নাম্বারে কল করবেন </h2>
                 </div>
 
                 <h5 class="my-3">Your Order Details</h5>
@@ -74,7 +74,7 @@
 
                 </div>
 
-                {{-- ⭐⭐ DIGITAL DOWNLOAD SECTION ⭐⭐ --}}
+                {{-- â­â­ DIGITAL DOWNLOAD SECTION â­â­ --}}
                 @if($downloads->count() > 0)
                     <div class="success-table mt-4">
                         <h5 class="mb-3">📥 Your Digital Downloads</h5>
@@ -117,7 +117,7 @@
                         </table>
                     </div>
                 @endif
-                {{-- ⭐⭐ END DIGITAL DOWNLOAD SECTION ⭐⭐ --}}
+                {{-- â­â­ END DIGITAL DOWNLOAD SECTION â­â­ --}}
 
                 <!-- success table -->
                 <h5 class="my-4">Pay with cash upon delivery</h5>
@@ -162,7 +162,7 @@
                                 </td>
                             </tr>
 
-                            {{-- ✅ Advance Paid / Due on Delivery শুধু তখনই দেখাবে যখন advance আছে এবং COD না --}}
+                            {{-- ✅ Advance Paid / Due on Delivery শ�ধ� তখনই দেখাবে যখন advance আছে �বং COD না --}}
                             @if($advance_amount > 0 && !$is_cod)
                                 <tr>
                                     <th class="text-end px-4">Advance Paid</th>
@@ -306,7 +306,7 @@
                                     <td><strong>৳{{$order->amount}}</strong></td>
                                 </tr>
 
-                                {{-- ✅ Advance Paid / Due on Delivery শুধু তখনই দেখাবে যখন advance আছে এবং COD না --}}
+                                {{-- ✅ Advance Paid / Due on Delivery শ�ধ� তখনই দেখাবে যখন advance আছে �বং COD না --}}
                                 @if($advance_amount > 0 && !$is_cod)
                                     <tr>
                                         <td><strong>Advance Paid</strong></td>
@@ -338,8 +338,8 @@
 @endsection
 
 @push('script')
-<script src="{{asset('public/frontEnd/')}}/js/parsley.min.js"></script>
-<script src="{{asset('public/frontEnd/')}}/js/form-validation.init.js"></script>
+<script src="{{asset('frontEnd/')}}/js/parsley.min.js"></script>
+<script src="{{asset('frontEnd/')}}/js/form-validation.init.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
 
 <script>
@@ -388,7 +388,7 @@ function showTotalAndDownload() {
             @endforeach
         ];
 
-        // যদি প্রোডাক্ট থাকে তখনই ইভেন্ট পাঠাবো
+        // à¦¯à¦¦à¦¿ প্রোডাক্ট à¦¥à¦¾à¦•à§‡ à¦¤à¦–à¦¨à¦‡ à¦‡à¦­à§‡à¦¨à§à¦Ÿ à¦ªà¦¾à¦ à¦¾à¦¬à§‹
         if (ga4Items.length) {
             // 🔸 GA4: purchase
             window.dataLayer.push({ ecommerce: null });
@@ -406,7 +406,7 @@ function showTotalAndDownload() {
             });
         }
 
-        // Facebook Pixel এর জন্য contents
+        // Facebook Pixel �র জন�য contents
         const fbContents = [
             @foreach($order->orderdetails as $key=>$item)
             {
@@ -433,3 +433,5 @@ function showTotalAndDownload() {
     })();
 </script>
 @endpush
+
+

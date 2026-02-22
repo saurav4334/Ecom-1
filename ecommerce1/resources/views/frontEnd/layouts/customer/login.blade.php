@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             <div class="col-sm-5">
                 <div class="form-content">
-                    <p class="auth-title"> কাস্টমার লগিন </p>
+                    <p class="auth-title"> কাস্টমার লগইন </p>
                     <form action="{{route('customer.signin')}}" method="POST"  data-parsley-validate="">
                         @csrf
                         <div class="form-group mb-3">
@@ -29,14 +29,14 @@
                             @enderror
                         </div>
                         <!-- col-end -->
-                        <a href="{{route('customer.forgot.password')}}" class="forget-link"><i class="fa-solid fa-unlock"></i> পাসওয়ার্ড ভুলে গেছেন?</a>
+                        <a href="{{route('customer.forgot.password')}}" class="forget-link"><i class="fa-solid fa-unlock"></i> পাসওয়ার্ড ভুলে গেছেন?</a>
                         <div class="form-group mb-3">
-                            <button class="submit-btn"> লগিন </button>
+                            <button class="submit-btn"> লগইন </button>
                         </div>
                      <!-- col-end -->
                      </form>
                      <div class="register-now no-account">
-                        <p> একাউন্ট না থাকলে? </p>
+                        <p> অ্যাকাউন্ট না থাকলে? </p>
                         <a href="{{route('customer.register')}}"><i data-feather="edit-3"></i> রেজিস্ট্রেশন করুন</a>
                     </div>
                 </div>
@@ -46,6 +46,6 @@
 </section>
 @endsection
 @push('script')
-<script src="{{asset('public/frontEnd/')}}/js/parsley.min.js"></script>
-<script src="{{asset('public/frontEnd/')}}/js/form-validation.init.js"></script>
+<script src="{{asset('frontEnd/')}}/js/parsley.min.js"></script>
+<script src="{{asset('frontEnd/')}}/js/form-validation.init.js"></script>
 @endpush

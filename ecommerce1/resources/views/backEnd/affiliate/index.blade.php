@@ -1,10 +1,10 @@
-@extends('backEnd.layouts.master')
+﻿@extends('backEnd.layouts.master')
 @section('title','Affiliate Manage')
 @section('css')
-<link href="{{asset('/public/backEnd/')}}/assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
-<link href="{{asset('/public/backEnd/')}}/assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet" type="text/css" />
-<link href="{{asset('/public/backEnd/')}}/assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet" type="text/css" />
-<link href="{{asset('/public/backEnd/')}}/assets/libs/datatables.net-select-bs5/css/select.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+<link href="{{asset('/backEnd/')}}/assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+<link href="{{asset('/backEnd/')}}/assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+<link href="{{asset('/backEnd/')}}/assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+<link href="{{asset('/backEnd/')}}/assets/libs/datatables.net-select-bs5/css/select.bootstrap5.min.css" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
@@ -30,10 +30,16 @@
                                 <th>SL</th>
                                 <th>User</th>
                                 <th>Email</th>
+                                <th>Phone</th>
+                                <th>NID</th>
+                                <th>Address</th>
+                                <th>Bank</th>
                                 <th>Referral Code</th>
                                 <th>Commission</th>
                                 <th>Balance</th>
                                 <th>Total Earned</th>
+                                <th>Link Hits</th>
+                                <th>Purchases</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -49,6 +55,10 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $affiliate->user->name ?? 'N/A' }}</td>
                                     <td>{{ $affiliate->user->email ?? 'N/A' }}</td>
+                                    <td>{{ $affiliate->phone ?? 'N/A' }}</td>
+                                    <td>{{ $affiliate->nid_number ?? 'N/A' }}</td>
+                                    <td>{{ $affiliate->address ?? 'N/A' }}</td>
+                                    <td>{{ $affiliate->bank_account_number ?? 'N/A' }}</td>
                                     <td>{{ $affiliate->referral_code }}</td>
                                     <td>
                                         @if(($affiliate->commission_type ?? 'percent') === 'flat')
@@ -59,6 +69,8 @@
                                     </td>
                                     <td>{{ number_format($affiliate->balance, 2) }}</td>
                                     <td>{{ number_format($earned, 2) }}</td>
+                                    <td>{{ (int) ($affiliate->link_hits ?? 0) }}</td>
+                                    <td>{{ (int) ($affiliate->link_purchases ?? 0) }}</td>
                                     <td>
                                         @if($affiliate->status === 'active')
                                             <span class="badge bg-soft-success text-success">Active</span>
@@ -107,18 +119,19 @@
 @endsection
 
 @section('script')
-<script src="{{asset('/public/backEnd/')}}/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="{{asset('/public/backEnd/')}}/assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
-<script src="{{asset('/public/backEnd/')}}/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-<script src="{{asset('/public/backEnd/')}}/assets/libs/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
-<script src="{{asset('/public/backEnd/')}}/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-<script src="{{asset('/public/backEnd/')}}/assets/libs/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js"></script>
-<script src="{{asset('/public/backEnd/')}}/assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
-<script src="{{asset('/public/backEnd/')}}/assets/libs/datatables.net-buttons/js/buttons.flash.min.js"></script>
-<script src="{{asset('/public/backEnd/')}}/assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
-<script src="{{asset('/public/backEnd/')}}/assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-<script src="{{asset('/public/backEnd/')}}/assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
-<script src="{{asset('/public/backEnd/')}}/assets/libs/pdfmake/build/pdfmake.min.js"></script>
-<script src="{{asset('/public/backEnd/')}}/assets/libs/pdfmake/build/vfs_fonts.js"></script>
-<script src="{{asset('/public/backEnd/')}}/assets/js/pages/datatables.init.js"></script>
+<script src="{{asset('/backEnd/')}}/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="{{asset('/backEnd/')}}/assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+<script src="{{asset('/backEnd/')}}/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="{{asset('/backEnd/')}}/assets/libs/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
+<script src="{{asset('/backEnd/')}}/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="{{asset('/backEnd/')}}/assets/libs/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js"></script>
+<script src="{{asset('/backEnd/')}}/assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="{{asset('/backEnd/')}}/assets/libs/datatables.net-buttons/js/buttons.flash.min.js"></script>
+<script src="{{asset('/backEnd/')}}/assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="{{asset('/backEnd/')}}/assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+<script src="{{asset('/backEnd/')}}/assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
+<script src="{{asset('/backEnd/')}}/assets/libs/pdfmake/build/pdfmake.min.js"></script>
+<script src="{{asset('/backEnd/')}}/assets/libs/pdfmake/build/vfs_fonts.js"></script>
+<script src="{{asset('/backEnd/')}}/assets/js/pages/datatables.init.js"></script>
 @endsection
+

@@ -27,7 +27,7 @@
                                     <th>Advance Paid</th>
                                     <th>Due Amount</th>
                                     <th>Status</th>
-                                    <th>Download</th> {{-- ⭐ নতুন কলাম --}}
+                                    <th>Download</th> {{-- � নত�ন কলাম --}}
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -51,7 +51,7 @@
 
                                     $dueAmount = $value->amount - $advancePaid;
 
-                                    // ⭐ এই অর্ডারের ডিজিটাল ডাউনলোড
+                                    // � �ই অর্ডারের ডিজিটাল ডাউনলোড
                                     $digitalDownloads = \App\Models\DigitalDownload::where('order_id', $value->id)->get();
 
                                 @endphp
@@ -85,7 +85,7 @@
 
                                     <td>{{ $value->status ? $value->status->name : '' }}</td>
 
-                                    {{-- ⭐ DIGITAL DOWNLOAD COLUMN --}}
+                                    {{-- â­ DIGITAL DOWNLOAD COLUMN --}}
                                     <td>
                                         @if($digitalDownloads->count() > 0)
 
@@ -137,3 +137,4 @@
 </section>
 
 @endsection
+

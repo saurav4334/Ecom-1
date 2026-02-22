@@ -1,4 +1,4 @@
-@extends('backEnd.layouts.master')
+﻿@extends('backEnd.layouts.master')
 @section('title','Profit & Loss Report')
 
 @section('content')
@@ -57,7 +57,7 @@
                     </button>
 
                     <button class="btn btn-outline-success" type="submit" name="export" value="csv">
-                        ⬇ Export CSV
+                        â¬‡ Export CSV
                     </button>
                 </div>
             </form>
@@ -173,3 +173,4 @@
     toggleReportFields();
 </script>
 @endsection
+

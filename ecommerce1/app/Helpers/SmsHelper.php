@@ -2,12 +2,19 @@
 
 namespace App\Helpers;
 
+use Illuminate\Support\Facades\Log;
+
 class SmsHelper
 {
     public static function send($gateway, string $number, string $message): array
     {
         if (!$gateway) {
             return ['ok' => false, 'message' => 'SMS gateway not configured'];
+        }
+
+        if (!function_exists('curl_init')) {
+            Log::warning('SMS send skipped: cURL extension not enabled.');
+            return ['ok' => false, 'message' => 'cURL extension not enabled'];
         }
 
         $gatewayName = strtolower($gateway->gateway_name ?? 'bulksmsbd');
@@ -27,13 +34,13 @@ class SmsHelper
             ]);
             $url = $baseUrl . '?' . $query;
 
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $url);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-            $response = curl_exec($ch);
-            $err = curl_error($ch);
-            curl_close($ch);
+            $ch = \curl_init();
+            \curl_setopt($ch, CURLOPT_URL, $url);
+            \curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            \curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            $response = \curl_exec($ch);
+            $err = \curl_error($ch);
+            \curl_close($ch);
 
             if ($err) {
                 return ['ok' => false, 'message' => $err];
@@ -50,15 +57,15 @@ class SmsHelper
             'message' => $message,
         ];
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        $response = curl_exec($ch);
-        $err = curl_error($ch);
-        curl_close($ch);
+        $ch = \curl_init();
+        \curl_setopt($ch, CURLOPT_URL, $url);
+        \curl_setopt($ch, CURLOPT_POST, 1);
+        \curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));
+        \curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        \curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $response = \curl_exec($ch);
+        $err = \curl_error($ch);
+        \curl_close($ch);
 
         if ($err) {
             return ['ok' => false, 'message' => $err];

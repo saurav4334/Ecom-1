@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\File;
 
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\ShoppingController;
@@ -120,6 +121,16 @@ Route::get('/dynamic-theme.css', function () {
         ->view('frontEnd.assets.theme')
         ->header('Content-Type', 'text/css');
 });
+
+// Backward compatibility for legacy DB/template paths like /public/uploads/...
+Route::get('/public/{path}', function (string $path) {
+    $fullPath = public_path($path);
+    if (!File::exists($fullPath) || !File::isFile($fullPath)) {
+        abort(404);
+    }
+
+    return response()->file($fullPath);
+})->where('path', '.*');
 
 Route::get('/digital-download/{token}', [DigitalDownloadController::class, 'download'])
     ->name('digital.download');
@@ -246,6 +257,15 @@ Route::group(['namespace'=>'Frontend', 'middleware' => ['ipcheck','check_refer']
     Route::get('/affiliate/auto-login', [\App\Http\Controllers\Frontend\AffiliateRegistrationController::class, 'autoLogin'])
         ->name('affiliate.auto_login')
         ->middleware('signed');
+});
+
+Route::group(['namespace'=>'Frontend', 'middleware' => ['ipcheck','check_refer']], function() {
+    Route::get('/affiliate/login', [\App\Http\Controllers\Frontend\AffiliateAuthController::class, 'showLogin'])->name('affiliate.login');
+    Route::post('/affiliate/login', [\App\Http\Controllers\Frontend\AffiliateAuthController::class, 'login'])->name('affiliate.login.submit');
+    Route::post('/affiliate/logout', [\App\Http\Controllers\Frontend\AffiliateAuthController::class, 'logout'])->name('affiliate.logout');
+    Route::get('/affiliate/dashboard', [\App\Http\Controllers\Frontend\AffiliateAuthController::class, 'dashboard'])
+        ->name('affiliate.dashboard')
+        ->middleware(['auth:affiliate', 'affiliate_user']);
 });
 
 Route::group(['prefix'=>'customer','namespace'=>'Frontend', 'middleware' => ['ipcheck','check_refer']], function() {

@@ -4,6 +4,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
 
 body {
     font-family: "Roboto", sans-serif;
@@ -13,28 +14,28 @@ body {
     background: #ffffff;
 }
 
-    /* প্রোডাক্ট কার্ডের বাটন কন্টেইনার */
+    /* প্রোডাক্ট à¦•à¦¾à¦°à§à¦¡à§‡à¦° à¦¬à¦¾à¦Ÿà¦¨ à¦•à¦¨à§à¦Ÿà§‡à¦‡à¦¨à¦¾à¦° */
     .product_item .pro_btn{
         display:flex;
         align-items:stretch;
-        gap:6px;                 /* দুই বাটনের মাঝে ছোট গ্যাপ */
+        gap:6px;                 /* দ�ই বাটনের মা�ে ছোট গ�যাপ */
         margin-top:6px;
         width:100%;
     }
 
-    /* প্রো_btn এর সরাসরি সন্তান form / anchor */
+    /* প�রো_btn �র সরাসরি সন�তান form / anchor */
     .product_item .pro_btn > form,
     .product_item .pro_btn > a{
         margin:0;
     }
 
-    /* বাম দিকের বড় “অর্ডার করুন” বাটন – পুরো জায়গা নেবে */
+    /* à¦¬à¦¾à¦® à¦¦à¦¿à¦•à§‡à¦° à¦¬à§œ â€œঅর্ডার করুনâ€ à¦¬à¦¾à¦Ÿà¦¨ â€“ à¦ªà§à¦°à§‹ à¦œà¦¾à§Ÿà¦—à¦¾ à¦¨à§‡à¦¬à§‡ */
     .product_item .pro_btn > form:first-child,
     .product_item .pro_btn > a.order-btn-link{
         flex:1 1 auto;
     }
 
-    /* ডান পাশের ছোট কার্ট বাটন – ফিক্সড width */
+    /* ডান পাশের ছোট কার�ট বাটন – ফিক�সড width */
     .product_item .pro_btn > form:last-child,
     .product_item .pro_btn > a.cart-icon-link{
         flex:0 0 44px;
@@ -48,17 +49,19 @@ body {
         justify-content:center;
         align-items:center;
         width:100%;
-        height:40px;
-        padding:8px 12px;
+        height:42px;
+        padding:6px 8px;
         background:#d32f2f;
         color:#fff !important;
         border-radius:4px;
-        font-size:14px;
+        font-size:18px;
         font-weight:600;
         cursor:pointer;
-        font-family:"Potro Sans Bangla",sans-serif;
+        font-family:"Hind Siliguri","Potro Sans Bangla","Noto Sans Bengali",sans-serif;
         transition:all .2s ease;
         text-align:center;
+        letter-spacing:0;
+        line-height:1;
     }
     .product_item .order-btn:hover,
     .product_item .order-btn-link:hover{
@@ -67,7 +70,7 @@ body {
         color:#fff !important;
     }
 
-    /* কার্ট আইকন বাটন */
+    /* কার�ট আইকন বাটন */
     .product_item .cart-icon-btn,
     .product_item .cart-icon-link{
         display:flex;
@@ -95,7 +98,7 @@ body {
         color:#fff;
     }
 
-    /* আগের গ্লোবাল প্রো_btn বাটন স্টাইল সামান্য ওভাররাইড */
+    /* আগের গ�লোবাল প�রো_btn বাটন স�টাইল সামান�য ওভাররাইড */
     .product_item .pro_btn button{
         width:100%;
         border-radius:4px;
@@ -104,14 +107,14 @@ body {
 /*==== COMMON CSS START ====*/
 @font-face {
     font-family: "Potro Sans Bangla";
-    src: url("../fonts/Potro-Sans-Bangla-Regular.ttf");
-    src: url("../fonts/Potro-Sans-Bangla-Regular.ttf?#iefix") format("embedded-opentype"), url("../fonts/Potro-Sans-Bangla-Regular.ttf") format("truetype");
+    src: url("{{ asset('frontEnd/fonts/Potro-Sans-Bangla-Regular.ttf') }}");
+    src: url("{{ asset('frontEnd/fonts/Potro-Sans-Bangla-Regular.ttf') }}?#iefix") format("embedded-opentype"), url("{{ asset('frontEnd/fonts/Potro-Sans-Bangla-Regular.ttf') }}") format("truetype");
 }
 
 @font-face {
     font-family: "Alinur Banglaborno";
-    src: url("../fonts/Li-Alinur-Banglaborno-Unicode.ttf");
-    src: url("../fonts/Li-Alinur-Banglaborno-Unicode.ttf?#iefix") format("embedded-opentype"), url("../fonts/Li-Alinur-Banglaborno-Unicode.ttf") format("truetype");
+    src: url("{{ asset('frontEnd/fonts/Li-Alinur-Banglaborno-Unicode.ttf') }}");
+    src: url("{{ asset('frontEnd/fonts/Li-Alinur-Banglaborno-Unicode.ttf') }}?#iefix") format("embedded-opentype"), url("{{ asset('frontEnd/fonts/Li-Alinur-Banglaborno-Unicode.ttf') }}") format("truetype");
 }
 
 p {
@@ -2273,7 +2276,7 @@ li.recent_pro {
   --icon-color: #0a1b78;
 }
 
-/* container (à¦ªà§à¦°à¦«à§‡à¦¶à¦¨à¦¾à¦² à¦²à§à¦•) */
+/* container (à¦ªà§�à¦°à¦«à§‡à¦¶à¦¨à¦¾à¦² à¦²à§�à¦•) */
 .form-content{
   background: #fff;
   border-radius: 15px;
@@ -2299,7 +2302,7 @@ li.recent_pro {
   letter-spacing: .4px;
 }
 
-/* à¦«à¦°à§à¦® à¦—à§à¦°à§à¦ª à¦“ à¦†à¦‡à¦•à¦¨ à¦ªà¦œà¦¿à¦¶à¦¨ */
+/* à¦«à¦°à§�à¦® à¦—à§�à¦°à§�à¦ª à¦“ à¦†à¦‡à¦•à¦¨ à¦ªà¦œà¦¿à¦¶à¦¨ */
 .form-group{ position: relative; margin-bottom: 18px; }
 
 /* à¦†à¦‡à¦•à¦¨ */
@@ -2315,22 +2318,22 @@ li.recent_pro {
   pointer-events: none;
 }
 
-/* à¦‡à¦¨à¦ªà§à¦Ÿ â€” DEFAULT */
+/* à¦‡à¦¨à¦ªà§�à¦Ÿ â€� DEFAULT */
 .auth-section input,
 .auth-section textarea,
 .auth-section select {
   width: 100%;
-  padding: 12px 12px 12px 22px;   /* à¦¬à¦¾à¦® à¦¥à§‡à¦•à§‡ à¦†à¦‡à¦•à¦¨à§‡à¦° à¦œà¦¨à§à¦¯ à¦¸à§à¦ªà§‡à¦¸ */
+  padding: 12px 12px 12px 22px;   /* à¦¬à¦¾à¦® à¦¥à§‡à¦•à§‡ à¦†à¦‡à¦•à¦¨à§‡à¦° à¦œà¦¨à§�à¦¯ à¦¸à§�à¦ªà§‡à¦¸ */
   border: 1px solid var(--input-border);
   background: var(--input-bg);
   border-radius: var(--input-radius);
   font-size: 14px;
   box-sizing: border-box;
-  transition: none; /* à¦•à§‹à¦¨à§‹ à¦°à¦™/à¦¶à§à¦¯à¦¾à¦¡à§‹ à¦Ÿà§à¦°à¦¾à¦¨à¦œà¦¿à¦¶à¦¨ à¦¨à§‡à¦‡ */
+  transition: none; /* à¦•à§‹à¦¨à§‹ à¦°à¦™/à¦¶à§�à¦¯à¦¾à¦¡à§‹ à¦Ÿà§�à¦°à¦¾à¦¨à¦œà¦¿à¦¶à¦¨ à¦¨à§‡à¦‡ */
   outline: none;
 }
 
-/* HOVER â€” à¦•à¦¿à¦¨à§à¦¤à§ à¦¬à¦°à§à¦¡à¦¾à¦° à¦à¦•à¦‡ à¦¥à¦¾à¦•à¦¬à§‡ */
+/* HOVER â€� à¦•à¦¿à¦¨à§�à¦¤à§� à¦¬à¦°à§�à¦¡à¦¾à¦° à¦�à¦•à¦‡ à¦¥à¦¾à¦•à¦¬à§‡ */
 .auth-section input:hover,
 .auth-section textarea:hover,
 .auth-section select:hover {
@@ -2338,7 +2341,7 @@ li.recent_pro {
   box-shadow: none;
 }
 
-/* FOCUS â€” **à¦…à¦ªà§‡à¦•à§à¦·à¦¿à¦¤ à¦ªà¦°à¦¿à¦¬à¦°à§à¦¤à¦¨ à¦¨à§‡à¦‡**: à¦à¦•à¦‡ à¦¬à¦°à§à¦¡à¦¾à¦°, à¦•à§‹à¦¨ à¦¶à§à¦¯à¦¾à¦¡à§‹/à¦°à¦™ à¦ªà¦°à¦¿à¦¬à¦°à§à¦¤à¦¨ à¦¨à§‡à¦‡ */
+/* FOCUS â€� **à¦…à¦ªà§‡à¦•à§�à¦·à¦¿à¦¤ à¦ªà¦°à¦¿à¦¬à¦°à§�à¦¤à¦¨ à¦¨à§‡à¦‡**: à¦�à¦•à¦‡ à¦¬à¦°à§�à¦¡à¦¾à¦°, à¦•à§‹à¦¨ à¦¶à§�à¦¯à¦¾à¦¡à§‹/à¦°à¦™ à¦ªà¦°à¦¿à¦¬à¦°à§�à¦¤à¦¨ à¦¨à§‡à¦‡ */
 .form-content .auth-section input:focus,
 .form-content .auth-section textarea:focus,
 .form-content .auth-section select:focus {
@@ -4573,3 +4576,4 @@ li.all__category__list i {
 .right__menu__top {
     text-align: end;
 }
+

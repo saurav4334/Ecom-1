@@ -43,6 +43,31 @@
                             <input type="password" class="form-control" name="password">
                         </div>
 
+                        <div class="col-md-6">
+                            <label class="form-label">Phone</label>
+                            <input type="text" class="form-control" name="phone" value="{{ old('phone') }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">NID Number</label>
+                            <input type="text" class="form-control" name="nid_number" value="{{ old('nid_number') }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Address</label>
+                            <input type="text" class="form-control" name="address" value="{{ old('address') }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Bank Account Number</label>
+                            <input type="text" class="form-control" name="bank_account_number" value="{{ old('bank_account_number') }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Payout Method</label>
+                            <input type="text" class="form-control" name="payout_method" value="{{ old('payout_method') }}" placeholder="Bank/Mobile">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Payout Account Name</label>
+                            <input type="text" class="form-control" name="payout_account_name" value="{{ old('payout_account_name') }}">
+                        </div>
+
                         <div class="col-md-3">
                             <label class="form-label">Commission Type</label>
                             <select class="form-control @error('commission_type') is-invalid @enderror" name="commission_type" required>

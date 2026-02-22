@@ -1,4 +1,4 @@
-@extends('backEnd.layouts.master') 
+﻿@extends('backEnd.layouts.master') 
 @section('title','Order Create') 
 @section('css')
 <style>
@@ -19,8 +19,8 @@
         margin-bottom: 15px;
     }
 </style>
-<link href="{{asset('public/backEnd')}}/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
-<link href="{{asset('public/backEnd')}}/assets/libs/summernote/summernote-lite.min.css" rel="stylesheet" type="text/css" />
+<link href="{{asset('backEnd')}}/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+<link href="{{asset('backEnd')}}/assets/libs/summernote/summernote-lite.min.css" rel="stylesheet" type="text/css" />
 @endsection 
 
 @section('content')
@@ -144,20 +144,20 @@
 
                 $total = ($subtotal + $shipping) - $total_discount;
 
-                // 💳 এই অর্ডারের পেমেন্ট থেকে কত টাকা নেয়া হয়েছে (advance / full)
+                // 💳 �ই অর�ডারের পেমেন�ট থেকে কত টাকা নেয়া হয়েছে (advance / full)
                 $paidAmount = \App\Models\Payment::where('order_id', $order->id)->sum('amount');
 
-                // ডিফল্ট: মনে করি advance নাই
+                // ডিফল�ট: মনে করি advance নাই
                 $advancePaid = 0;
                 $dueAmount    = $total;
 
-                // যদি কিছু payment থাকে এবং সেটা total থেকে কম হয় = advance payment
+                // যদি কিছ� payment থাকে �বং সেটা total থেকে কম হয় = advance payment
                 if ($paidAmount > 0 && $paidAmount < $total) {
                     $advancePaid = $paidAmount;
                     $dueAmount   = $total - $advancePaid;
                 }
 
-                // যদি paidAmount == total হয় → ফুল পেমেন্ট, তখন advance দেখাব না, আগের মতই total থাকবে
+                // যদি paidAmount == total হয় → ফ�ল পেমেন�ট, তখন advance দেখাব না, আগের মতই total থাকবে
             @endphp
 
             <tr>
@@ -177,7 +177,7 @@
                 <td><strong>{{ $total }}</strong></td>
             </tr>
 
-            {{-- 🔥 যদি advance payment থাকে তখনই extra দুইটা রো দেখাব --}}
+            {{-- 🔥 যদি advance payment থাকে তখনই extra দ�ইটা রো দেখাব --}}
             @if($advancePaid > 0)
                 <tr>
                     <td><strong>Advance Paid</strong></td>
@@ -266,12 +266,12 @@ function updatePaymentStatus(orderId) {
 </script>
 @endsection
 @section('script')
-<script src="{{asset('public/backEnd/')}}/assets/libs/parsleyjs/parsley.min.js"></script>
-<script src="{{asset('public/backEnd/')}}/assets/js/pages/form-validation.init.js"></script>
-<script src="{{asset('public/backEnd/')}}/assets/libs/select2/js/select2.min.js"></script>
-<script src="{{asset('public/backEnd/')}}/assets/js/pages/form-advanced.init.js"></script>
+<script src="{{asset('backEnd/')}}/assets/libs/parsleyjs/parsley.min.js"></script>
+<script src="{{asset('backEnd/')}}/assets/js/pages/form-validation.init.js"></script>
+<script src="{{asset('backEnd/')}}/assets/libs/select2/js/select2.min.js"></script>
+<script src="{{asset('backEnd/')}}/assets/js/pages/form-advanced.init.js"></script>
 <!-- Plugins js -->
-<script src="{{asset('public/backEnd/')}}/assets/libs//summernote/summernote-lite.min.js"></script>
+<script src="{{asset('backEnd/')}}/assets/libs//summernote/summernote-lite.min.js"></script>
 <script>
     $(".summernote").summernote({
         placeholder: "Enter Your Text Here",
@@ -443,4 +443,5 @@ $('.cart-color-selector').on('change', function() {
 });
 </script>
 @endsection
+
 

@@ -1,4 +1,4 @@
-@extends('backEnd.layouts.master') 
+﻿@extends('backEnd.layouts.master') 
 @section('title','SMS Gateway')
 @section('css')
 <style>
@@ -8,15 +8,15 @@
     margin-bottom: 10px;
   }
 </style>
-<link href="{{asset('public/backEnd')}}/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
-<link href="{{asset('public/backEnd')}}/assets/libs/summernote/summernote-lite.min.css" rel="stylesheet" type="text/css" />
+<link href="{{asset('backEnd')}}/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+<link href="{{asset('backEnd')}}/assets/libs/summernote/summernote-lite.min.css" rel="stylesheet" type="text/css" />
 @endsection @section('content')
 <div class="container-fluid">
 <!-- start page title -->
 <div class="row">
   <div class="col-12">
     <div class="page-title-box d-flex align-items-center">
-      <img src="{{ asset('public/frontEnd/images/bulksms.png') }}" alt="SMS Gateway" style="height: 35px; margin-right: 10px;">
+      <img src="{{ asset('frontEnd/images/bulksms.png') }}" alt="SMS Gateway" style="height: 35px; margin-right: 10px;">
       <h4 class="page-title">SMS Gateway</h4>
     </div>
   </div>
@@ -213,12 +213,12 @@
   
 </div>
 @endsection @section('script')
-<script src="{{asset('public/backEnd/')}}/assets/libs/parsleyjs/parsley.min.js"></script>
-<script src="{{asset('public/backEnd/')}}/assets/js/pages/form-validation.init.js"></script>
-<script src="{{asset('public/backEnd/')}}/assets/libs/select2/js/select2.min.js"></script>
-<script src="{{asset('public/backEnd/')}}/assets/js/pages/form-advanced.init.js"></script>
+<script src="{{asset('backEnd/')}}/assets/libs/parsleyjs/parsley.min.js"></script>
+<script src="{{asset('backEnd/')}}/assets/js/pages/form-validation.init.js"></script>
+<script src="{{asset('backEnd/')}}/assets/libs/select2/js/select2.min.js"></script>
+<script src="{{asset('backEnd/')}}/assets/js/pages/form-advanced.init.js"></script>
 <!-- Plugins js -->
-<script src="{{asset('public/backEnd/')}}/assets/libs//summernote/summernote-lite.min.js"></script>
+<script src="{{asset('backEnd/')}}/assets/libs//summernote/summernote-lite.min.js"></script>
 <script>
   $(".summernote").summernote({
     placeholder: "Enter Your Text Here",
@@ -249,3 +249,4 @@
   });
 </script>
 @endsection
+

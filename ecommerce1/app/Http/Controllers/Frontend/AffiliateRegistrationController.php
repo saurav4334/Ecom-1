@@ -82,8 +82,15 @@ class AffiliateRegistrationController extends Controller
             return redirect('/login')->withErrors(['email' => 'Invalid login link.']);
         }
 
-        Auth::login($user);
+        $affiliate = \App\Models\Affiliate::where('user_id', $user->id)
+            ->where('status', 'active')
+            ->first();
+        if (!$affiliate) {
+            return redirect()->route('affiliate.login')->withErrors(['email' => 'Affiliate account is not active.']);
+        }
 
-        return redirect()->route('admin.affiliate.dashboard');
+        Auth::guard('affiliate')->login($user);
+
+        return redirect()->route('affiliate.dashboard');
     }
 }

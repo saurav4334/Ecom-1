@@ -487,7 +487,7 @@
       width:20px;border:none;text-align:center;font-size:11px;background:transparent;
     }
 
-    /* CHECKOUT FORM – আগের মত লুক */
+    /* CHECKOUT FORM - আগের মত লুক */
     .checkout{
       margin-top:16px;
       display:grid;
@@ -658,7 +658,7 @@
       .review-grid{
         grid-template-columns:1fr 1fr;
       }
-      /* এখানে আগেও ১–১ ছিল, এখন ২টা করলাম */
+      /* এখানে আগেও ১-১ ছিল, এখন ২টা করলাম */
       .gallery-grid{
         grid-template-columns:repeat(2,minmax(0,1fr));
       }
@@ -689,7 +689,7 @@
     <nav class="nav-links">
       <a href="#features">বৈশিষ্ট্য</a>
       <a href="#why">কেন সেরা</a>
-      <a href="#reviews">রিভিউ</a>
+      <a href="#reviews">কাস্টমার রিভিউ</a>
       <a href="#faq">প্রশ্নোত্তর</a>
       <a href="#order">অর্ডার</a>
     </nav>
@@ -713,24 +713,24 @@
   <section class="hero">
     <div class="container hero-grid">
       <div>
-        <div class="badge">{{ $campaign_data->hero_badge_text ?? '✅ খুলনার অরিজিনাল চুইঝাল' }}</div>
-        <h1>{{ $campaign_data->hero_title ?? 'খুলনার বিখ্যাত চুইঝাল!' }}</h1>
+        <div class="badge">{{ $campaign_data->hero_badge_text ?? '✅ খুলনার অরিজিনাল চুই ঝাল' }}</div>
+        <h1>{{ $campaign_data->hero_title ?? 'খুলনার বিখ্যাত চুই ঝাল!' }}</h1>
         <p class="hero-subtitle">
           {{ $campaign_data->hero_subtitle
-            ?? 'নিজ হাতে প্রস্তুত ঘানি ভাঙ্গা সরিষার তেল আর বিশেষ মশলার মিশেলে তৈরি আমাদের চুইঝাল। গরু, খাসি, হাঁস কিংবা মাছ – যেকোনো মাংসের সাথে রান্না করে পেয়ে যান খুলনার আসল স্বাদ।' }}
+            ?? 'নিজ হাতে প্রস্তুত ঘানি ভাঙা সরিষার তেল আর বিশেষ মশলার মিশেলে তৈরি আমাদের চুই ঝাল। গরু, খাসি, হাঁস কিংবা মাছ - যেকোনো মাংসের সাথে রান্না করে পেয়ে যান খুলনার আসল স্বাদ।' }}
         </p>
 
         <div class="hero-lists">
           <ul>
-            <li>{{ $campaign_data->hero_list_1 ?? 'হোমমেড – কোন প্রিজারভেটিভ নেই' }}</li>
+            <li>{{ $campaign_data->hero_list_1 ?? 'হোমমেড - কোন প্রিজারভেটিভ নেই' }}</li>
             <li>{{ $campaign_data->hero_list_2 ?? 'খাঁটি চুই গাছ থেকে তৈরি' }}</li>
             <li>{{ $campaign_data->hero_list_3 ?? 'ফুড গ্রেড প্যাকেট' }}</li>
           </ul>
 
           <ul>
-            <li>{{ $campaign_data->hero_list_4 ?? 'ঘানি ভাঙ্গা সরিষার তেল' }}</li>
+            <li>{{ $campaign_data->hero_list_4 ?? 'ঘানি ভাঙা সরিষার তেল' }}</li>
             <li>{{ $campaign_data->hero_list_5 ?? 'দেশব্যাপী কুরিয়ার ডেলিভারি' }}</li>
-            <li>{{ $campaign_data->hero_list_6 ?? 'ক্যাশ অন ডেলিভারি' }}</li>
+                ক্যাশ অন ডেলিভারি' }}</li>
           </ul>
         </div>
 
@@ -750,10 +750,10 @@
       <!-- ভিডিও -->
       <div class="hero-video-card" id="video">
         <iframe src="https://www.youtube.com/embed/{{$campaign_data->video}}"
-                title="চুইঝাল রান্না ভিডিও" frameborder="0"
+                title="চুই ঝাল রান্না ভিডিও" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen></iframe>
-        <div class="hero-tag">{{ $campaign_data->hero_badge_text ?? '✅ খুলনার অরিজিনাল চুইঝাল' }}</div>
+        <div class="hero-tag">{{ $campaign_data->hero_badge_text ?? '✅ খুলনার অরিজিনাল চুই ঝাল' }}</div>
       </div>
       @endif
     </div>
@@ -763,7 +763,7 @@
   <section id="features">
     <div class="container">
       <h2 class="section-title">
-        {{ $campaign_data->feature_section_title ?? 'চুইঝালের বৈশিষ্ট্যসমূহ' }}
+        {{ $campaign_data->feature_section_title ?? 'চুই ঝালের বৈশিষ্ট্যসমূহ' }}
       </h2>
 
       <div class="two-col">
@@ -771,8 +771,8 @@
         <article class="feature-card">
           <img src="{{ $campaign_data->feature1_image ? asset($campaign_data->feature1_image) : 'https://images.pexels.com/photos/4113832/pexels-photo-4113832.jpeg?auto=compress&cs=tinysrgb&w=500' }}" alt="">
           <div>
-            <h3>{{ $campaign_data->feature1_title ?? 'কাঁচা চুইঝালের আসল ঝাঁজ' }}</h3>
-            <p>{{ $campaign_data->feature1_text ?? 'খুলনা অঞ্চলের নির্বাচিত চুই গাছের নরম অংশ সংগ্রহ করে...' }}</p>
+            <h3>{{ $campaign_data->feature1_title ?? 'কাঁচা চুই ঝালের আসল ঝাঁজ' }}</h3>
+            <p>{{ $campaign_data->feature1_text ?? 'খুলনা অঞ্চলের নিরবাচিত চুই গাছের নরম অংশ সংগ্রহ করে...' }}</p>
           </div>
         </article>
 
@@ -796,7 +796,7 @@
       <div class="why-grid">
         @if($campaign_data->why1_title)
           <div class="why-item">
-            <div class="why-icon">{{ $campaign_data->why1_icon ?? '🏠' }}</div>
+            <div class="why-icon">{{ $campaign_data->why1_icon ?? '⭐' }}</div>
             <h4>{{ $campaign_data->why1_title }}</h4>
             <p>{{ $campaign_data->why1_text }}</p>
           </div>
@@ -814,7 +814,7 @@
           <div class="why-item">
             <div class="why-icon">{{ $campaign_data->why3_icon ?? '🚚' }}</div>
             <h4>{{ $campaign_data->why3_title }}</h4>
-            <p>{{ $campaign_data->why3_text }}।</p>
+            <p>{{ $campaign_data->why3_text }}।
           </div>
         @endif
 
@@ -830,7 +830,7 @@
       <div class="banner">
         <div class="banner-text">
           {{ $campaign_data->banner_quote ?? '“এমন ঝাঁজে নেই তো তুলনা!”' }}
-          <small>{{ $campaign_data->banner_subtext ?? 'খুলনার অরিজিনাল চুইঝাল – একবার খেলেই বুঝবেন পার্থক্য' }}</small>
+          <small>{{ $campaign_data->banner_subtext ?? 'খুলনার অরিজিনাল চুই ঝাল - একবার খেলেই বুঝবেন পার্থক্য' }}</small>
         </div>
         <div class="banner-img">
           @if($campaign_data->banner_image1)
@@ -875,7 +875,7 @@
           </div>
 
           <div class="cp-rating">
-            ★★★★★
+            â˜…â˜…â˜…â˜…â˜…
           </div>
 
           <div class="cp-price-row">
@@ -1022,7 +1022,7 @@
     <div class="review-grid">
       @if($campaign_data->review1_text)
       <article class="review-card">
-        <div class="stars">{{ $campaign_data->review1_stars ?? '★★★★★' }}</div>
+        <div class="stars">{{ $campaign_data->review1_stars ?? 'â˜…â˜…â˜…â˜…â˜…' }}</div>
         <p>{{ $campaign_data->review1_text }}</p>
         <div class="review-meta">
           <div class="review-author">
@@ -1036,7 +1036,7 @@
 
       @if($campaign_data->review2_text)
       <article class="review-card">
-        <div class="stars">{{ $campaign_data->review2_stars ?? '★★★★★' }}</div>
+        <div class="stars">{{ $campaign_data->review2_stars ?? 'â˜…â˜…â˜…â˜…â˜…' }}</div>
         <p>{{ $campaign_data->review2_text }}</p>
         <div class="review-meta">
           <div class="review-author">
@@ -1050,7 +1050,7 @@
 
       @if($campaign_data->review3_text)
       <article class="review-card">
-        <div class="stars">{{ $campaign_data->review3_stars ?? '★★★★☆' }}</div>
+        <div class="stars">{{ $campaign_data->review3_stars ?? 'â˜…â˜…â˜…â˜…â˜†' }}</div>
         <p>{{ $campaign_data->review3_text }}</p>
         <div class="review-meta">
           <div class="review-author">
@@ -1125,7 +1125,7 @@
 <!-- GALLERY -->
 <section>
   <div class="container">
-    <h2 class="section-title">চুইঝাল গ্যালারি</h2>
+    <h2 class="section-title">চুই ঝাল গ্যালারি</h2>
     <div class="gallery-grid">
       @for($i = 1; $i <= 8; $i++)
         @php $field = "gallery_image{$i}"; @endphp
@@ -1195,7 +1195,7 @@
             <h3>অর্ডার সারাংশ</h3>
             <span style="font-size:11px;color:#6b7280;">
               @if($hasDigital)
-                শুধুমাত্র অনলাইন পেমেন্ট
+                                শুধুমাত্র অনলাইন পেমেন্ট
               @elseif($hasAdvance)
                 অগ্রিম + ডেলিভারিতে বাকি
               @else
@@ -1227,14 +1227,14 @@
               <span>৳ <span id="advance_now">{{ number_format($advance_amount,2) }}</span></span>
             </div>
             <div class="cart-row">
-              <span>ডেলিভারির সময় দিতে হবে</span>
+              <span>র সময় দিতে হবে</span>
               <span>৳ <span id="advance_due">{{ number_format($due_amount,2) }}</span></span>
             </div>
           @endif
 
           <div class="cart-actions">
             <button type="submit" class="order-btn" form="checkoutForm">
-              অর্ডার কনফার্ম করুন
+                            অর্ডার কনফার্ম করুন
             </button>
             <small>আমাদের প্রতিনিধি অর্ডার কনফার্মেশনের জন্য আপনাকে ফোন করবে।</small>
           </div>
@@ -1276,20 +1276,18 @@
         <div>
           <label for="payment_method">পেমেন্ট মেথড নির্বাচন করুন *</label>
           <select name="payment_method" id="payment_method" required>
-              <option value="cod" selected>
-                  ক্যাশ অন ডেলিভারি (ডেলিভারির সময় পেমেন্ট)
-              </option>
+              <option value="cod" selected>\n                  ক্যাশ অন ডেলিভারি (ডেলিভারির সময় পেমেন্ট)\n              </option>
 
               @isset($bkash_gateway)
-                <option value="bkash">বিকাশ পেমেন্ট</option>
+                <option value="bkash">                <option value="bkash">বিকাশ পেমেন্ট</option>
               @endisset
 
               @isset($shurjopay_gateway)
-                <option value="shurjopay">ShurjoPay (অনলাইন পেমেন্ট)</option>
+                <option value="shurjopay">                <option value="shurjopay">ShurjoPay (অনলাইন পেমেন্ট)</option>
               @endisset
 
               @isset($uddoktapay_gateway)
-                <option value="uddoktapay">UddoktaPay (অনলাইন পেমেন্ট)</option>
+                <option value="uddoktapay">                <option value="uddoktapay">UddoktaPay (অনলাইন পেমেন্ট)</option>
               @endisset
           </select>
         </div>
@@ -1334,7 +1332,7 @@
           <span>{{ $generalsetting->name }}</span>
         </div>
         <p>
-          {!! $campaign_data->short_description ?? 'আমরা খুলনার আসল চুইঝাল সারাদেশে পৌঁছে দিই। গুণগত মানে শতভাগ নিশ্চয়তা দিচ্ছি – একবার ট্রাই করলে পার্থক্য নিজেই বুঝবেন।' !!}
+          {!! $campaign_data->short_description ?? 'আমরা খুলনার আসল চুই ঝাল সারাদেশে পৌঁছে দিই। গুণগত মানে শতভাগ নিশ্চয়তা দিচ্ছি - একবার ট্রাই করলে পার্থক্য নিজেই বুঝবেন।' !!}
         </p>
       </div>
       <div>
@@ -1343,7 +1341,7 @@
           <a href="#features">বৈশিষ্ট্য</a>
           <a href="#reviews">কাস্টমার রিভিউ</a>
           <a href="#faq">প্রশ্নোত্তর</a>
-          <a href="#order">অর্ডার ফর্ম</a>
+          <a href="#order">অর্ডার</a>
         </div>
       </div>
       <div>
@@ -1352,13 +1350,13 @@
           <a href="#">মোবাইল: {{$contact->hotline}}</a>
           <a href="#">ইমেইল: {{$contact->email}}</a>
           <a href="#">ঠিকানাঃ {{$contact->address}}</a>
-          <a href="https://facebook.com/{{$generalsetting->facebook_page_username}}">ফেইস বুক পেইজ</a>
+          <a href="https://facebook.com/{{$generalsetting->facebook_page_username}}">ফেসবুক পেইজ</a>
         </div>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <span>© সকল কিছুর স্বত্বাধিকার {{ $generalsetting->name }} | সকল কারিগরি সহযোগিতায়ঃ ক্রিয়েটিভ ডিজাইন</span>
+      <span>© সকল কিছুর স্বত্বাধিকার {{ $generalsetting->name }} | সকল কারিগরি সহযোগিতায়: ক্রিয়েটিভ ডিজাইন</span>
     </div>
   </div>
 </footer>
@@ -1378,7 +1376,7 @@
   document.querySelectorAll(".faq-item").forEach(function(item){
     item.querySelector(".faq-question").addEventListener("click",function(){
       item.classList.toggle("open");
-      item.querySelector(".toggle").textContent = item.classList.contains("open") ? "−" : "+";
+      item.querySelector(".toggle").textContent = item.classList.contains("open") ? "âˆ’" : "+";
     });
   });
 
@@ -1501,7 +1499,7 @@
       });
     }
 
-    // checkbox change → qty toggle
+    // checkbox change â†’ qty toggle
     document.querySelectorAll(".prod-check").forEach(ch=>{
       ch.onchange = function(){
         const card  = this.closest(".product-card");
@@ -1517,7 +1515,7 @@
       };
     });
 
-    // shipping area select → shipping amount change + backend session update
+    // shipping area select â†’ shipping amount change + backend session update
     if (shippingSelect) {
       shippingSelect.addEventListener('change', function(){
         const opt = this.options[this.selectedIndex];
@@ -1539,7 +1537,7 @@
 
       if(!any){
         e.preventDefault();
-        alert("⚠️ অন্তত একটি পণ্য সিলেক্ট করুন!");
+        alert("⚠️ অনুগ্রহ করে অন্তত একটি পণ্য সিলেক্ট করুন!");
       }
     });
 
@@ -1549,3 +1547,5 @@
 </script>
 </body>
 </html>
+
+

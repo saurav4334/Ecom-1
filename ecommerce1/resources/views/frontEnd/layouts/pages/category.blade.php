@@ -1,7 +1,7 @@
 @extends('frontEnd.layouts.master')
 @section('title', $category->name)
 @push('css')
-    <link rel="stylesheet" href="{{ asset('public/frontEnd/css/jquery-ui.css') }}" />
+    <link rel="stylesheet" href="{{ asset('frontEnd/css/jquery-ui.css') }}" />
 @endpush
 @push('seo')
     <meta name="app-url" content="{{ route('category', $category->slug) }}" />
@@ -194,7 +194,7 @@
                                                             @endphp
                                                             {{ number_format($discount, 0) }}%
                                                         </p>
-                                                        ছাড়
+                                                        ছাড়
                                                     </span>
                                                 </div>
                                             </div>
@@ -245,24 +245,24 @@
                                     </p>
                                 </div>
 
-                                {{-- ✅ এখানে নতুন দুইটা বাটন লাগানো হলো --}}
+                                {{-- ✅ �খানে নত�ন দ�ইটা বাটন লাগানো হলো --}}
                                 @if (!$value->prosizes->isEmpty() || !$value->procolors->isEmpty())
-                                    {{-- ভ্যারিয়েন্ট আছে → Details পেজে নেবে --}}
+                                    {{-- ভ�যারিয়েন�ট আছে → Details পেজে নেবে --}}
                                     <div class="pro_btn">
                                         {{-- বড় অর্ডার বাটন --}}
                                         <a href="{{ route('product', $value->slug) }}"
                                            class="order-btn-link order-btn">
-                                            অর্ডার করুন
+                                            অর্ডার
                                         </a>
 
-                                        {{-- ছোট কার্ট আইকন বাটন --}}
+                                        {{-- ছোট কার�ট আইকন বাটন --}}
                                         <a href="{{ route('product', $value->slug) }}"
                                            class="cart-icon-link cart-icon-btn">
                                             <i class="fa-solid fa-cart-shopping"></i>
                                         </a>
                                     </div>
                                 @else
-                                    {{-- ভ্যারিয়েন্ট নেই → সরাসরি কার্ট + অর্ডার --}}
+                                    {{-- ভ�যারিয়েন�ট নেই → সরাসরি কার�ট + অর্ডার --}}
                                     <div class="pro_btn">
 
                                         {{-- Order Now --}}
@@ -272,7 +272,7 @@
                                             <input type="hidden" name="qty" value="1">
                                             <input type="hidden" name="order_now" value="1">
                                             <button type="submit" class="order-btn">
-                                                অর্ডার করুন
+                                                অর্ডার
                                             </button>
                                         </form>
 
@@ -482,3 +482,6 @@
         })();
     </script>
 @endpush
+
+
+

@@ -1,1 +1,0 @@
-<?php echo e(Cart::instance('compare')->count()); ?><?php /**PATH C:\Users\getup\Downloads\ecom2\drive-download-20260125T155433Z-1-001\ecommerce1\resources\views\frontEnd\layouts\ajax\compare_count.blade.php ENDPATH**/ ?>

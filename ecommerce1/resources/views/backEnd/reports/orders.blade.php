@@ -1,4 +1,4 @@
-@extends('backEnd.layouts.master')
+﻿@extends('backEnd.layouts.master')
 @section('title','Order Report')
 
 @section('content')
@@ -55,7 +55,7 @@
                     </button>
 
                     <button class="btn btn-outline-success" type="submit" name="export" value="csv">
-                        ⬇ Export CSV
+                        â¬‡ Export CSV
                     </button>
                 </div>
             </form>
@@ -63,7 +63,7 @@
     </div>
 
    <style>
-    /* সব রঙিন কার্ডের ভিতরের টেক্সট সাদা */
+    /* সব রঙিন কার�ডের ভিতরের টেক�সট সাদা */
     .card.bg-info *,
     .card.bg-success *,
     .card.bg-warning *,
@@ -135,7 +135,7 @@
                 <tbody>
                 @forelse($orders as $order)
                     @php
-                        // row wise calculations – controller এর helper অনুযায়ী
+                        // row wise calculations – controller �র helper অন�যায়ী
                         $rowTotal = 0;
                         if (isset($order->amount) && is_numeric($order->amount)) {
                             $rowTotal = $order->amount;
@@ -192,7 +192,7 @@
                 @empty
                     <tr>
                         <td colspan="8" class="text-center text-muted">
-                            কোনো অর্ডার পাওয়া যায়নি।
+                            কোনো অর�ডার পাওয়া যায়নি।
                         </td>
                     </tr>
                 @endforelse
@@ -226,3 +226,4 @@
     toggleReportFields();
 </script>
 @endsection
+

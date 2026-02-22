@@ -1,4 +1,4 @@
-@extends('backEnd.layouts.master')
+﻿@extends('backEnd.layouts.master')
 @section('title','Stock Report')
 
 @section('content')
@@ -50,7 +50,7 @@
     {{-- Export Button --}}
     <div class="mb-3">
         <a href="{{ route('admin.reports.stock',['export'=>'csv']) }}" class="btn btn-outline-success">
-            ⬇ Export CSV
+            â¬‡ Export CSV
         </a>
     </div>
 
@@ -90,7 +90,7 @@
                 @empty
                     <tr>
                         <td colspan="7" class="text-center text-muted">
-                            কোনো প্রোডাক্ট পাওয়া যায়নি।
+                            কোনো প�রোডাক�ট পাওয়া যায়নি।
                         </td>
                     </tr>
                 @endforelse
@@ -101,3 +101,4 @@
 
 </div>
 @endsection
+

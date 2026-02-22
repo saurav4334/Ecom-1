@@ -1,10 +1,10 @@
-@extends('backEnd.layouts.master')
+﻿@extends('backEnd.layouts.master')
 @section('title','Landing Page Create')
 
 @section('css')
-    <link href="{{asset('public/backEnd')}}/assets/libs/summernote/summernote-lite.min.css" rel="stylesheet" type="text/css" />
-    <link href="{{asset('public/backEnd')}}/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
-    <link href="{{asset('public/backEnd')}}/assets/libs/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{asset('backEnd')}}/assets/libs/summernote/summernote-lite.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{asset('backEnd')}}/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{asset('backEnd')}}/assets/libs/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
@@ -50,7 +50,7 @@
                         {{-- HERO / TOP CONTENT --}}
                         <div class="col-sm-6">
                             <div class="form-group mb-3">
-                                <label class="form-label">Hero Badge Text (যেমন: ✅ খুলনার অরিজিনাল চুইঝাল)</label>
+                                <label class="form-label">Hero Badge Text (যেমন: ✅ খ�লনার অরিজিনাল চ�ই�াল)</label>
                                 <input type="text" name="hero_badge_text" value="{{ old('hero_badge_text') }}"
                                        class="form-control">
                             </div>
@@ -58,7 +58,7 @@
 
                         <div class="col-sm-6">
                             <div class="form-group mb-3">
-                                <label class="form-label">Hero Rating Text (যেমন: ৪.৯/৫ - ৪৮৯+ কাস্টমার)</label>
+                                <label class="form-label">Hero Rating Text (যেমন: ৪.৯/৫ - ৪৮৯+ কাস�টমার)</label>
                                 <input type="text" name="hero_rating_text" value="{{ old('hero_rating_text') }}"
                                        class="form-control">
                             </div>
@@ -82,32 +82,32 @@
 
 <div class="row">
     <div class="col-md-4">
-        <label>হিরো লিস্ট ১</label>
-        <input type="text" name="hero_list_1" class="form-control" placeholder="যেমন: হোমমেড – কোন প্রিজারভেটিভ নেই">
+        <label>হিরো লিস�ট ১</label>
+        <input type="text" name="hero_list_1" class="form-control" placeholder="যেমন: হোমমেড – কোন প�রিজারভেটিভ নেই">
     </div>
 
     <div class="col-md-4">
-        <label>হিরো লিস্ট ২</label>
+        <label>হিরো লিস�ট ২</label>
         <input type="text" name="hero_list_2" class="form-control">
     </div>
 
     <div class="col-md-4">
-        <label>হিরো লিস্ট ৩</label>
+        <label>হিরো লিস�ট ৩</label>
         <input type="text" name="hero_list_3" class="form-control">
     </div>
 
     <div class="col-md-4 mt-3">
-        <label>হিরো লিস্ট ৪</label>
+        <label>হিরো লিস�ট ৪</label>
         <input type="text" name="hero_list_4" class="form-control">
     </div>
 
     <div class="col-md-4 mt-3">
-        <label>হিরো লিস্ট ৫</label>
+        <label>হিরো লিস�ট ৫</label>
         <input type="text" name="hero_list_5" class="form-control">
     </div>
 
     <div class="col-md-4 mt-3">
-        <label>হিরো লিস্ট ৬</label>
+        <label>হিরো লিস�ট ৬</label>
         <input type="text" name="hero_list_6" class="form-control">
     </div>
 </div>
@@ -118,14 +118,14 @@
                             <div class="form-group mb-3">
                                 <label class="form-label">Primary Button Text</label>
                                 <input type="text" name="primary_btn_text" value="{{ old('primary_btn_text') }}"
-                                       class="form-control" placeholder="এখনই অর্ডার করুন">
+                                       class="form-control" placeholder="�খনই অর�ডার কর�ন">
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group mb-3">
                                 <label class="form-label">Secondary Button Text</label>
                                 <input type="text" name="secondary_btn_text" value="{{ old('secondary_btn_text') }}"
-                                       class="form-control" placeholder="লাইভ রান্না ভিডিও">
+                                       class="form-control" placeholder="লাইভ রান�না ভিডিও">
                             </div>
                         </div>
 
@@ -155,7 +155,7 @@
                                 <span class="invalid-feedback">{{ $message }}</span>
                                 @enderror
                                 <small class="text-muted d-block mt-1">
-                                    প্রথম সিলেক্ট করা প্রোডাক্টটাই মূল প্রোডাক্ট হিসেবে ধরে নেওয়া হবে।
+                                    প�রথম সিলেক�ট করা প�রোডাক�টটাই মূল প�রোডাক�ট হিসেবে ধরে নেওয়া হবে।
                                 </small>
                             </div>
                         </div>
@@ -210,12 +210,12 @@
                             @enderror
                         </div>
 
-{{-- WHY SECTION (4টি কার্ড) --}}
+{{-- WHY SECTION (4টি কার�ড) --}}
 <div class="card mt-3">
     <div class="card-header">
-        <h5>Why Section (কেন আমাদের প্রোডাক্ট সেরা?)</h5>
+        <h5>Why Section (কেন আমাদের প�রোডাক�ট সেরা?)</h5>
         <small class="text-muted">
-            এখানে ৪টা কারণ/ফিচার সেট করতে পারো – আইকন, টাইটেল আর ছোট বিবরণ।
+            �খানে ৪টা কারণ/ফিচার সেট করতে পারো – আইকন, টাইটেল আর ছোট বিবরণ।
         </small>
     </div>
     <div class="card-body">
@@ -225,7 +225,7 @@
             <div class="col-md-4 mb-3">
                 <label>Why 1 Icon (emoji / icon class)</label>
                 <input type="text" name="why1_icon" class="form-control"
-                       value="{{ old('why1_icon') }}" placeholder="🏠 অথবা fa fa-home">
+                       value="{{ old('why1_icon') }}" placeholder="� অথবা fa fa-home">
             </div>
             <div class="col-md-4 mb-3">
                 <label>Why 1 Title</label>
@@ -235,7 +235,7 @@
             <div class="col-md-4 mb-3">
                 <label>Why 1 Text</label>
                 <textarea name="why1_text" class="form-control" rows="2"
-                          placeholder="সংক্ষিপ্ত বর্ণনা লিখুন...">{{ old('why1_text') }}</textarea>
+                          placeholder="সংক�ষিপ�ত বর�ণনা লিখ�ন...">{{ old('why1_text') }}</textarea>
             </div>
 
             {{-- WHY 2 --}}
@@ -252,7 +252,7 @@
             <div class="col-md-4 mb-3">
                 <label>Why 2 Text</label>
                 <textarea name="why2_text" class="form-control" rows="2"
-                          placeholder="সংক্ষিপ্ত বর্ণনা লিখুন...">{{ old('why2_text') }}</textarea>
+                          placeholder="সংক�ষিপ�ত বর�ণনা লিখ�ন...">{{ old('why2_text') }}</textarea>
             </div>
 
             {{-- WHY 3 --}}
@@ -264,12 +264,12 @@
             <div class="col-md-4 mb-3">
                 <label>Why 3 Title</label>
                 <input type="text" name="why3_title" class="form-control"
-                       value="{{ old('why3_title') }}" placeholder="যেমন: দেশব্যাপী ডেলিভারি">
+                       value="{{ old('why3_title') }}" placeholder="যেমন: দেশব�যাপী ডেলিভারি">
             </div>
             <div class="col-md-4 mb-3">
                 <label>Why 3 Text</label>
                 <textarea name="why3_text" class="form-control" rows="2"
-                          placeholder="সংক্ষিপ্ত বর্ণনা লিখুন...">{{ old('why3_text') }}</textarea>
+                          placeholder="সংক�ষিপ�ত বর�ণনা লিখ�ন...">{{ old('why3_text') }}</textarea>
             </div>
 
             {{-- WHY 4 --}}
@@ -281,12 +281,12 @@
             <div class="col-md-4 mb-3">
                 <label>Why 4 Title</label>
                 <input type="text" name="why4_title" class="form-control"
-                       value="{{ old('why4_title') }}" placeholder="যেমন: সাপোর্ট">
+                       value="{{ old('why4_title') }}" placeholder="যেমন: সাপোর�ট">
             </div>
             <div class="col-md-4 mb-3">
                 <label>Why 4 Text</label>
                 <textarea name="why4_text" class="form-control" rows="2"
-                          placeholder="সংক্ষিপ্ত বর্ণনা লিখুন...">{{ old('why4_text') }}</textarea>
+                          placeholder="সংক�ষিপ�ত বর�ণনা লিখ�ন...">{{ old('why4_text') }}</textarea>
             </div>
 
         </div>
@@ -300,7 +300,7 @@
                             <div class="form-group mb-3">
                                 <label class="form-label">Middle Banner Quote</label>
                                 <input type="text" name="banner_quote" value="{{ old('banner_quote') }}"
-                                       class="form-control" placeholder="“এমন ঝাঁজে নেই তো তুলনা!”">
+                                       class="form-control" placeholder="“�মন �া�জে নেই তো ত�লনা!�">
                             </div>
                         </div>
 
@@ -338,7 +338,7 @@
                             <div class="form-group mb-3">
                                 <label class="form-label">Review Section Title</label>
                                 <input type="text" name="review_section_title"
-                                       value="{{ old('review_section_title','কাস্টমার রিভিউ') }}"
+                                       value="{{ old('review_section_title','কাস�টমার রিভিউ') }}"
                                        class="form-control">
                             </div>
                         </div>
@@ -357,7 +357,7 @@
                         </div>
                         <div class="col-sm-4 mb-3">
                             <label class="form-label">Stars (যেমন: ★★★★★)</label>
-                            <input type="text" name="review1_stars" value="{{ old('review1_stars','★★★★★') }}"
+                            <input type="text" name="review1_stars" value="{{ old('review1_stars','â˜…â˜…â˜…â˜…â˜…') }}"
                                    class="form-control">
                         </div>
                         <div class="col-sm-12 mb-3">
@@ -380,7 +380,7 @@
                         </div>
                         <div class="col-sm-4 mb-3">
                             <label class="form-label">Stars</label>
-                            <input type="text" name="review2_stars" value="{{ old('review2_stars','★★★★★') }}"
+                            <input type="text" name="review2_stars" value="{{ old('review2_stars','â˜…â˜…â˜…â˜…â˜…') }}"
                                    class="form-control">
                         </div>
                         <div class="col-sm-12 mb-3">
@@ -403,7 +403,7 @@
                         </div>
                         <div class="col-sm-4 mb-3">
                             <label class="form-label">Stars</label>
-                            <input type="text" name="review3_stars" value="{{ old('review3_stars','★★★★☆') }}"
+                            <input type="text" name="review3_stars" value="{{ old('review3_stars','â˜…â˜…â˜…â˜…â˜†') }}"
                                    class="form-control">
                         </div>
                         <div class="col-sm-12 mb-3">
@@ -441,49 +441,49 @@
                         </div>
 <div class="card mt-3">
     <div class="card-header">
-        <h5>FAQ (সাধারণ জিজ্ঞাসা)</h5>
+        <h5>FAQ (সাধারণ জিজ�ঞাসা)</h5>
     </div>
 
     <div class="card-body">
 
         <div class="form-group mb-2">
-            <label>FAQ প্রশ্ন ১:</label>
-            <input type="text" name="faq_q1" class="form-control" placeholder="যেমন: চুইঝাল কতদিন ভালো থাকে?">
+            <label>FAQ প�রশ�ন ১:</label>
+            <input type="text" name="faq_q1" class="form-control" placeholder="যেমন: চ�ই�াল কতদিন ভালো থাকে?">
         </div>
 
         <div class="form-group mb-3">
-            <label>FAQ উত্তর ১:</label>
-            <textarea name="faq_a1" class="form-control" rows="2" placeholder="উত্তর লিখুন..."></textarea>
+            <label>FAQ উত�তর ১:</label>
+            <textarea name="faq_a1" class="form-control" rows="2" placeholder="উত�তর লিখ�ন..."></textarea>
         </div>
 
         <div class="form-group mb-2">
-            <label>FAQ প্রশ্ন ২:</label>
-            <input type="text" name="faq_q2" class="form-control" placeholder="যেমন: ডেলিভারি চার্জ কত?">
+            <label>FAQ প�রশ�ন ২:</label>
+            <input type="text" name="faq_q2" class="form-control" placeholder="যেমন: ডেলিভারি চার�জ কত?">
         </div>
 
         <div class="form-group mb-3">
-            <label>FAQ উত্তর ২:</label>
-            <textarea name="faq_a2" class="form-control" rows="2" placeholder="উত্তর লিখুন..."></textarea>
+            <label>FAQ উত�তর ২:</label>
+            <textarea name="faq_a2" class="form-control" rows="2" placeholder="উত�তর লিখ�ন..."></textarea>
         </div>
 
         <div class="form-group mb-2">
-            <label>FAQ প্রশ্ন ৩:</label>
-            <input type="text" name="faq_q3" class="form-control" placeholder="যেমন: কিভাবে অর্ডার কনফার্ম হবে?">
+            <label>FAQ প�রশ�ন ৩:</label>
+            <input type="text" name="faq_q3" class="form-control" placeholder="যেমন: কিভাবে অর�ডার কনফার�ম হবে?">
         </div>
 
         <div class="form-group mb-3">
-            <label>FAQ উত্তর ৩:</label>
-            <textarea name="faq_a3" class="form-control" rows="2" placeholder="উত্তর লিখুন..."></textarea>
+            <label>FAQ উত�তর ৩:</label>
+            <textarea name="faq_a3" class="form-control" rows="2" placeholder="উত�তর লিখ�ন..."></textarea>
         </div>
 
         <div class="form-group mb-2">
-            <label>FAQ প্রশ্ন ৪:</label>
-            <input type="text" name="faq_q4" class="form-control" placeholder="যেমন: পেমেন্ট আগে করতে হবে কি?">
+            <label>FAQ প�রশ�ন ৪:</label>
+            <input type="text" name="faq_q4" class="form-control" placeholder="যেমন: পেমেন�ট আগে করতে হবে কি?">
         </div>
 
         <div class="form-group mb-3">
-            <label>FAQ উত্তর ৪:</label>
-            <textarea name="faq_a4" class="form-control" rows="2" placeholder="উত্তর লিখুন..."></textarea>
+            <label>FAQ উত�তর ৪:</label>
+            <textarea name="faq_a4" class="form-control" rows="2" placeholder="উত�তর লিখ�ন..."></textarea>
         </div>
 
     </div>
@@ -518,13 +518,13 @@
 @endsection
 
 @section('script')
-    <script src="{{asset('public/backEnd/')}}/assets/libs/parsleyjs/parsley.min.js"></script>
-    <script src="{{asset('public/backEnd/')}}/assets/js/pages/form-validation.init.js"></script>
-    <script src="{{asset('public/backEnd/')}}/assets/libs/select2/js/select2.min.js"></script>
-    <script src="{{asset('public/backEnd/')}}/assets/js/pages/form-advanced.init.js"></script>
-    <script src="{{asset('public/backEnd/')}}/assets/libs/flatpickr/flatpickr.min.js"></script>
-    <script src="{{asset('public/backEnd/')}}/assets/js/pages/form-pickers.init.js"></script>
-    <script src="{{asset('public/backEnd/')}}/assets/libs/summernote/summernote-lite.min.js"></script>
+    <script src="{{asset('backEnd/')}}/assets/libs/parsleyjs/parsley.min.js"></script>
+    <script src="{{asset('backEnd/')}}/assets/js/pages/form-validation.init.js"></script>
+    <script src="{{asset('backEnd/')}}/assets/libs/select2/js/select2.min.js"></script>
+    <script src="{{asset('backEnd/')}}/assets/js/pages/form-advanced.init.js"></script>
+    <script src="{{asset('backEnd/')}}/assets/libs/flatpickr/flatpickr.min.js"></script>
+    <script src="{{asset('backEnd/')}}/assets/js/pages/form-pickers.init.js"></script>
+    <script src="{{asset('backEnd/')}}/assets/libs/summernote/summernote-lite.min.js"></script>
     <script>
         $(".summernote").summernote({
             placeholder: "Enter Your Text Here"
@@ -532,3 +532,4 @@
         $('.select2').select2();
     </script>
 @endsection
+

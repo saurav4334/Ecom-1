@@ -1,4 +1,4 @@
-@if($products)
+﻿@if($products)
 
 <div class="search_product">
 		<ul>

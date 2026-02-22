@@ -1,10 +1,10 @@
-@extends('backEnd.layouts.master')
+﻿@extends('backEnd.layouts.master')
 @section('title','Landing Page Edit')
 
 @section('css')
-    <link href="{{asset('public/backEnd')}}/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
-    <link href="{{asset('public/backEnd')}}/assets/libs/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
-    <link href="{{asset('public/backEnd')}}/assets/libs/summernote/summernote-lite.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{asset('backEnd')}}/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{asset('backEnd')}}/assets/libs/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{asset('backEnd')}}/assets/libs/summernote/summernote-lite.min.css" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
@@ -84,32 +84,32 @@
 
 <div class="row">
     <div class="col-md-4">
-        <label>হিরো লিস্ট ১</label>
+        <label>হিরো লিস�ট ১</label>
         <input type="text" name="hero_list_1" value="{{ $edit_data->hero_list_1 }}" class="form-control">
     </div>
 
     <div class="col-md-4">
-        <label>হিরো লিস্ট ২</label>
+        <label>হিরো লিস�ট ২</label>
         <input type="text" name="hero_list_2" value="{{ $edit_data->hero_list_2 }}" class="form-control">
     </div>
 
     <div class="col-md-4">
-        <label>হিরো লিস্ট ৩</label>
+        <label>হিরো লিস�ট ৩</label>
         <input type="text" name="hero_list_3" value="{{ $edit_data->hero_list_3 }}" class="form-control">
     </div>
 
     <div class="col-md-4 mt-3">
-        <label>হিরো লিস্ট ৪</label>
+        <label>হিরো লিস�ট ৪</label>
         <input type="text" name="hero_list_4" value="{{ $edit_data->hero_list_4 }}" class="form-control">
     </div>
 
     <div class="col-md-4 mt-3">
-        <label>হিরো লিস্ট ৫</label>
+        <label>হিরো লিস�ট ৫</label>
         <input type="text" name="hero_list_5" value="{{ $edit_data->hero_list_5 }}" class="form-control">
     </div>
 
     <div class="col-md-4 mt-3">
-        <label>হিরো লিস্ট ৬</label>
+        <label>হিরো লিস�ট ৬</label>
         <input type="text" name="hero_list_6" value="{{ $edit_data->hero_list_6 }}" class="form-control">
     </div>
 </div>
@@ -236,12 +236,12 @@
                         </div>
 
 
-{{-- WHY SECTION (4টি কার্ড) --}}
+{{-- WHY SECTION (4টি কার�ড) --}}
 <div class="card mt-3">
     <div class="card-header">
-        <h5>Why Section (কেন আমাদের প্রোডাক্ট সেরা?)</h5>
+        <h5>Why Section (কেন আমাদের প�রোডাক�ট সেরা?)</h5>
         <small class="text-muted">
-            এখানে ৪টা কারণ/ফিচার এডিট করতে পারবেন।
+            �খানে ৪টা কারণ/ফিচার �ডিট করতে পারবেন।
         </small>
     </div>
     <div class="card-body">
@@ -450,52 +450,52 @@
                         </div>
 <div class="card mt-3">
     <div class="card-header">
-        <h5>FAQ (সাধারণ জিজ্ঞাসা)</h5>
+        <h5>FAQ (সাধারণ জিজ�ঞাসা)</h5>
     </div>
 
     <div class="card-body">
 
         <div class="form-group mb-2">
-            <label>FAQ প্রশ্ন ১:</label>
+            <label>FAQ প�রশ�ন ১:</label>
             <input type="text" name="faq_q1" class="form-control"
                 value="{{ $edit_data->faq_q1 }}">
         </div>
 
         <div class="form-group mb-3">
-            <label>FAQ উত্তর ১:</label>
+            <label>FAQ উত�তর ১:</label>
             <textarea name="faq_a1" class="form-control" rows="2">{{ $edit_data->faq_a1 }}</textarea>
         </div>
 
         <div class="form-group mb-2">
-            <label>FAQ প্রশ্ন ২:</label>
+            <label>FAQ প�রশ�ন ২:</label>
             <input type="text" name="faq_q2" class="form-control"
                 value="{{ $edit_data->faq_q2 }}">
         </div>
 
         <div class="form-group mb-3">
-            <label>FAQ উত্তর ২:</label>
+            <label>FAQ উত�তর ২:</label>
             <textarea name="faq_a2" class="form-control" rows="2">{{ $edit_data->faq_a2 }}</textarea>
         </div>
 
         <div class="form-group mb-2">
-            <label>FAQ প্রশ্ন ৩:</label>
+            <label>FAQ প�রশ�ন ৩:</label>
             <input type="text" name="faq_q3" class="form-control"
                 value="{{ $edit_data->faq_q3 }}">
         </div>
 
         <div class="form-group mb-3">
-            <label>FAQ উত্তর ৩:</label>
+            <label>FAQ উত�তর ৩:</label>
             <textarea name="faq_a3" class="form-control" rows="2">{{ $edit_data->faq_a3 }}</textarea>
         </div>
 
         <div class="form-group mb-2">
-            <label>FAQ প্রশ্ন ৪:</label>
+            <label>FAQ প�রশ�ন ৪:</label>
             <input type="text" name="faq_q4" class="form-control"
                value="{{ $edit_data->faq_q4 }}">
         </div>
 
         <div class="form-group mb-3">
-            <label>FAQ উত্তর ৪:</label>
+            <label>FAQ উত�তর ৪:</label>
             <textarea name="faq_a4" class="form-control" rows="2">{{ $edit_data->faq_a4 }}</textarea>
         </div>
 
@@ -533,13 +533,13 @@
 @endsection
 
 @section('script')
-    <script src="{{asset('public/backEnd/')}}/assets/libs/parsleyjs/parsley.min.js"></script>
-    <script src="{{asset('public/backEnd/')}}/assets/js/pages/form-validation.init.js"></script>
-    <script src="{{asset('public/backEnd/')}}/assets/libs/select2/js/select2.min.js"></script>
-    <script src="{{asset('public/backEnd/')}}/assets/js/pages/form-advanced.init.js"></script>
-    <script src="{{asset('public/backEnd/')}}/assets/libs/flatpickr/flatpickr.min.js"></script>
-    <script src="{{asset('public/backEnd/')}}/assets/js/pages/form-pickers.init.js"></script>
-    <script src="{{asset('public/backEnd/')}}/assets/libs/summernote/summernote-lite.min.js"></script>
+    <script src="{{asset('backEnd/')}}/assets/libs/parsleyjs/parsley.min.js"></script>
+    <script src="{{asset('backEnd/')}}/assets/js/pages/form-validation.init.js"></script>
+    <script src="{{asset('backEnd/')}}/assets/libs/select2/js/select2.min.js"></script>
+    <script src="{{asset('backEnd/')}}/assets/js/pages/form-advanced.init.js"></script>
+    <script src="{{asset('backEnd/')}}/assets/libs/flatpickr/flatpickr.min.js"></script>
+    <script src="{{asset('backEnd/')}}/assets/js/pages/form-pickers.init.js"></script>
+    <script src="{{asset('backEnd/')}}/assets/libs/summernote/summernote-lite.min.js"></script>
     <script>
         $(".summernote").summernote({
             placeholder: "Enter Your Text Here"
@@ -547,3 +547,4 @@
         $('.select2').select2();
     </script>
 @endsection
+

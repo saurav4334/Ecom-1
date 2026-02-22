@@ -30,6 +30,12 @@ return [
             'provider' => 'users',
         ],
 
+        // ✅ For Affiliates (User table, separate session)
+        'affiliate' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+
         // ✅ For Customers (Customer table)
         'customer' => [
             'driver' => 'session',

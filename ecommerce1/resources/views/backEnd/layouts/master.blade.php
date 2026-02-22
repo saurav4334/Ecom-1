@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -10,18 +10,18 @@
     <link rel="shortcut icon" href="{{asset($generalsetting->favicon)}}" />
 
     <!-- Bootstrap css -->
-    <link href="{{asset('public/backEnd/')}}/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{asset('backEnd/')}}/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- App css -->
-    <link href="{{asset('public/backEnd/')}}/assets/css/app.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{asset('backEnd/')}}/assets/css/app.min.css" rel="stylesheet" type="text/css" />
     <!-- icons -->
-    <link href="{{asset('public/backEnd/')}}/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{asset('backEnd/')}}/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- toastr css -->
-    <link rel="stylesheet" href="{{asset('public/backEnd/')}}/assets/css/toastr.min.css" />
+    <link rel="stylesheet" href="{{asset('backEnd/')}}/assets/css/toastr.min.css" />
     <!-- custom css -->
-    <link href="{{asset('public/backEnd/')}}/assets/css/custom.css" rel="stylesheet" type="text/css" />
+    <link href="{{asset('backEnd/')}}/assets/css/custom.css" rel="stylesheet" type="text/css" />
     <!-- Head js -->
     @yield('css')
-    <script src="{{asset('public/backEnd/')}}/assets/js/head.js"></script>
+    <script src="{{asset('backEnd/')}}/assets/js/head.js"></script>
   </head>
 
   <!-- body start -->
@@ -192,7 +192,7 @@
         <div class="h-100" data-simplebar>
           <!-- User box -->
           <div class="user-box text-center">
-            <img src="{{asset('public/backEnd/')}}/assets/images/users/user-1.jpg" alt="user-img" title="Mat Helme" class="rounded-circle avatar-md" />
+            <img src="{{asset('backEnd/')}}/assets/images/users/user-1.jpg" alt="user-img" title="Mat Helme" class="rounded-circle avatar-md" />
             <div class="dropdown">
               <a href="javascript: void(0);" class="text-dark dropdown-toggle h5 mt-2 mb-1 d-block" data-bs-toggle="dropdown">{{Auth::user()->name}}</a>
               <div class="dropdown-menu user-pro-dropdown">
@@ -312,11 +312,11 @@
 </li>
 
 
-{{-- 🎟️ Coupon Management --}}
+{{-- 🎟� Coupon Management --}}
 @canany(['coupon-list', 'coupon-create', 'coupon-edit', 'coupon-delete'])
 <li>
   <a href="#sidebar-coupon" data-bs-toggle="collapse">
-    <i data-feather="gift"></i> {{-- 🎁 নতুন আইকন --}}
+    <i data-feather="gift"></i> {{-- � নত�ন আইকন --}}
     <span> Coupons </span>
     <span class="menu-arrow"></span>
   </a>
@@ -351,7 +351,7 @@
 
 
 
-{{-- ⭐ Reviews --}}
+{{-- â­ Reviews --}}
 @can('review-list')
 <li>
   <a href="#sidebar-product-review" data-bs-toggle="collapse">
@@ -386,7 +386,7 @@
 </li>
 @endcanany
 
-{{-- 🔍 Manual Fraud --}}
+{{-- � Manual Fraud --}}
 @can('fraud-check')
 <li>
   <a href="{{ route('manualFraud.page') }}">
@@ -396,7 +396,7 @@
 </li>
 @endcan
 
-{{-- ✉️ Custom SMS --}}
+{{-- ✉� Custom SMS --}}
 @can('sms-send')
 <li>
   <a href="{{ route('admin.sms.custom.page') }}">
@@ -406,7 +406,7 @@
 </li>
 @endcan
 
-{{-- 💰 Fund / তহবিল সিস্টেম --}}
+{{-- 💰 Fund / তহবিল সিস�টেম --}}
 <li>
   <a href="{{ route('admin.fund.index') }}">
     <i data-feather="briefcase"></i>
@@ -442,7 +442,7 @@
 </li>
 @endcanany
 
-{{-- ⚙️ Site Setting --}}
+{{-- âš™ï¸ Site Setting --}}
 @canany(['setting-list', 'social-list', 'contact-list'])
 <li>
   <a href="#siebar-sitesetting" data-bs-toggle="collapse">
@@ -473,7 +473,7 @@
 </li>
 @endcan
 
-{{-- 🛡️ Fraud API Settings --}}
+{{-- 🛡� Fraud API Settings --}}
 @canany(['fraud-setting-list', 'fraud-setting-edit'])
 <li>
   <a href="#sidebar-fraud" data-bs-toggle="collapse">
@@ -519,7 +519,7 @@
 </li>
 @endcanany
 
-{{-- 🤝 Affiliate Program --}}
+{{-- � Affiliate Program --}}
 <li>
   <a href="#sidebar-affiliate" data-bs-toggle="collapse">
     <i data-feather="users"></i>
@@ -528,7 +528,6 @@
   </a>
   <div class="collapse" id="sidebar-affiliate">
     <ul class="nav-second-level">
-      <li><a href="{{ route('admin.affiliate.dashboard') }}"><i data-feather="file-plus"></i> Dashboard</a></li>
       <li><a href="{{ route('admin.affiliate.index') }}"><i data-feather="file-plus"></i> Manage Affiliates</a></li>
       <li><a href="{{ route('admin.affiliate.applications') }}"><i data-feather="file-plus"></i> Applications</a></li>
       <li><a href="{{ route('admin.affiliate.form_settings') }}"><i data-feather="file-plus"></i> Form Settings</a></li>
@@ -553,7 +552,7 @@
 </li>
 @endcanany
 
-{{-- 🖼️ Banner & Ads --}}
+{{-- 🖼� Banner & Ads --}}
 @canany(['banner-list'])
 <li>
   <a href="#siebar-banner" data-bs-toggle="collapse">
@@ -623,7 +622,7 @@
 
 			  
 {{-- 🗺 Sitemap Settings --}}
-@can('sitemap-manage') {{-- পারমিশন সিস্টেম থাকলে --}}
+@can('sitemap-manage') {{-- পারমিশন সিস�টেম থাকলে --}}
 <li class="{{ request()->routeIs('admin.sitemap.*') ? 'active' : '' }}">
     <a href="{{ route('admin.sitemap.index') }}">
         <i data-feather="map"></i>
@@ -830,11 +829,11 @@
     <div class="rightbar-overlay"></div>
 
     <!-- Vendor js -->
-    <script src="{{asset('public/backEnd/')}}/assets/js/vendor.min.js"></script>
+    <script src="{{asset('backEnd/')}}/assets/js/vendor.min.js"></script>
 
     <!-- App js -->
-    <script src="{{asset('public/backEnd/')}}/assets/js/app.min.js"></script>
-    <script src="{{asset('public/backEnd/')}}/assets/js/toastr.min.js"></script>
+    <script src="{{asset('backEnd/')}}/assets/js/app.min.js"></script>
+    <script src="{{asset('backEnd/')}}/assets/js/toastr.min.js"></script>
     {!! Toastr::message() !!}
 	<script>
 @if(Session::has('success'))
@@ -851,7 +850,7 @@
 @endif
 </script>
 
-    <script src="{{asset('public/backEnd/')}}/assets/js/sweetalert.min.js"></script>
+    <script src="{{asset('backEnd/')}}/assets/js/sweetalert.min.js"></script>
     <script type="text/javascript">
       $(".delete-confirm").click(function (event) {
         var form = $(this).closest("form");
@@ -943,3 +942,4 @@
     @yield('script')
   </body>
 </html>
+

@@ -1,4 +1,4 @@
-@extends('backEnd.layouts.master')
+﻿@extends('backEnd.layouts.master')
 @section('title','Edit Coupon')
 
 @section('content')
@@ -6,15 +6,15 @@
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
             <h4>Edit Coupon</h4>
-            <a href="{{ route('admin.coupons.index') }}" class="btn btn-secondary btn-sm">← Back</a>
+            <a href="{{ route('admin.coupons.index') }}" class="btn btn-secondary btn-sm">â† Back</a>
         </div>
         <div class="card-body">
 
-            {{-- ✅ ঠিক করা ফর্ম --}}
+            {{-- ✅ ঠিক করা ফর�ম --}}
             <form action="{{ route('admin.coupons.update', $coupon->id) }}" method="POST">
                 @csrf
                 {{-- @method('POST') --}}
-                {{-- যদি রাউট PUT হয়, তাহলে নিচের লাইন ব্যবহার করো --}}
+                {{-- যদি রাউট PUT হয়, তাহলে নিচের লাইন ব�যবহার করো --}}
                 {{-- @method('PUT') --}}
 
                 <div class="row">
@@ -73,3 +73,4 @@
     </div>
 </div>
 @endsection
+

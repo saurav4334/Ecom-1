@@ -1,4 +1,4 @@
-@extends('frontEnd.layouts.master')
+﻿@extends('frontEnd.layouts.master')
 @section('title','Customer Account')
 @section('content')
 <section class="customer-section">
@@ -124,9 +124,9 @@
 </section>
 @endsection
 @push('script')
-<script src="{{asset('public/frontEnd/')}}/js/parsley.min.js"></script>
-<script src="{{asset('public/frontEnd/')}}/js/form-validation.init.js"></script>
-<script src="{{asset('public/frontEnd/')}}/js/select2.min.js"></script>
+<script src="{{asset('frontEnd/')}}/js/parsley.min.js"></script>
+<script src="{{asset('frontEnd/')}}/js/form-validation.init.js"></script>
+<script src="{{asset('frontEnd/')}}/js/select2.min.js"></script>
 <script>
     $(document).ready(function() {
         $('.select2').select2();

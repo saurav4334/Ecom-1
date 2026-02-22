@@ -52,7 +52,7 @@
                         <button class="submit-btn">রেজিস্ট্রেশন</button>
                          <div class="register-now no-account">
                         <p><i class="fa-solid fa-user"></i> রেজিস্ট্রেশন করা থাকলে?</p>
-                        <a href="{{route('customer.login')}}"><i data-feather="edit-3"></i> লগিন করুন </a>
+                        <a href="{{route('customer.login')}}"><i data-feather="edit-3"></i> লগইন করুন </a>
                     </div>
                         </div>
                      <!-- col-end -->
@@ -66,6 +66,6 @@
 </section>
 @endsection
 @push('script')
-<script src="{{asset('public/frontEnd/')}}/js/parsley.min.js"></script>
-<script src="{{asset('public/frontEnd/')}}/js/form-validation.init.js"></script>
+<script src="{{asset('frontEnd/')}}/js/parsley.min.js"></script>
+<script src="{{asset('frontEnd/')}}/js/form-validation.init.js"></script>
 @endpush

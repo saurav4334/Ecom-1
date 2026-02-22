@@ -1,4 +1,4 @@
-@extends('backEnd.layouts.master')
+﻿@extends('backEnd.layouts.master')
 @section('title','Incomplete Orders')
 
 @section('content')
@@ -70,17 +70,17 @@
                             <td>
                                 <div class="d-flex flex-column gap-1">
 
-                                    {{-- ✅ ACCEPT BUTTON – ইনকমপ্লিট → রেগুলার অর্ডার --}}
+                                    {{-- ✅ ACCEPT BUTTON – ইনকমপ�লিট → রেগ�লার অর�ডার --}}
                                     <form action="{{ route('admin.incomplete-orders.accept', $order->id) }}"
                                           method="POST"
-                                          onsubmit="return confirm('এই ইনকমপ্লিট অর্ডার থেকে অর্ডার বানাতে চান?');">
+                                          onsubmit="return confirm('�ই ইনকমপ�লিট অর�ডার থেকে অর�ডার বানাতে চান?');">
                                         @csrf
                                         <button type="submit" class="btn btn-sm btn-success w-100 mb-1">
                                             <i class="fa fa-check"></i> Accept
                                         </button>
                                     </form>
 
-                                    {{-- ❌ DELETE BUTTON --}}
+                                    {{-- � DELETE BUTTON --}}
                                     <form action="{{ route('admin.incomplete-orders.destroy', $order->id) }}"
                                           method="POST"
                                           onsubmit="return confirm('Are you sure to delete this record?');">
@@ -111,3 +111,4 @@
     </div>
 </div>
 @endsection
+

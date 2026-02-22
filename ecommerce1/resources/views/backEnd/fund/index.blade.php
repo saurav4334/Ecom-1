@@ -1,4 +1,4 @@
-@extends('backEnd.layouts.master')
+﻿@extends('backEnd.layouts.master')
 
 @section('title', 'Fund Management')
 
@@ -16,7 +16,7 @@
         <div class="card-body">
             <h5 class="mb-1" style="color:#fff !important;">Available Balance</h5>
             <h2 class="mb-0" style="color:#fff !important;">{{ number_format($balance, 2) }} ৳</h2>
-            <small style="color:#fff !important; opacity:0.85;">In – Out এর পার্থক্য</small>
+            <small style="color:#fff !important; opacity:0.85;">In – Out �র পার�থক�য</small>
         </div>
     </div>
 </div>
@@ -27,7 +27,7 @@
         <div class="card-body">
             <h5 class="mb-1" style="color:#fff !important;">This Year ({{ $currentYear }})</h5>
             <h3 class="mb-0" style="color:#fff !important;">{{ number_format($yearlyAdded, 2) }} ৳</h3>
-            <small style="color:#fff !important; opacity:0.85;">এই বছরে মোট ফান্ড যোগ হয়েছে</small>
+            <small style="color:#fff !important; opacity:0.85;">�ই বছরে মোট ফান�ড যোগ হয়েছে</small>
         </div>
     </div>
 </div>
@@ -38,7 +38,7 @@
         <div class="card-body">
             <h5 class="mb-1" style="color:#fff !important;">This Month ({{ \Carbon\Carbon::create()->month($currentMonth)->format('F') }})</h5>
             <h3 class="mb-0" style="color:#fff !important;">{{ number_format($monthlyAdded, 2) }} ৳</h3>
-            <small style="color:#fff !important; opacity:0.85;">এই মাসে মোট ফান্ড যোগ হয়েছে</small>
+            <small style="color:#fff !important; opacity:0.85;">�ই মাসে মোট ফান�ড যোগ হয়েছে</small>
         </div>
     </div>
 </div>
@@ -52,7 +52,7 @@
         <div class="col-md-4 mb-3">
             <div class="card">
                 <div class="card-header bg-light">
-                    <strong>➕ Add Fund</strong>
+                    <strong>âž• Add Fund</strong>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('admin.fund.add') }}" method="POST">
@@ -79,7 +79,7 @@
         <div class="col-md-4 mb-3">
             <div class="card">
                 <div class="card-header bg-light">
-                    <strong>➖ Withdraw</strong>
+                    <strong>âž– Withdraw</strong>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('admin.fund.withdraw') }}" method="POST">
@@ -156,7 +156,7 @@
     <div class="card">
         <div class="card-header bg-light d-flex justify-content-between align-items-center">
             <strong>🧾 Fund History</strong>
-            <small class="text-muted">সর্বশেষ ট্রান্স্যাকশন লিস্ট</small>
+            <small class="text-muted">সর�বশেষ ট�রান�স�যাকশন লিস�ট</small>
         </div>
         <div class="card-body table-responsive">
             <table class="table table-bordered table-striped align-middle">
@@ -237,3 +237,4 @@
     })();
 </script>
 @endsection
+

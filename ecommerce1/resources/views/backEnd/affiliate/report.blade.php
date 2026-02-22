@@ -16,11 +16,14 @@
             <div class="card">
                 <div class="card-body">
                     <p class="text-muted mb-1">Affiliate</p>
-                    <h5 class="mb-0">{{ $affiliate->user->name ?? 'N/A' }}</h5>
-                    <small class="text-muted">{{ $affiliate->user->email ?? '' }}</small>
+                    <h5 class="mb-0">{{ $affiliate->user->name ?? $affiliate->name ?? 'N/A' }}</h5>
+                    <small class="text-muted">{{ $affiliate->user->email ?? $affiliate->email ?? '' }}</small>
                     <div class="mt-3">
                         <div>Referral Code: <strong>{{ $affiliate->referral_code }}</strong></div>
                         <div>Status: <strong>{{ $affiliate->status }}</strong></div>
+                        <div>Referral Link: <strong>{{ url('/?ref=' . $affiliate->referral_code) }}</strong></div>
+                        <div>Link Hits: <strong>{{ (int) ($affiliate->link_hits ?? 0) }}</strong></div>
+                        <div>Link Purchases: <strong>{{ (int) ($affiliate->link_purchases ?? 0) }}</strong></div>
                         <div>Commission: 
                             <strong>
                                 @if(($affiliate->commission_type ?? 'percent') === 'flat')
@@ -31,6 +34,13 @@
                             </strong>
                         </div>
                         <div>Balance: <strong>{{ number_format($affiliate->balance, 2) }}</strong></div>
+                        <div>Phone: <strong>{{ $affiliate->phone ?? 'N/A' }}</strong></div>
+                        <div>NID: <strong>{{ $affiliate->nid_number ?? 'N/A' }}</strong></div>
+                        <div>Email: <strong>{{ $affiliate->email ?? 'N/A' }}</strong></div>
+                        <div>Address: <strong>{{ $affiliate->address ?? 'N/A' }}</strong></div>
+                        <div>Bank Account: <strong>{{ $affiliate->bank_account_number ?? 'N/A' }}</strong></div>
+                        <div>Payout Method: <strong>{{ $affiliate->payout_method ?? 'N/A' }}</strong></div>
+                        <div>Payout Account Name: <strong>{{ $affiliate->payout_account_name ?? 'N/A' }}</strong></div>
                     </div>
                 </div>
             </div>
@@ -43,6 +53,14 @@
                         <div class="card-body">
                             <p class="text-muted mb-1">Total Earnings</p>
                             <h4 class="mb-0">{{ number_format($totalEarnings, 2) }}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="text-muted mb-1">Total Commission</p>
+                            <h4 class="mb-0">{{ number_format($totalCommission, 2) }}</h4>
                         </div>
                     </div>
                 </div>

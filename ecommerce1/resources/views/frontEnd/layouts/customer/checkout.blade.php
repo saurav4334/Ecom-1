@@ -1,8 +1,8 @@
-@extends('frontEnd.layouts.master')
+﻿@extends('frontEnd.layouts.master')
 @section('title', 'Customer Checkout')
 
 @push('css')
-<link rel="stylesheet" href="{{ asset('public/frontEnd/css/select2.min.css') }}" />
+<link rel="stylesheet" href="{{ asset('frontEnd/css/select2.min.css') }}" />
 @endpush
 
 @section('content')
@@ -30,17 +30,17 @@
             ];
         }
 
-        // ✅ কার্ট থেকে মোট Advance Amount বের করছি
+        // âœ… à¦•à¦¾à¦°à§à¦Ÿ à¦¥à§‡à¦•à§‡ মোট Advance Amount à¦¬à§‡à¦° à¦•à¦°à¦›à¦¿
         $advance_amount = \App\Http\Controllers\Frontend\ShoppingController::getCartAdvanceAmount();
         $hasAdvance     = $advance_amount > 0 ? true : false;
 
-        // অগ্রিম থাকলে গ্রাহক এখন যত টাকা দিবে
+        // অগ�রিম থাকলে গ�রাহক �খন যত টাকা দিবে
         $payable_now = $hasAdvance ? $advance_amount : $grand_total;
 
-        // অগ্রিম থাকলে কত টাকা ডেলিভারির সময় দিতে হবে
+        // à¦…à¦—à§à¦°à¦¿à¦® à¦¥à¦¾à¦•à¦²à§‡ à¦•à¦¤ à¦Ÿà¦¾à¦•à¦¾ ডেলিভারিà¦° à¦¸à¦®à§Ÿ à¦¦à¦¿à¦¤à§‡ à¦¹à¦¬à§‡
         $due_amount = $hasAdvance ? ($grand_total - $advance_amount) : 0;
 
-        // ✅ কার্টে ডিজিটাল প্রোডাক্ট আছে কিনা চেক
+        // âœ… à¦•à¦¾à¦°à§à¦Ÿà§‡ à¦¡à¦¿à¦œà¦¿à¦Ÿà¦¾à¦² প্রোডাক্ট à¦†à¦›à§‡ à¦•à¦¿à¦¨à¦¾ à¦šà§‡à¦•
         $hasDigital = false;
         foreach (Cart::instance('shopping')->content() as $item) {
             $p = \App\Models\Product::find($item->id);
@@ -60,7 +60,7 @@
                         @csrf
                         <div class="card">
                             <div class="card-header">
-                                <h6>আপনার অর্ডারটি কনফার্ম করতে তথ্যগুলো পূরণ করে "অর্ডার করুন" বাটন এ ক্লিক করুন </h6>
+                                <h6>আপনার অর্ডারটি কনফার্ম করতে তথ্যগুলো পূরণ করে "অর্ডার করুন" বাটনে ক্লিক করুন</h6>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -112,7 +112,7 @@
                                     {{-- area --}}
                                     <div class="col-sm-12">
                                         <div class="form-group mb-3">
-                                            <label for="area">ডেলিভারি এরিয়া নিবার্চন করুন *</label>
+                                            <label for="area">ডেলিভারি এরিয়া নির্বাচন করুন *</label>
                                             <select id="area" class="form-control" name="area" required>
                                                 @foreach ($shippingcharge as $value)
                                                     <option 
@@ -137,7 +137,7 @@
                                         <div class="payment-methods mt-3">
                                             <div class="row g-3">
 
-                                                {{-- 🔔 ডিজিটাল প্রোডাক্ট বা advance থাকলে COD লুকাবে --}}
+                                                {{-- ðŸ”” à¦¡à¦¿à¦œà¦¿à¦Ÿà¦¾à¦² প্রোডাক্ট à¦¬à¦¾ advance à¦¥à¦¾à¦•à¦²à§‡ COD à¦²à§à¦•à¦¾à¦¬à§‡ --}}
                                                 @if(!$hasDigital && !$hasAdvance)
                                                     {{-- 🟢 Cash On Delivery --}}
                                                     <div class="col-md-6 col-12">
@@ -146,7 +146,7 @@
                                                                 id="inlineRadio1" value="cod" checked required />
                                                             <label class="form-check-label d-flex align-items-center gap-2" for="inlineRadio1">
                                                                 <i class="fa fa-truck text-success" style="font-size:20px;"></i>
-                                                                <span>(ডেলিভারির সময় পেমেন্ট)</span>
+                                                                <span>(ডেলিভারির সময় পেমেন্ট)</span>
                                                             </label>
                                                         </div>
                                                     </div>
@@ -155,7 +155,7 @@
                                                 @if($hasAdvance)
                                                     <div class="alert alert-info py-2 px-3 mb-3">
                                                         এই অর্ডারে মোট <b>৳ {{ number_format($advance_amount,2) }}</b> অগ্রিম দিতে হবে।
-                                                        আপনি নিচের যে কোন Online Payment পদ্ধতিতে এখনই এই টাকা পরিশোধ করবেন।
+                                                        আপনি নিচের যে কোনো Online Payment পদ্ধতিতে এখনই এই টাকা পরিশোধ করবেন।
                                                         বাকি <b>৳ <span id="dueAmountText">{{ number_format($due_amount,2) }}</span></b> ডেলিভারির সময় পরিশোধ করবেন।
                                                     </div>
                                                 @endif
@@ -167,7 +167,7 @@
                                                             <input class="form-check-input" type="radio" name="payment_method"
                                                                 id="inlineRadio2" value="bkash" />
                                                             <label class="form-check-label d-flex align-items-center gap-2" for="inlineRadio2">
-                                                                <img src="{{ asset('public/frontEnd/images/bkash.svg') }}"
+                                                                <img src="{{ asset('frontEnd/images/bkash.svg') }}"
                                                                     alt="Bkash Logo"
                                                                     style="height:24px; width:auto; margin-right:6px;">
                                                                 <span>বিকাশ পেমেন্ট</span>
@@ -183,7 +183,7 @@
                                                             <input class="form-check-input" type="radio" name="payment_method"
                                                                 id="inlineRadio3" value="shurjopay" required />
                                                             <label class="form-check-label d-flex align-items-center gap-2" for="inlineRadio3">
-                                                                <img src="{{ asset('public/frontEnd/images/shurjoPay.png') }}"
+                                                                <img src="{{ asset('frontEnd/images/shurjoPay.png') }}"
                                                                     alt="ShurjoPay"
                                                                     style="height:24px; width:auto; margin-right:6px;">
                                                                 <span>ShurjoPay</span>
@@ -199,7 +199,7 @@
                                                             <input class="form-check-input" type="radio" name="payment_method"
                                                                 id="inlineRadio4" value="uddoktapay" required />
                                                             <label class="form-check-label d-flex align-items-center gap-2" for="inlineRadio4">
-                                                                <img src="{{ asset('public/frontEnd/images/uddokta.png') }}"
+                                                                <img src="{{ asset('frontEnd/images/uddokta.png') }}"
                                                                     alt="UddoktaPay"
                                                                     style="height:22px; margin-right:6px;">
                                                                 
@@ -273,7 +273,7 @@
 
                         {{-- 🧾 Coupon Apply Section --}}
                         <div class="coupon-section border rounded mb-3 p-3">
-                            <h6 class="fw-bold mb-2">🎟️ কুপন কোড ব্যবহার করুন</h6>
+                            <h6 class="fw-bold mb-2">কুপন কোড ব্যবহার করুন</h6>
 
                             @if(!Session::has('coupon_code'))
                                 <form action="{{ route('coupon.apply') }}" method="POST" class="d-flex gap-2">
@@ -287,7 +287,7 @@
                                         <span class="fw-semibold">🎉 Coupon <b>{{ Session::get('coupon_code') }}</b> Applied!</span><br>
                                         Discount: <b>৳{{ Session::get('discount') }}</b>
                                     </div>
-                                    <a href="{{ route('coupon.remove') }}" class="text-danger small fw-bold text-decoration-none">Remove ✖</a>
+                                    <a href="{{ route('coupon.remove') }}" class="text-danger small fw-bold text-decoration-none">Remove ✕</a>
                                 </div>
                             @endif
                         </div>
@@ -382,7 +382,7 @@
                                     </tr>
                                     @if($discount > 0)
                                         <tr>
-                                            <th colspan="3" class="text-end px-4">কুপন ছাড়</th>
+                                            <th colspan="3" class="text-end px-4">কুপন ছাড়</th>
                                             <td id="discountAmount">-৳ {{ number_format($discount,2) }}</td>
                                         </tr>
                                     @endif
@@ -417,7 +417,7 @@
 @endsection
 
 @push('script')
-<script src="{{ asset('public/frontEnd/js/select2.min.js') }}"></script>
+<script src="{{ asset('frontEnd/js/select2.min.js') }}"></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function(){
@@ -426,7 +426,7 @@
         const form = document.querySelector('#checkout-form');
         if(!form) return;
 
-        // PHP থেকে ভ্যালু JS-এ
+        // PHP থেকে ভ�যাল� JS-�
         const cartItems      = @json($cartItemsForJs);
         const baseSubtotal   = parseFloat("{{ $subtotal }}") || 0;
         const baseShipping   = parseFloat("{{ $shipping }}") || 0;
@@ -434,7 +434,7 @@
         const advanceAmount  = parseFloat("{{ $advance_amount }}") || 0;
         const hasAdvance     = @json($hasAdvance);
 
-        // টেবিলের সেলগুলো
+        // টেবিলের সেলগ�লো
         const subtotalEl     = document.getElementById('subtotalAmount');
         const shippingEl     = document.getElementById('shippingAmount');
         const grandTotalEl   = document.getElementById('grandTotalAmount');
@@ -453,7 +453,7 @@
                 const selectedOption = this.options[this.selectedIndex];
                 const newShipping    = parseFloat(selectedOption.getAttribute('data-charge')) || 0;
 
-                // ✅ সাবটোটাল অপরিবর্তিত থাকবে (প্রোডাক্ট একই)
+                // âœ… à¦¸à¦¾à¦¬à¦Ÿà§‹à¦Ÿà¦¾à¦² à¦…à¦ªà¦°à¦¿à¦¬à¦°à§à¦¤à¦¿à¦¤ à¦¥à¦¾à¦•à¦¬à§‡ (প্রোডাক্ট à¦à¦•à¦‡)
                 const subtotal       = baseSubtotal;
                 const discount       = baseDiscount;
                 const grandTotal     = subtotal + newShipping - discount;
@@ -469,7 +469,7 @@
                     if (dueTextEl) dueTextEl.textContent = formatAmount(dueAmount);
                 }
 
-                // চাইলে এখানে তুমি fetch দিয়ে server-এ shipping id পাঠিয়ে Session আপডেট রাখতে পারো
+                // চাইলে �খানে ত�মি fetch দিয়ে server-� shipping id পাঠিয়ে Session আপডেট রাখতে পারো
                 fetch('{{ route("shipping.charge") }}?id=' + this.value, {
                     method: 'GET',
                 }).catch(err => console.error(err));
@@ -482,10 +482,10 @@
         const total_amount = (subtotal + shipping - discount).toFixed(2);
 
         let timer;
-        let isSubmitting = false; // ✅ ফর্ম সাবমিট হলে true হবে
+        let isSubmitting = false; // ✅ ফর�ম সাবমিট হলে true হবে
 
         function saveIncompleteOrder() {
-            if (isSubmitting) return; // ✅ সাবমিটের সময় আর ইনকমপ্লিট সেভ হবে না
+            if (isSubmitting) return; // ✅ সাবমিটের সময় আর ইনকমপ�লিট সেভ হবে না
 
             clearTimeout(timer);
             timer = setTimeout(() => {
@@ -514,14 +514,14 @@
                 })
                 .then(res => res.json())
                 .then(data => console.log('✅ Incomplete Order Saved:', data))
-                .catch(err => console.error('❌ Error:', err));
+                .catch(err => console.error('� Error:', err));
             }, 2000);
         }
 
         form.addEventListener('input', saveIncompleteOrder);
         form.addEventListener('change', saveIncompleteOrder);
 
-        // ✅ ফর্ম সাবমিট হলে ইনকমপ্লিট সেভ বন্ধ
+        // ✅ ফর�ম সাবমিট হলে ইনকমপ�লিট সেভ বন�ধ
         form.addEventListener('submit', function () {
             isSubmitting = true;
             clearTimeout(timer);
@@ -616,3 +616,6 @@
     })();
 </script>
 @endpush
+
+
+

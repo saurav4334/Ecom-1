@@ -27,6 +27,55 @@
                             <label class="form-label">Referral Code</label>
                             <input type="text" class="form-control" value="{{ $affiliate->referral_code }}" readonly>
                         </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Phone</label>
+                            <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone', $affiliate->phone) }}">
+                            @error('phone')
+                            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                            @enderror
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">NID Number</label>
+                            <input type="text" class="form-control @error('nid_number') is-invalid @enderror" name="nid_number" value="{{ old('nid_number', $affiliate->nid_number) }}">
+                            @error('nid_number')
+                            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                            @enderror
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', $affiliate->email) }}">
+                            @error('email')
+                            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                            @enderror
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Address</label>
+                            <input type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address', $affiliate->address) }}">
+                            @error('address')
+                            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                            @enderror
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Bank Account Number</label>
+                            <input type="text" class="form-control @error('bank_account_number') is-invalid @enderror" name="bank_account_number" value="{{ old('bank_account_number', $affiliate->bank_account_number) }}">
+                            @error('bank_account_number')
+                            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                            @enderror
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Payout Method</label>
+                            <input type="text" class="form-control @error('payout_method') is-invalid @enderror" name="payout_method" value="{{ old('payout_method', $affiliate->payout_method) }}" placeholder="Bank/Mobile">
+                            @error('payout_method')
+                            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                            @enderror
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Payout Account Name</label>
+                            <input type="text" class="form-control @error('payout_account_name') is-invalid @enderror" name="payout_account_name" value="{{ old('payout_account_name', $affiliate->payout_account_name) }}">
+                            @error('payout_account_name')
+                            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                            @enderror
+                        </div>
                         <div class="col-md-4">
                             <label class="form-label">Commission Type</label>
                             <select class="form-control @error('commission_type') is-invalid @enderror" name="commission_type" required>

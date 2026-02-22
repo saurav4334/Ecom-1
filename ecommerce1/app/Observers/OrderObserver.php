@@ -66,6 +66,7 @@ class OrderObserver
         ]);
 
         $affiliate->balance = (float) $affiliate->balance + $commission;
+        $affiliate->link_purchases = (int) $affiliate->link_purchases + 1;
         $affiliate->save();
     }
 }

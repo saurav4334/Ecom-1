@@ -1,7 +1,7 @@
-@extends('backEnd.layouts.master')
+﻿@extends('backEnd.layouts.master')
 @section('title','Users Edit')
 @section('css')
-<link href="{{asset('public/backEnd')}}/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+<link href="{{asset('backEnd')}}/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
 @endsection
 @section('content')
 <div class="container-fluid">
@@ -76,14 +76,14 @@
         <label for="roles" class="form-label">Role *</label>
 
         @php
-            // এই ইউজারের আগে থেকে থাকা রোলগুলোর নাম নিয়ে নিলাম
+            // �ই ইউজারের আগে থেকে থাকা রোলগ�লোর নাম নিয়ে নিলাম
             $userRoleNames = $edit_data->roles->pluck('name')->toArray();
         @endphp
 
-        {{-- যদি লগইন করা ইউজার নিজেই নিজের প্রোফাইল এডিট করে --}}
+        {{-- যদি লগইন করা ইউজার নিজেই নিজের প�রোফাইল �ডিট করে --}}
         @if(auth()->id() == $edit_data->id)
 
-            {{-- রোল দেখাবে, কিন্তু চেঞ্জ করা যাবে না (disabled) --}}
+            {{-- রোল দেখাবে, কিন�ত� চেঞ�জ করা যাবে না (disabled) --}}
             <select class="form-control select2-multiple" 
                     data-toggle="select2"
                     multiple="multiple" 
@@ -99,18 +99,18 @@
                 </optgroup>
             </select>
 
-            {{-- Hidden input দিয়ে পুরোনো রোলগুলো ফর্মে পাঠিয়ে দিচ্ছি,
-                 যেন update করার সময় রোল নষ্ট না হয় --}}
+            {{-- Hidden input দিয়ে প�রোনো রোলগ�লো ফর�মে পাঠিয়ে দিচ�ছি,
+                 যেন update করার সময় রোল নষ�ট না হয় --}}
             @foreach($userRoleNames as $rName)
                 <input type="hidden" name="roles[]" value="{{ $rName }}">
             @endforeach
 
             <small class="text-danger d-block mt-1">
-                আপনি নিজের একাউন্টের Role পরিবর্তন করতে পারবেন না।
+                আপনি নিজের �কাউন�টের Role পরিবর�তন করতে পারবেন না।
             </small>
 
         @else
-            {{-- অন্য ইউজার হলে, নরমাল Editable select --}}
+            {{-- অন�য ইউজার হলে, নরমাল Editable select --}}
             <select class="form-control select2-multiple" 
                     name="roles[]" 
                     data-toggle="select2"
@@ -181,8 +181,8 @@
 
 
 @section('script')
-<script src="{{asset('public/backEnd/')}}/assets/libs/parsleyjs/parsley.min.js"></script>
-<script src="{{asset('public/backEnd/')}}/assets/js/pages/form-validation.init.js"></script>
-<script src="{{asset('public/backEnd/')}}/assets/libs/select2/js/select2.min.js"></script>
-<script src="{{asset('public/backEnd/')}}/assets/js/pages/form-advanced.init.js"></script>
+<script src="{{asset('backEnd/')}}/assets/libs/parsleyjs/parsley.min.js"></script>
+<script src="{{asset('backEnd/')}}/assets/js/pages/form-validation.init.js"></script>
+<script src="{{asset('backEnd/')}}/assets/libs/select2/js/select2.min.js"></script>
+<script src="{{asset('backEnd/')}}/assets/js/pages/form-advanced.init.js"></script>
 @endsection

@@ -1,4 +1,4 @@
-@extends('backEnd.layouts.master')
+﻿@extends('backEnd.layouts.master')
 @section('title','Expenses')
 
 @section('content')
@@ -18,7 +18,7 @@
             <h5 class="mb-1" style="color:#fff !important;">Available Balance</h5>
             <h2 class="mb-0" style="color:#fff !important;">{{ number_format($balance, 2) }} ৳</h2>
             <small class="opacity-75 d-block mt-1" style="color:#fff !important;">
-                বর্তমানে তহবিলে অবশিষ্ট ব্যালেন্স
+                বর�তমানে তহবিলে অবশিষ�ট ব�যালেন�স
             </small>
         </div>
     </div>
@@ -31,7 +31,7 @@
             <h5 class="mb-1" style="color:#fff !important;">This Year ({{ $currentYear }})</h5>
             <h3 class="mb-0" style="color:#fff !important;">{{ number_format($yearlyExpense, 2) }} ৳</h3>
             <small class="opacity-75 d-block mt-1" style="color:#fff !important;">
-                এই বছরে মোট খরচ হয়েছে
+                �ই বছরে মোট খরচ হয়েছে
             </small>
         </div>
     </div>
@@ -46,7 +46,7 @@
             </h5>
             <h3 class="mb-0" style="color:#fff !important;">{{ number_format($monthlyExpense, 2) }} ৳</h3>
             <small class="opacity-75 d-block mt-1" style="color:#fff !important;">
-                এই মাসে মোট খরচ হয়েছে
+                �ই মাসে মোট খরচ হয়েছে
             </small>
         </div>
     </div>
@@ -164,7 +164,7 @@
                         </div>
 
                         <button type="submit" class="btn btn-outline-primary w-100">
-                            ⬇ Download CSV
+                            â¬‡ Download CSV
                         </button>
                     </form>
                 </div>
@@ -210,7 +210,7 @@
                 @empty
                     <tr>
                         <td colspan="7" class="text-center text-muted">
-                            কোনো খরচের রেকর্ড পাওয়া যায়নি।
+                            কোনো খরচের রেকর�ড পাওয়া যায়নি।
                         </td>
                     </tr>
                 @endforelse
@@ -223,3 +223,4 @@
 
 </div>
 @endsection
+

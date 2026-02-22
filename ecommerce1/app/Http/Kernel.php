@@ -71,5 +71,6 @@ class Kernel extends HttpKernel
         'customer' => \App\Http\Middleware\Customer::class,
         'ipcheck' => \App\Http\Middleware\IpFilter::class,
         'check_refer' => \App\Http\Middleware\CheckReffer::class,
+        'affiliate_user' => \App\Http\Middleware\AffiliateUser::class,
     ];
 }

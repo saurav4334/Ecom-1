@@ -40,6 +40,7 @@ class AffiliateApplicationController extends Controller
                 'email' => $application->email,
                 'password' => $application->password,
                 'status' => 1,
+                'image' => 'public/uploads/default/user.png',
             ]);
 
             Affiliate::create([

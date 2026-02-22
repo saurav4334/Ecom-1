@@ -1,7 +1,7 @@
 @extends('frontEnd.layouts.master') 
 @section('title',$keyword) 
 @push('css')
-<link rel="stylesheet" href="{{asset('public/frontEnd/css/jquery-ui.css')}}" />
+<link rel="stylesheet" href="{{asset('frontEnd/css/jquery-ui.css')}}" />
 @endpush 
 @section('content')
 <section class="product-section">
@@ -61,7 +61,7 @@
                                         <div class="sale-badge-box">
                                             <span class="sale-badge-text">
                                                 <p>@php $discount=(((($value->old_price)-($value->new_price))*100) / ($value->old_price)) @endphp {{ number_format($discount, 0) }}%</p>
-                                                ছাড়
+                                                ছাড়
                                             </span>
                                         </div>
                                     </div>
@@ -118,7 +118,7 @@
                                 <div class="cart_btn order_button">
                                     <a href="{{ route('product', $value->slug) }}"
                                         class="addcartbutton">
-                                        <span>অর্ডার করুন</span>
+                                        <span>অর্ডার</span>
                                     </a>
                                 </div>
                                
@@ -127,7 +127,7 @@
                             <div class="pro_btn">
                                 <div class="cart_btn order_button">
                                     <a class="addcartbutton" data-id="{{ $value->id }}" data-checkout="yes">
-                                        <span>অর্ডার করুন</span>
+                                        <span>অর্ডার</span>
                                     </a>
                                 </div>
                             </div>
@@ -285,3 +285,6 @@
     })();
 </script>
 @endpush
+
+
+

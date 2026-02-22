@@ -1,4 +1,4 @@
-@extends('frontEnd.layouts.master')
+﻿@extends('frontEnd.layouts.master')
 @section('title','Customer Invoice')
 @section('content')
 
@@ -55,7 +55,7 @@
                                     <p>{{$contact->phone}}</p>
                                     <p>{{$contact->email}}</p>
                                     <p>{{$contact->address}}</p>
-									{{-- ⭐ SHOW ORDER NOTE --}}
+									{{-- â­ SHOW ORDER NOTE --}}
 @if(!empty($order->order_note) || !empty($order->note))
     <p style="font-size:16px; line-height:1.8; color:#222;">
         <strong>Order Note:</strong> {{ $order->order_note ?? $order->note }}
@@ -184,3 +184,4 @@
 </script>
 
 @endsection
+

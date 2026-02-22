@@ -1,4 +1,4 @@
-@extends('backEnd.layouts.master')
+﻿@extends('backEnd.layouts.master')
 @section('title','Purchase Report')
 
 @section('content')
@@ -55,7 +55,7 @@
                     </button>
 
                     <button class="btn btn-outline-success" type="submit" name="export" value="csv">
-                        ⬇ Export CSV
+                        â¬‡ Export CSV
                     </button>
                 </div>
             </form>
@@ -65,7 +65,7 @@
     {{-- Summary Cards --}}
     <div class="row mb-3">
 <style>
-    /* রঙিন কার্ডগুলোর সব টেক্সট সাদা */
+    /* রঙিন কার�ডগ�লোর সব টেক�সট সাদা */
     .card.bg-primary *,
     .card.bg-success *,
     .card.bg-warning * {
@@ -171,3 +171,4 @@
     toggleReportFields();
 </script>
 @endsection
+

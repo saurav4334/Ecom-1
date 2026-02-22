@@ -1,4 +1,4 @@
-<div class="modal-view quick-product">
+﻿<div class="modal-view quick-product">
 	<button class="close-modal">x</button>
 	<div class="quick-product-img">
 		<img src="{{asset($data->image->image)}}" alt="">
@@ -44,7 +44,7 @@
         </div>
 	</div>
 </div>
-<script src="{{asset('public/frontEnd/js/jquery-3.6.3.min.js')}}"></script>
+<script src="{{asset('frontEnd/js/jquery-3.6.3.min.js')}}"></script>
 <script>
 	$('.close-modal').on('click',function(){
         $("#custom-modal").hide();
@@ -70,3 +70,4 @@
     });
 </script>
 <!-- cart js start -->
+

@@ -14,23 +14,37 @@
         <link rel="canonical" href="" />
         @stack('seo') 
         @stack('css')
-        <link rel="stylesheet" href="{{asset('public/frontEnd/css/bootstrap.min.css')}}" />
-        <link rel="stylesheet" href="{{asset('public/frontEnd/css/animate.css')}}" />
-        <link rel="stylesheet" href="{{asset('public/frontEnd/css/all.min.css')}}" />
-        <link rel="stylesheet" href="{{asset('public/frontEnd/css/owl.carousel.min.css')}}" />
-        <link rel="stylesheet" href="{{asset('public/frontEnd/css/owl.theme.default.min.css')}}" />
-        <link rel="stylesheet" href="{{asset('public/frontEnd/css/mobile-menu.css')}}" />
-        <link rel="stylesheet" href="{{asset('public/frontEnd/css/select2.min.css')}}" />
+        <link rel="stylesheet" href="{{asset('frontEnd/css/bootstrap.min.css')}}" />
+        <link rel="stylesheet" href="{{asset('frontEnd/css/animate.css')}}" />
+        <link rel="stylesheet" href="{{asset('frontEnd/css/all.min.css')}}" />
+        <link rel="stylesheet" href="{{asset('frontEnd/css/owl.carousel.min.css')}}" />
+        <link rel="stylesheet" href="{{asset('frontEnd/css/owl.theme.default.min.css')}}" />
+        <link rel="stylesheet" href="{{asset('frontEnd/css/mobile-menu.css')}}" />
+        <link rel="stylesheet" href="{{asset('frontEnd/css/select2.min.css')}}" />
         <!-- toastr css -->
-        <link rel="stylesheet" href="{{asset('public/backEnd/')}}/assets/css/toastr.min.css" />
+        <link rel="stylesheet" href="{{asset('backEnd/')}}/assets/css/toastr.min.css" />
 
-        <link rel="stylesheet" href="{{asset('public/frontEnd/css/wsit-menu.css')}}" />
+        <link rel="stylesheet" href="{{asset('frontEnd/css/wsit-menu.css')}}" />
 <link rel="stylesheet" href="{{ url('/style.css') }}?v=1">
 <link rel="stylesheet" href="{{ url('/responsive.css') }}?v=1">
-        <link rel="stylesheet" href="{{asset('public/frontEnd/css/main.css')}}" />
+        <link rel="stylesheet" href="{{asset('frontEnd/css/main.css')}}" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
         <meta name="facebook-domain-verification" content="38f1w8335btoklo88dyfl63ba3st2e" />
         <style>
+            body,
+            .alinur,
+            .add_cart_btn,
+            .order_now_btn,
+            .order_now_btn_m,
+            .cart_table,
+            .checkout,
+            .product-price,
+            .details-price {
+                font-family: "Noto Sans Bengali", sans-serif !important;
+            }
             .float{
             	position:fixed;
             	color:white;
@@ -375,7 +389,7 @@
                                 <div class="d_app">
                                     <h2>Download App</h2>
                                     <a href="">
-                                        <img src="{{asset('public/frontEnd/images/app-download.png')}}" alt="" />
+                                        <img src="{{asset('frontEnd/images/app-download.png')}}" alt="" />
                                     </a>
                                 </div>
                             </div>
@@ -456,7 +470,7 @@
             </ul>
         </div>
         
-<!-- ЁЯМР Floating Chat Widget -->
+<!-- ÐÐ¯ÐœÐ  Floating Chat Widget -->
 <div class="chat-widget">
   <!-- Main Toggle Button -->
   <div class="chat-toggle" id="chatToggle">
@@ -486,7 +500,7 @@
 /* Floating Container */
 .chat-widget {
   position: fixed;
-  bottom: 60px; /* ⬅ Chat icon এখন 55px উপরে */
+  bottom: 60px; /* ⬅ Chat icon �খন 55px উপরে */
   right: 25px;
   z-index: 9999;
   display: flex;
@@ -573,7 +587,7 @@
 </style>
 
 <script>
-/* ЁЯФ╣ Toggle Open/Close */
+/* ÐÐ¯Ð¤â•£ Toggle Open/Close */
 document.getElementById("chatToggle").addEventListener("click", function() {
   document.getElementById("chatOptions").classList.toggle("show");
 });
@@ -586,13 +600,13 @@ document.getElementById("chatToggle").addEventListener("click", function() {
         <div id="page-overlay"></div>
         <div id="loading"><div class="custom-loader"></div></div>
 
-        <script src="{{asset('public/frontEnd/js/jquery-3.6.3.min.js')}}"></script>
-        <script src="{{asset('public/frontEnd/js/bootstrap.min.js')}}"></script>
-        <script src="{{asset('public/frontEnd/js/owl.carousel.min.js')}}"></script>
-        <script src="{{asset('public/frontEnd/js/mobile-menu.js')}}"></script>
-        <script src="{{asset('public/frontEnd/js/wsit-menu.js')}}"></script>
-        <script src="{{asset('public/frontEnd/js/mobile-menu-init.js')}}"></script>
-        <script src="{{asset('public/frontEnd/js/wow.min.js')}}"></script>
+        <script src="{{asset('frontEnd/js/jquery-3.6.3.min.js')}}"></script>
+        <script src="{{asset('frontEnd/js/bootstrap.min.js')}}"></script>
+        <script src="{{asset('frontEnd/js/owl.carousel.min.js')}}"></script>
+        <script src="{{asset('frontEnd/js/mobile-menu.js')}}"></script>
+        <script src="{{asset('frontEnd/js/wsit-menu.js')}}"></script>
+        <script src="{{asset('frontEnd/js/mobile-menu-init.js')}}"></script>
+        <script src="{{asset('frontEnd/js/wow.min.js')}}"></script>
         <script>
             new WOW().init();
         </script>
@@ -604,7 +618,7 @@ document.getElementById("chatToggle").addEventListener("click", function() {
         <script>
             feather.replace();
         </script>
-        <script src="{{asset('public/backEnd/')}}/assets/js/toastr.min.js"></script>
+        <script src="{{asset('backEnd/')}}/assets/js/toastr.min.js"></script>
         {!! Toastr::message() !!} @stack('script')
 		
 		
@@ -1072,3 +1086,6 @@ document.getElementById("chatToggle").addEventListener("click", function() {
         <!-- End Google Tag Manager (noscript) -->
     </body>
 </html>
+
+
+

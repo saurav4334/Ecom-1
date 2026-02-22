@@ -1,4 +1,4 @@
-@extends('frontEnd.layouts.master')
+﻿@extends('frontEnd.layouts.master')
 @section('title','Order Track Result')
 @section('content')
 <section class="auth-section">
@@ -56,6 +56,6 @@
 </section>
 @endsection
 @push('script')
-<script src="{{asset('public/frontEnd/')}}/js/parsley.min.js"></script>
-<script src="{{asset('public/frontEnd/')}}/js/form-validation.init.js"></script>
+<script src="{{asset('frontEnd/')}}/js/parsley.min.js"></script>
+<script src="{{asset('frontEnd/')}}/js/form-validation.init.js"></script>
 @endpush

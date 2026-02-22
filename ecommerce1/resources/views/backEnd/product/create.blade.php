@@ -1,4 +1,4 @@
-@extends('backEnd.layouts.master') 
+﻿@extends('backEnd.layouts.master') 
 @section('title','Product Create') 
 
 @section('css')
@@ -9,8 +9,8 @@
     margin-bottom: 10px;
   }
 </style>
-<link href="{{asset('public/backEnd')}}/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
-<link href="{{asset('public/backEnd')}}/assets/libs/summernote/summernote-lite.min.css" rel="stylesheet" type="text/css" />
+<link href="{{asset('backEnd')}}/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+<link href="{{asset('backEnd')}}/assets/libs/summernote/summernote-lite.min.css" rel="stylesheet" type="text/css" />
 @endsection 
 
 @section('content')
@@ -218,7 +218,7 @@
             </div>
 
             {{-- ================================
-            ⭐ PRODUCT TYPE
+            â­ PRODUCT TYPE
             ================================ --}}
             <div class="col-sm-6">
               <div class="form-group mb-3">
@@ -231,7 +231,7 @@
             </div>
 
             {{-- ================================
-            ⭐ ADVANCE PAYMENT (PHYSICAL ONLY)
+            â­ ADVANCE PAYMENT (PHYSICAL ONLY)
             ================================ --}}
             <div class="col-sm-6" id="advance_area">
               <div class="form-group mb-3">
@@ -245,7 +245,7 @@
             </div>
 
             {{-- ================================
-            ⭐ DIGITAL PRODUCT FIELDS (2 COLUMN)
+            â­ DIGITAL PRODUCT FIELDS (2 COLUMN)
             ================================ --}}
             <div class="row w-100" id="digital_area" style="display:none;">
 
@@ -275,7 +275,7 @@
             </div>
 
             {{-- ================================
-            ⭐ TOGGLE SCRIPT
+            â­ TOGGLE SCRIPT
             ================================ --}}
             <script>
             document.addEventListener('DOMContentLoaded', function () {
@@ -292,13 +292,13 @@
                         document.getElementById('advance_area').style.display  = 'block';
                     }
 
-                    // ⭐ Color + Size Variant Section
+                    // â­ Color + Size Variant Section
                     var variantSection = document.getElementById('variant_section');
                     if (variantSection) {
                         if (type === 'digital') {
-                            variantSection.style.display = 'none';   // ডিজিটাল হলে লুকাবে
+                            variantSection.style.display = 'none';   // ডিজিটাল হলে ল�কাবে
                         } else {
-                            variantSection.style.display = 'block';  // ফিজিক্যাল হলে দেখাবে
+                            variantSection.style.display = 'block';  // ফিজিক�যাল হলে দেখাবে
                         }
                     }
                 }
@@ -313,9 +313,9 @@
 
             <hr>
 
-            {{-- ⭐ VARIANT SECTION (Color + Size) --}}
+            {{-- â­ VARIANT SECTION (Color + Size) --}}
             <div class="col-sm-12 mb-3" id="variant_section">
-              <h5 class="bg-dark text-white p-2 rounded">💰 Variant Price (Color + Size অনুযায়ী)</h5>
+              <h5 class="bg-dark text-white p-2 rounded">💰 Variant Price (Color + Size অন�যায়ী)</h5>
 
               <div id="variant-wrapper">
                 <div class="row variant-item align-items-end mb-3">
@@ -372,7 +372,7 @@
                 const target = e.target.closest('.add-variant, .remove-variant');
                 if (!target) return;
 
-                // ➕ Add Variant
+                // âž• Add Variant
                 if (target.classList.contains('add-variant')) {
                   const wrapper = document.getElementById('variant-wrapper');
                   const firstRow = wrapper.querySelector('.variant-item');
@@ -414,10 +414,10 @@
                   console.log("✅ New variant row added successfully");
                 }
 
-                // 🗑️ Remove Variant
+                // 🗑� Remove Variant
                 if (target.classList.contains('remove-variant')) {
                   target.closest('.variant-item').remove();
-                  console.log("🗑️ Variant row removed");
+                  console.log("🗑� Variant row removed");
                 }
               });
             });
@@ -452,7 +452,7 @@
             <div class="col-sm-12 mb-3">
               <div class="form-group">
                 <div class="d-flex justify-content-between align-items-center mb-2">
-                  <h5 class="mb-0 text-white bg-dark p-2 rounded" style="width:100%;">🔍 SEO Configuration</h5>
+                  <h5 class="mb-0 text-white bg-dark p-2 rounded" style="width:100%;">� SEO Configuration</h5>
                 </div>
 
                 <div class="row">
@@ -557,12 +557,12 @@
 @endsection 
 
 @section('script')
-<script src="{{asset('public/backEnd/')}}/assets/libs/parsleyjs/parsley.min.js"></script>
-<script src="{{asset('public/backEnd/')}}/assets/js/pages/form-validation.init.js"></script>
-<script src="{{asset('public/backEnd/')}}/assets/libs/select2/js/select2.min.js"></script>
-<script src="{{asset('public/backEnd/')}}/assets/js/pages/form-advanced.init.js"></script>
+<script src="{{asset('backEnd/')}}/assets/libs/parsleyjs/parsley.min.js"></script>
+<script src="{{asset('backEnd/')}}/assets/js/pages/form-validation.init.js"></script>
+<script src="{{asset('backEnd/')}}/assets/libs/select2/js/select2.min.js"></script>
+<script src="{{asset('backEnd/')}}/assets/js/pages/form-advanced.init.js"></script>
 <!-- Plugins js -->
-<script src="{{asset('public/backEnd/')}}/assets/libs//summernote/summernote-lite.min.js"></script>
+<script src="{{asset('backEnd/')}}/assets/libs//summernote/summernote-lite.min.js"></script>
 <script>
   $(".summernote").summernote({
     placeholder: "Enter Your Text Here",
@@ -641,3 +641,4 @@
   });
 </script>
 @endsection
+

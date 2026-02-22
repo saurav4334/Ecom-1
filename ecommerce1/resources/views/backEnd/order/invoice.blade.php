@@ -1,4 +1,4 @@
-@extends('backEnd.layouts.master')
+﻿@extends('backEnd.layouts.master')
 @section('title','Order Invoice')
 
 @section('content')
@@ -280,3 +280,4 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 @endsection
+

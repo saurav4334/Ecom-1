@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
@@ -12,8 +12,8 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700">
 
 	<!-- aiz core css -->
-	<link rel="stylesheet" href="{{asset('public/backEnd/')}}/assets_login/css/vendors.css">
-	<link rel="stylesheet" href="{{asset('public/backEnd/')}}/assets_login/css/aiz-core.css">
+	<link rel="stylesheet" href="{{asset('backEnd/')}}/assets_login/css/vendors.css">
+	<link rel="stylesheet" href="{{asset('backEnd/')}}/assets_login/css/aiz-core.css">
 
 	<style>
 		body {
@@ -25,7 +25,7 @@
 
 <div class="aiz-main-wrapper d-flex">
 	<div class="flex-grow-1">
-		<div class="h-100 bg-cover bg-center py-5 d-flex align-items-center" style="background-image: url({{asset('public/backEnd/')}}/assets_login/img/background.jpg)">
+		<div class="h-100 bg-cover bg-center py-5 d-flex align-items-center" style="background-image: url({{asset('backEnd/')}}/assets_login/img/background.jpg)">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-6 col-xl-4 mx-auto">
@@ -80,7 +80,8 @@
 	</div>
 </div><!-- .aiz-main-wrapper -->
 
-<script src="{{asset('public/backEnd/')}}/assets_login/js/vendors.js"></script>
-<script src="{{asset('public/backEnd/')}}/assets_login/js/aiz-core.js"></script>
+<script src="{{asset('backEnd/')}}/assets_login/js/vendors.js"></script>
+<script src="{{asset('backEnd/')}}/assets_login/js/aiz-core.js"></script>
 </body>
 </html>
+

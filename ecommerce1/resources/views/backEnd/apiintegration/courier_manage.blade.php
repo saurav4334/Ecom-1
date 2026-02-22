@@ -1,4 +1,4 @@
-@extends('backEnd.layouts.master') 
+﻿@extends('backEnd.layouts.master') 
 @section('title','Courier API')
 @section('css')
 <style>
@@ -8,15 +8,15 @@
     margin-bottom: 10px;
   }
 </style>
-<link href="{{asset('public/backEnd')}}/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
-<link href="{{asset('public/backEnd')}}/assets/libs/summernote/summernote-lite.min.css" rel="stylesheet" type="text/css" />
+<link href="{{asset('backEnd')}}/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+<link href="{{asset('backEnd')}}/assets/libs/summernote/summernote-lite.min.css" rel="stylesheet" type="text/css" />
 @endsection @section('content')
 <div class="container-fluid">
   <!-- start page title -->
 <div class="row">
   <div class="col-12">
     <div class="page-title-box d-flex align-items-center">
-      <img src="{{ asset('public/frontEnd/images/stade.svg') }}" alt="Steadfast Logo" style="height: 35px; margin-right: 10px;">
+      <img src="{{ asset('frontEnd/images/stade.svg') }}" alt="Steadfast Logo" style="height: 35px; margin-right: 10px;">
       <h4 class="page-title">Steadfast Courier</h4>
     </div>
   </div>
@@ -126,7 +126,7 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 
-/* লাল বর্ডার কার্ড */
+/* লাল বর�ডার কার�ড */
 .red-border-card {
   border: 1px solid #ff4d4d !important;
   border-radius: 6px;
@@ -138,12 +138,12 @@ input:checked + .slider:before {
 
 </div>
 @endsection @section('script')
-<script src="{{asset('public/backEnd/')}}/assets/libs/parsleyjs/parsley.min.js"></script>
-<script src="{{asset('public/backEnd/')}}/assets/js/pages/form-validation.init.js"></script>
-<script src="{{asset('public/backEnd/')}}/assets/libs/select2/js/select2.min.js"></script>
-<script src="{{asset('public/backEnd/')}}/assets/js/pages/form-advanced.init.js"></script>
+<script src="{{asset('backEnd/')}}/assets/libs/parsleyjs/parsley.min.js"></script>
+<script src="{{asset('backEnd/')}}/assets/js/pages/form-validation.init.js"></script>
+<script src="{{asset('backEnd/')}}/assets/libs/select2/js/select2.min.js"></script>
+<script src="{{asset('backEnd/')}}/assets/js/pages/form-advanced.init.js"></script>
 <!-- Plugins js -->
-<script src="{{asset('public/backEnd/')}}/assets/libs//summernote/summernote-lite.min.js"></script>
+<script src="{{asset('backEnd/')}}/assets/libs//summernote/summernote-lite.min.js"></script>
 <script>
   $(".summernote").summernote({
     placeholder: "Enter Your Text Here",

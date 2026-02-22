@@ -1,4 +1,4 @@
-@extends('backEnd.layouts.master')
+﻿@extends('backEnd.layouts.master')
 @section('title','Affiliate Dashboard')
 @section('content')
 <div class="container-fluid">
@@ -78,3 +78,4 @@
     </div>
 </div>
 @endsection
+
